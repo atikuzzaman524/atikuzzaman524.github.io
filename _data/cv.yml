@@ -43,23 +43,23 @@
       institution: Catalyst Solutions (DBA - Adiva Graphics), Bangladesh
       year: May 2019 – July 2019
 
-- title: Research Publications
-  type: time_table
-  contents:
-    - title: Journal Articles
-      description:
-        - "A comparative analysis of convolutional neural networks for trash classification, GUB Journal of Science and Engineering (GUBJSE), 2021."
-        - "Real-time computer vision-based Bangla vehicle license plate recognition using contour analysis and prediction algorithm, International Journal of Image and Graphics, 2021."
-    - title: Conference Proceedings
-      description:
-        - "Accelerating and diversifying diffusion sampling with grayscale diffusion and GAN-based colorization, KIBME Summer Conference, 2024."
-        - "Beyond random noise: Investigating alternative initialization strategies for dataset condensation, KIBME Summer Conference, 2024."
-        - "Efficient and effective INR: A dive into levels-of-experts (LOE) and sine activation, ICOIN, IEEE, 2024."
-        - "Mirror text classification from image using machine learning techniques, Springer, 2024."
-        - "Real-time anomaly detection and classification from surveillance cameras using deep neural networks, STI, 2021."
-        - "Human activity recognition system from different poses with CNN, STI, 2020."
-        - "Human-robot interaction system for behavioral improvement of autistic children, ICAICT, 2020."
-        - "Vehicle number plate detection and categorization using CNNs, STI, 2019."
+# - title: Research Publications
+#   type: time_table
+#   contents:
+#     - title: Journal Articles
+#       description:
+#         - "A comparative analysis of convolutional neural networks for trash classification, GUB Journal of Science and Engineering (GUBJSE), 2021."
+#         - "Real-time computer vision-based Bangla vehicle license plate recognition using contour analysis and prediction algorithm, International Journal of Image and Graphics, 2021."
+#     - title: Conference Proceedings
+#       description:
+#         - "Accelerating and diversifying diffusion sampling with grayscale diffusion and GAN-based colorization, KIBME Summer Conference, 2024."
+#         - "Beyond random noise: Investigating alternative initialization strategies for dataset condensation, KIBME Summer Conference, 2024."
+#         - "Efficient and effective INR: A dive into levels-of-experts (LOE) and sine activation, ICOIN, IEEE, 2024."
+#         - "Mirror text classification from image using machine learning techniques, Springer, 2024."
+#         - "Real-time anomaly detection and classification from surveillance cameras using deep neural networks, STI, 2021."
+#         - "Human activity recognition system from different poses with CNN, STI, 2020."
+#         - "Human-robot interaction system for behavioral improvement of autistic children, ICAICT, 2020."
+#         - "Vehicle number plate detection and categorization using CNNs, STI, 2019."
 
 - title: Skills
   type: nested_list
