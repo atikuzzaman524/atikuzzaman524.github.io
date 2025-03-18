@@ -513,11 +513,11 @@ ninja.data = [{
           window.open("https://wa.me/8801912961096", "_blank");
         },
       },{
-        id: 'social-custom_social',
-        title: 'Custom_social',
+        id: 'social-youtube',
+        title: 'YouTube',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.alberteinstein.com/", "_blank");
+          window.open("https://youtube.com/@UCYS9sJezJ9rsu7NY4JOw8Jw", "_blank");
         },
       },{
       id: 'light-theme',
