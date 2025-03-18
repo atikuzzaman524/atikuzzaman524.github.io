@@ -478,13 +478,6 @@ ninja.data = [{
           window.open("https://facebook.com/atikuzzaman524", "_blank");
         },
       },{
-        id: 'social-github',
-        title: 'GitHub',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://github.com/atikuzzaman524", "_blank");
-        },
-      },{
         id: 'social-instagram',
         title: 'Instagram',
         section: 'Socials',
