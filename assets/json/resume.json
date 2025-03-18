@@ -53,8 +53,8 @@
       "url": "https://www.khu.ac.kr/",
       "area": "Artificial Intelligence",
       "studyType": "Master's",
-      "startDate": "2022-01-01",
-      "endDate": "2024-01-01",
+      "startDate": "2022-09-01",
+      "endDate": "2024-08-31",
       "Thesis": ["Enhanced Urban Cellular Traffic Prediction using Feature Modulation in Densely Connected Convolutional Networks"]
     },
     {
@@ -66,26 +66,55 @@
       "startDate": "2015-01-01",
       "endDate": "2019-01-01",
       "Thesis": ["Vehicle Number Plate Detection and Categorization Using CNNs"]
+    },
+     {
+      "institution": "Adamjee Cantonment College",
+      "location": "Bangladesh",
+      "url": "https://www.acps.edu.bd/",
+      "Concentration": "Science",
+      "studyType": "Higher Secondary School Certificate(H.S.C)",
+      "startDate": "2011-07-01",
+      "endDate": "2013-08-03",
+    },
+    {
+      "institution": "Takerhat Popular High School",
+      "location": "Bangladesh",
+      "Concentration": "Science",
+      "studyType": "Secondary School Certificate (S.S.C.)",
+      "startDate": "2006-01-01",
+      "endDate": "2011-06-12",
     }
+    
   ],
   "awards": [
     {
+      "title": "President's Scholarship (Foreigners)",
+      "date": "2022-09-01",
+      "awarder": "Kyung Hee University",
+      "summary": "Covering the full tuition fees for the duration of the Master's degree program."
+    },
+    {
       "title": "Vice-Chancellor’s Award",
-      "date": "",
+      "date": " Fall 2016 & Summer 2017 ",
       "awarder": "Green University of Bangladesh",
       "summary": "Awarded twice for outstanding academic performance."
     },
     {
       "title": "Programming Contest Awards",
-      "date": "",
+      "date": "2015 - 2018",
       "awarder": "Green University of Bangladesh, IEEE SB GUB",
       "summary": "Three times 1st Runner-up in Inter-Semester Programming Contests and one-time 1st Runner-up in IEEE Programming Contest."
     },
     {
       "title": "Book Reading Competition Award",
-      "date": "",
+      "date": "Summer 2015 & Fall 2015",
       "awarder": "British Council Library",
       "summary": "Two-time winner and honorary Gold Member."
+    },
+    {
+      "title": "Junior School Certificate ( J.S.C) Scholarship",
+      "date": "2008",
+      "awarder": "Board of Intermediate and Secondary Education, Dhaka"
     }
   ],
   "certificates": [
@@ -106,7 +135,7 @@
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": ["C", "Python", "Java", "PHP", "R", "SQL", "LaTeX"]
+      "keywords": ["C", "Python", "Java", "PHP", "R", "SQL"]
     },
     {
       "name": "Databases",
@@ -135,7 +164,12 @@
     {
       "name": "Research Areas",
       "keywords": ["Computer Vision", "Machine Learning", "Deep Learning", "Medical Imaging"]
+    },
+    {
+      "name": "Hobbies",
+      "keywords": ["Travelling", "Reading Books", "Watching Movies", "Photography"]
     }
+    
   ],
   "projects": [
     {
