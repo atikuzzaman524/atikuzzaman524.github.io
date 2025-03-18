@@ -4,7 +4,6 @@ title: about
 permalink: /
 subtitle: <a href='#'>Lecturer & Researcher</a>
 
-### About Me  
 I am Md. Atikuzzaman, a passionate researcher and educator specializing in **Computer Vision, Machine Learning, Deep Learning, and Medical Imaging**. Currently, I serve as a **Lecturer** in the **Department of Computer Science and Engineering** at Green University of Bangladesh. I hold a **Master of Artificial Intelligence** from **Kyung Hee University, Republic of Korea**, where I conducted research on **urban cellular traffic prediction using feature modulation in densely connected convolutional networks**.  
 
 Throughout my academic and professional journey, I have been actively involved in research, publishing in **peer-reviewed journals and conferences**, including IEEE and Springer. My work spans areas such as **trash classification, vehicle license plate recognition, and deep learning-based anomaly detection**.  
