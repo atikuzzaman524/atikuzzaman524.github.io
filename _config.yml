@@ -193,8 +193,12 @@ exclude:
   - vendor
   - _projects/?_project.md
   - _pages/news.md
-  - _pages/news.md
   - _pages/repositories.md
+  - _pages/profiles.md
+  - _pages/projects.md
+
+
+  
 keep_files:
   - CNAME
   - .nojekyll
