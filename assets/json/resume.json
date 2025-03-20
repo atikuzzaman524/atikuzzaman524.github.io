@@ -52,20 +52,20 @@
       "location": "Republic of Korea",
       "url": "https://www.khu.ac.kr/",
       "area": "Artificial Intelligence",
-      "studyType": "Master's",
+      "studyType": "Master of Artificial Intelligence",
       "startDate": "2022-09-01",
       "endDate": "2024-08-31",
-      "Thesis": ["Enhanced Urban Cellular Traffic Prediction using Feature Modulation in Densely Connected Convolutional Networks"]
+      "Thesis": "Enhanced Urban Cellular Traffic Prediction using Feature Modulation in Densely Connected Convolutional Networks"
     },
     {
       "institution": "Green University of Bangladesh",
       "location": "Bangladesh",
       "url": "https://green.edu.bd/",
       "area": "Computer Science and Engineering",
-      "studyType": "Bachelor's",
+      "studyType": "B.Sc. in Computer Science and Engineering",
       "startDate": "2015-01-01",
       "endDate": "2019-01-01",
-      "Thesis": ["Vehicle Number Plate Detection and Categorization Using CNNs"]
+      "Thesis": "Vehicle Number Plate Detection and Categorization Using CNNs"
     },
      {
       "institution": "Adamjee Cantonment College",
