@@ -4,6 +4,8 @@ permalink: /teaching/
 title: Teaching
 nav: true
 nav_order: 3
+display_categories: [2025, 2024]
+horizontal: true
 ---
 ## Green University of Bangladesh
 ### Spring 2025 Courses
