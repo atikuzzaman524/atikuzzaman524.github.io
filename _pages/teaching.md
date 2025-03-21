@@ -1,40 +1,22 @@
 ---
 layout: page
 permalink: /teaching/
-title: Teaching
+title: teaching
 description: Classes, Workshops, and Teaching Materials
 nav: true
 nav_order: 3
 ---
 
-# Teaching
+# Green University of Bangladesh
+
 
 ## Spring 2025 Courses
 
-### Course 1: [Course Title]
-**Description:** Brief course description.  
-**Schedule:** Days & times  
-**Location:** Classroom/Online  
-**Syllabus:** [Link to syllabus]  
-**Resources:** [Additional materials, readings, etc.]
+| Course Code | Course Title                  | Course Page |
+|------------|--------------------------------|-------------|
+| CSE 315    | Artificial Intelligence       | [Course Page](#) |
+| CSE 316    | Artificial Intelligence Lab   | [Course Page](#) |
+| CSE 435    | Data Mining                   | [Course Page](#) |
+| CSE 436    | Data Mining Lab               | [Course Page](#) |
 
-### Course 2: [Course Title]
-**Description:** Brief course description.  
-**Schedule:** Days & times  
-**Location:** Classroom/Online  
-**Syllabus:** [Link to syllabus]  
-**Resources:** [Additional materials, readings, etc.]
-
----
-
-## Workshops & Special Sessions
-- **Workshop 1:** [Title] - Date & Time | Location  
-- **Workshop 2:** [Title] - Date & Time | Location  
-
----
-
-## Teaching Materials
-- **Lecture Notes:** [Link to notes]  
-- **Assignments & Projects:** [Link to materials]  
-- **Additional Resources:** [Link to external resources]  
 
