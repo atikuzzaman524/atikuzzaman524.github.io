@@ -1,24 +1,34 @@
 ---
-layout: page
-permalink: /projects/
-title: teaching
-description: Classes, Workshops, and Teaching Materials
+layout: default
+permalink: /teaching/
+title: Teaching
 nav: true
 nav_order: 3
 ---
-
 ## Green University of Bangladesh
----
-
 ### Spring 2025 Courses
----
 
-| Course Code | Course Title                  | Course Page |
-|------------|--------------------------------|-------------|
-| CSE 315    | Artificial Intelligence       | [Course Page](6_project) |
-| CSE 316    | Artificial Intelligence Lab   | [Course Page](7_project) |
-| CSE 435    | Data Mining                   | [Course Page](8_project) |
-| CSE 436    | Data Mining Lab               | [Course Page](9_project) |
+<table style="width:100%; border-collapse: collapse; text-align: center; border: 1px solid black;">
+  <thead>
+    <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black; padding: 8px;">Course Code</th>
+      <th style="border: 1px solid black; padding: 8px;">Course Title</th>
+      <th style="border: 1px solid black; padding: 8px;">Course Page</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% assign sorted_courses = site.teaching | sort: "title" %}
+    {% for course in sorted_courses %}
+    <tr style="border: 1px solid black;">
+      {% assign parts = course.title | split: "_" %}
+      <td style="border: 1px solid black; padding: 8px;">{{ parts[1] }}</td>
+      <td style="border: 1px solid black; padding: 8px;">{{ parts[2] | replace: "-", " " }}</td>
+      <td style="border: 1px solid black; padding: 8px;"><a href="{{ course.url | relative_url }}">Course Page</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 
 
 
