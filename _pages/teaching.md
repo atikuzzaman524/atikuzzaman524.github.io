@@ -10,27 +10,61 @@ horizontal: true
 ## Green University of Bangladesh
 ### Spring 2025 Courses
 
-<table style="width:100%; border-collapse: collapse; text-align: center; border: 1px solid black;">
-  <thead>
-    <tr style="border: 1px solid black;">
-      <th style="border: 1px solid black; padding: 8px;">Course Code</th>
-      <th style="border: 1px solid black; padding: 8px;">Course Title</th>
-      <th style="border: 1px solid black; padding: 8px;">Course Page</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% assign sorted_courses = site.teaching | sort: "title" %}
-    {% for course in sorted_courses %}
-    <tr style="border: 1px solid black;">
-      {% assign parts = course.title | split: "_" %}
-      <td style="border: 1px solid black; padding: 8px;">{{ parts[1] }}</td>
-      <td style="border: 1px solid black; padding: 8px;">{{ parts[2] | replace: "-", " " }}</td>
-      <td style="border: 1px solid black; padding: 8px;"><a href="{{ course.url | relative_url }}">Course Page</a></td>
-    </tr>
+
+
+<!-- pages/projects.md -->
+<div class="projects">
+{% if site.enable_project_categories and page.display_categories %}
+  <!-- Display categorized projects -->
+  {% for category in page.display_categories %}
+  <a id="{{ category }}" href=".#{{ category }}">
+    <h2 class="category">{{ category }}</h2>
+  </a>
+  {% assign categorized_projects = site.teaching | where: "category", category %}
+  {% assign sorted_projects = categorized_projects | sort: "importance" %}
+  <!-- Generate cards for each project -->
+  {% if page.horizontal %}
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+    {% for project in sorted_projects %}
+      {% include projects_horizontal.liquid %}
     {% endfor %}
-  </tbody>
-</table>
+    </div>
+  </div>
+  {% else %}
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for project in sorted_projects %}
+      {% include projects.liquid %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endfor %}
 
+{% else %}
 
+<!-- Display projects without categories -->
+
+{% assign sorted_projects = site.teaching | sort: "importance" %}
+
+  <!-- Generate cards for each project -->
+
+{% if page.horizontal %}
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+    {% for project in sorted_projects %}
+      {% include projects_horizontal.liquid %}
+    {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for project in sorted_projects %}
+      {% include projects.liquid %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endif %}
+</div>
 
 
