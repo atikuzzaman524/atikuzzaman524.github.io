@@ -8,12 +8,10 @@ nav_order: 3
 ---
 
 ## Green University of Bangladesh
-
+---
 
 ### Spring 2025 Courses
-
-
-## Spring 2025 Courses
+---
 
 | Course Code | Course Title                  | Course Page |
 |------------|--------------------------------|-------------|
