@@ -191,11 +191,11 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
-  - _projects/?_project.md
-  - _pages/news.md
-  - _pages/repositories.md
-  - _pages/profiles.md
-  - _pages/projects.md
+  # - _projects/?_project.md
+  # - _pages/news.md
+  # - _pages/repositories.md
+  # - _pages/profiles.md
+  # - _pages/projects.md
 
 
   
