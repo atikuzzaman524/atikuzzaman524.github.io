@@ -6,6 +6,8 @@ permalink: /teaching/Spring-2025_CSE-315_Artificial-Intelligence/
 semester: "Spring 2025"
 description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications."
 ---
+### Topic Outline
+
 | Lecture  | Selected Topic  | Article  | Problems  |
 |----------|---------------|----------|-----------|
 | (1)      | Socialization and Introduction to the course | - | - |
