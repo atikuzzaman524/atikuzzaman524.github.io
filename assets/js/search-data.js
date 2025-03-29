@@ -430,6 +430,11 @@ ninja.data = [{
               window.location.href = "/projects/9_project/";
             },},{id: "teaching-introduction-to-machine-learning",
           title: 'Introduction to Machine Learning',
+          description: "",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/intro-to-machine-learning/";
+            },},{id: "teaching-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
           description: "An introductory course covering the fundamentals of machine learning.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/intro-to-machine-learning/";
