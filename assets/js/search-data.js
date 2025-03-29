@@ -428,11 +428,6 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
-            },},{id: "teaching-introduction-to-machine-learning",
-          title: 'Introduction to Machine Learning',
-          description: "",
-          section: "Teaching",handler: () => {
-              window.location.href = "/teaching/intro-to-machine-learning/";
             },},{id: "teaching-artificial-intelligence",
           title: 'Artificial Intelligence',
           description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
