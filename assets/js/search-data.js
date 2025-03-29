@@ -433,11 +433,11 @@ ninja.data = [{
           description: "",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/intro-to-machine-learning/";
-            },},{id: "teaching-introduction-to-machine-learning",
-          title: 'Introduction to Machine Learning',
-          description: "An introductory course covering the fundamentals of machine learning.",
+            },},{id: "teaching-artificial-intelligence",
+          title: 'Artificial Intelligence',
+          description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
           section: "Teaching",handler: () => {
-              window.location.href = "/teaching/intro-to-machine-learning/";
+              window.location.href = "/teaching/Spring-2025_CSE-315_Artificial-Intelligence/";
             },},{
         id: 'social-email',
         title: 'email',
