@@ -7,13 +7,16 @@ nav_order: 3
 ---
 ## Green University of Bangladesh
 
-### Spring 2025 Courses
-
-| Course Code | Course Title                  | Course Page |
-|------------|--------------------------------|-------------|
-| CSE 315    | Artificial Intelligence       | [Course Page](#) |
-| CSE 316    | Artificial Intelligence Lab   | [Course Page](#) |
-| CSE 435    | Data Mining                   | [Course Page](#) |
-| CSE 436    | Data Mining Lab               | [Course Page](#) |
+{% assign courses_by_semester = site.teaching | group_by: "semester" %}
+{% for group in courses_by_semester %}
+  <h2>{{ group.name }}</h2>
+  <ul>
+    {% for course in group.items %}
+      <li>
+        <a href="{{ course.url }}">{{ course.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
 
 
