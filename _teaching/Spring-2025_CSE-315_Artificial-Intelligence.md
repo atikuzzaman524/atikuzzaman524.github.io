@@ -1,7 +1,7 @@
 ---
 title: "Artificial Intelligence"
 course_code: "CSE-315"
-layout: teaching  # use the appropriate layout if provided by the theme
+layout: default 
 permalink: /teaching/Spring-2025_CSE-315_Artificial-Intelligence/
 semester: "Spring 2025"
 description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications."
