@@ -443,6 +443,11 @@ ninja.data = [{
           description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2025_CSE-316_Artificial-Intelligence-Lab/";
+            },},{id: "teaching-data-mining",
+          title: 'Data Mining',
+          description: "An introduction to data mining techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Spring-2025_CSE-435_Data-Mining/";
             },},{
         id: 'social-email',
         title: 'email',
