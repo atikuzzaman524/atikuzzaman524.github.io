@@ -438,6 +438,11 @@ ninja.data = [{
           description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2025_CSE-315_Artificial-Intelligence/";
+            },},{id: "teaching-artificial-intelligence-lab",
+          title: 'Artificial Intelligence Lab',
+          description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Spring-2025_CSE-316_Artificial-Intelligence-Lab/";
             },},{
         id: 'social-email',
         title: 'email',
