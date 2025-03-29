@@ -428,11 +428,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
-            },},{id: "teaching-ai",
-          title: 'AI',
-          description: "with background image",
+            },},{id: "teaching-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "An introductory course covering the fundamentals of machine learning.",
           section: "Teaching",handler: () => {
-              window.location.href = "/teaching/Spring-2025_CSE-315_Artificial-Intelligence/";
+              window.location.href = "/teaching/intro-to-machine-learning/";
             },},{
         id: 'social-email',
         title: 'email',
