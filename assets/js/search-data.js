@@ -24,11 +24,11 @@ ninja.data = [{
             window.location.href = "/cv/";
           },
         },{id: "nav-teaching",
-          title: "teaching",
-          description: "Classes, Workshops, and Teaching Materials",
+          title: "Teaching",
+          description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/projects/";
+            window.location.href = "/teaching/";
           },
         },{id: "nav-blog",
           title: "blog",
@@ -428,6 +428,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "teaching-ai",
+          title: 'AI',
+          description: "with background image",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Spring-2025_CSE-315_Artificial-Intelligence/";
             },},{
         id: 'social-email',
         title: 'email',
