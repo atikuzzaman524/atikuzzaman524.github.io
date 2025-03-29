@@ -5,6 +5,8 @@ layout: default
 permalink: /teaching/Spring-2025_CSE-436_Data-Mining-Lab/
 semester: "Spring 2025"
 description: Hands-on exploration of data mining techniques, including preprocessing, pattern mining, classification, clustering, and model evaluation using Python."
+---
+
 ### Lab Activity Outline
 
 | Class | Experiment Title | COs | Reference | Activities |
