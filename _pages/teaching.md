@@ -4,7 +4,8 @@ permalink: /teaching/
 title: teaching
 nav: true
 nav_order: 3
-subtitle: Academic Courses & Learning Resources
+description: Academic Courses and Teaching Materials
+
 social: true # includes social icons at the bottom of the page
 ---
 
@@ -36,7 +37,7 @@ social: true # includes social icons at the bottom of the page
 
 <br><br>  
 
-## More Information
+### More Information
 
 <div style="display: flex; align-items: center; gap: 20px;">
   <div>
