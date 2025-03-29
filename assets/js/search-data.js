@@ -448,9 +448,9 @@ ninja.data = [{
           description: "An introduction to data mining techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2025_CSE-435_Data-Mining/";
-            },},{id: "teaching-spring-2025-cse-436-data-mining-lab",
-          title: 'Spring 2025_cse 436_data Mining Lab',
-          description: "",
+            },},{id: "teaching-data-mining-lab",
+          title: 'Data Mining Lab',
+          description: "Hands-on exploration of data mining techniques, including preprocessing, pattern mining, classification, clustering, and model evaluation using Python.&quot;",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2025_CSE-436_Data-Mining-Lab/";
             },},{
