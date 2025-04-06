@@ -39,14 +39,6 @@ social: true # includes social icons at the bottom of the page
 
 ### More Information
 
-<div style="display: flex; align-items: center; gap: 20px;">
-  <div>
-    <strong>Location:</strong> Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj-1461, Dhaka, Bangladesh
-    <br><br>
-    <strong>Phone:</strong> +8801912961096  
-    <br>
-    <strong>Email:</strong> <a href="mailto:atik@cse.green.edu.bd">atik@cse.green.edu.bd</a>  
-  </div>
 <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px;">
   <div style="flex: 1 1 300px; min-width: 250px;">
     <strong>Location:</strong> Green University of Bangladesh, Purbachal American City, Kanchan, Rupganj, Narayanganj-1461, Dhaka, Bangladesh
