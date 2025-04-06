@@ -9,7 +9,10 @@ description: "An introduction to AI covering search, logic, planning, uncertaint
 # CSE-315 Artificial Intelligence
 <br>
 E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
+
 🕾 Mob. +8801912961096  
+
+:office: Room: A-510 Desk No. : 06
 <br>
 <br>
 ### Class Routine – Spring 2025 Semester
