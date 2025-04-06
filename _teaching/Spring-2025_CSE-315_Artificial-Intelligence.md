@@ -83,15 +83,28 @@ description: "An introduction to AI covering search, logic, planning, uncertaint
       <td colspan="5">-</td>
     </tr>
     <tr>
-      <td><strong>Friday</strong></td>
-      <td>08:30 - 09:50<br>CSE 435<br>212 D1<br>J-109</td>
-      <td>09:50 - 11:10<br>Tutor Time</td>
-      <td>11:10 - 12:50</td>
-      <td>02:00 - 03:20</td>
-      <td>03:20 - 04:40<br>CSE 436<br>212 D1<br>J-108</td>
+      <td><strong>Friday</strong><br>08:30 - 09:50</td>
+      <td colspan="5">CSE 435<br>212 D1<br>J-109</td>
+    </tr>
+    <tr>
+      <td><strong>Friday</strong><br>09:50 - 11:10</td>
+      <td colspan="5">Tutor Time</td>
+    </tr>
+    <tr>
+      <td><strong>Friday</strong><br>11:10 - 12:50</td>
+      <td colspan="5">-</td>
+    </tr>
+    <tr>
+      <td><strong>Friday</strong><br>02:00 - 03:20</td>
+      <td colspan="5">-</td>
+    </tr>
+    <tr>
+      <td><strong>Friday</strong><br>03:20 - 04:40</td>
+      <td colspan="5">CSE 436<br>212 D1<br>J-108</td>
     </tr>
   </tbody>
 </table>
+
 
 
 
