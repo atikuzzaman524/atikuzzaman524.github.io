@@ -6,12 +6,14 @@ permalink: /teaching/Spring-2025_CSE-315_Artificial-Intelligence/
 semester: "Spring 2025"
 description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications."
 ---
-
+# CSE-315 Artificial Intelligence
+<br>
 E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
 🕾 Mob. +8801912961096  
-
+<br>
+<br>
 ### Class Routine – Spring 2025 Semester
-
+<br>
 | **Time / Day** | **09:00 - 10:20**          | **10:20 - 11:40**       | **11:40 - 01:20**         | **Break** | **01:30 - 02:50**             | **02:50 - 04:10**          |
 |----------------|----------------------------|--------------------------|----------------------------|-----------|-------------------------------|----------------------------|
 | **Saturday**   | CSE-435 212_D1 R: J-109     | Research Time            | CSE-436 212_D2 R: K-101     |           | -                             | -                          |
@@ -22,7 +24,8 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 | **Friday**     | 08:30-09:50 CSE-435 212_D1 R: J-109 | 09:50-11:10 Tutor Time | 11:10-12:50 -              |           | 02:00-03:20 -                 | 03:20-04:40 CSE-436 212_D1 R: J-108 |
 
 
-
+<br>
+<br>
 
 ### Topic Outline
 
