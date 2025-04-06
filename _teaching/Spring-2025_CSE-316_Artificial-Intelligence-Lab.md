@@ -21,7 +21,7 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 |          | **08:30 - 09:50** | **09:50 - 11:10** | **11:10 - 12:50** | **Break** | **02:00 - 03:20** | **03:20 - 04:40** |
 | **Fri**  | CSE-435 212_D1 R: J-109 | Tutor Time | CSE-436 212_D1 R: J-108 |           |                   |                   |
 
-## Lab Outline
+### Lab Activity Outline
 
 | Class | Experiment Title | COs | Reference | Activities |
 |-------|-----------------|-----|-----------|------------|
