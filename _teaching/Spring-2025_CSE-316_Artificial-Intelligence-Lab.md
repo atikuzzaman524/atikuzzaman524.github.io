@@ -6,20 +6,26 @@ permalink: /teaching/Spring-2025_CSE-316_Artificial-Intelligence-Lab/
 semester: "Spring 2025"
 description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications."
 ---
-## Class Routine of Spring 2025 Semester
+# CSE-316 Artificial Intelligence Lab
  
 E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
 🕾 Mob. +8801912961096  
+<br>
+<br>
+### Class Routine – Spring 2025 Semester
+<br>
+| **Time / Day** | **09:00 - 10:20**          | **10:20 - 11:40**       | **11:40 - 01:20**         | **Break** | **01:30 - 02:50**             | **02:50 - 04:10**          |
+|----------------|----------------------------|--------------------------|----------------------------|-----------|-------------------------------|----------------------------|
+| **Saturday**   | CSE-435 212_D1 R: J-109     | Research Time            | CSE-436 212_D2 R: K-101     |           | -                             | -                          |
+| **Sunday**     | CSE-315 221_D10 R: A-605    | Tutor Time               | CSE-436 213_D1 R: A-501     |           | -                             | -                          |
+| **Monday**     | -                          | Research Time            | -                          |           | Weekly Academic Meeting       | -                          |
+| **Tuesday**    | CSE-315 221_D10 R: A-605    | Tutor Time               | -                          |           | CSE-316 221_D20 R: K-109      | -                          |
+| **Wednesday**  | -                          | -                        | -                          |           | -                             | -                          |
+| **Friday**     | 08:30-09:50 CSE-435 212_D1 R: J-109 | 09:50-11:10 Tutor Time | 11:10-12:50 -              |           | 02:00-03:20 -                 | 03:20-04:40 CSE-436 212_D1 R: J-108 |
 
-| **Time** <br> **Day** | **09:00 - 10:20** | **10:20 - 11:40** | **11:40 - 01:20** | **Break** | **01:30 - 02:50** | **02:50 - 04:10** |
-|----------|-------------------|-------------------|-------------------|-----------|-------------------|-------------------|
-| **Sat**  | CSE-435 212_D1 R: J-109 | Research Time | CSE-436 212_D2 R: K-101 |           |                   |                   |
-| **Sun**  | CSE-315 221_D10 R: A-605 | Tutor Time | CSE-436 213_D1 R: A-501 |           |                   |                   |
-| **Mon**  |                   | Research Time |                   |           | **Weekly Academic Meeting** |                   |
-| **Tue**  | CSE-315 221_D10 R: A-605 | Tutor Time |                   |           | CSE 316 221_D20 R: K-109 |                   |
-| **Wed**  |                   |                   |                   |           |                   |                   |
-|          | **08:30 - 09:50** | **09:50 - 11:10** | **11:10 - 12:50** | **Break** | **02:00 - 03:20** | **03:20 - 04:40** |
-| **Fri**  | CSE-435 212_D1 R: J-109 | Tutor Time | CSE-436 212_D1 R: J-108 |           |                   |                   |
+
+<br>
+<br>
 
 ### Lab Activity Outline
 
