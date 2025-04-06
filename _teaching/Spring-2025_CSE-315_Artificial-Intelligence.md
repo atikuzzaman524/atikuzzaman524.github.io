@@ -6,105 +6,20 @@ permalink: /teaching/Spring-2025_CSE-315_Artificial-Intelligence/
 semester: "Spring 2025"
 description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications."
 ---
+## Class Routine of Spring 2025 Semester
+ 
+E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
+🕾 Mob. +8801912961096  
 
-# Class Routine – Spring 2025 Semester
-
-**Email:** [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
-**Phone:** +8801912961096  
-
-<style>
-  table.custom-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table.custom-table th, table.custom-table td {
-    border: 1px solid #999;
-    padding: 8px;
-    text-align: center;
-  }
-  table.custom-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  table.custom-table tr:nth-child(odd) {
-    background-color: #e6f7ff;
-  }
-  table.custom-table th {
-    background-color: #004080;
-    color: white;
-  }
-</style>
-
-<table class="custom-table">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>09:00 - 10:20</th>
-      <th>10:20 - 11:40</th>
-      <th>11:40 - 01:20</th>
-      <th>01:30 - 02:50</th>
-      <th>02:50 - 04:10</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Saturday</strong></td>
-      <td>CSE 435<br>212 D1<br>J-109</td>
-      <td>Research Time</td>
-      <td>CSE 436<br>212 D2<br>K-101</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td><strong>Sunday</strong></td>
-      <td>CSE 315<br>221 D10<br>A-605</td>
-      <td>Tutor Time</td>
-      <td>CSE 436<br>213 D1<br>A-501</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td><strong>Monday</strong></td>
-      <td>Research Time</td>
-      <td>-</td>
-      <td>-</td>
-      <td>Weekly Academic Meeting</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td><strong>Tuesday</strong></td>
-      <td>CSE 315<br>221 D10<br>A-605</td>
-      <td>Tutor Time</td>
-      <td>-</td>
-      <td>CSE 316<br>221 D20<br>K-109</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td><strong>Wednesday</strong></td>
-      <td colspan="5">-</td>
-    </tr>
-    <tr>
-      <td><strong>Friday</strong><br>08:30 - 09:50</td>
-      <td colspan="5">CSE 435<br>212 D1<br>J-109</td>
-    </tr>
-    <tr>
-      <td><strong>Friday</strong><br>09:50 - 11:10</td>
-      <td colspan="5">Tutor Time</td>
-    </tr>
-    <tr>
-      <td><strong>Friday</strong><br>11:10 - 12:50</td>
-      <td colspan="5">-</td>
-    </tr>
-    <tr>
-      <td><strong>Friday</strong><br>02:00 - 03:20</td>
-      <td colspan="5">-</td>
-    </tr>
-    <tr>
-      <td><strong>Friday</strong><br>03:20 - 04:40</td>
-      <td colspan="5">CSE 436<br>212 D1<br>J-108</td>
-    </tr>
-  </tbody>
-</table>
-
+| **Time** <br> **Day** | **09:00 - 10:20** | **10:20 - 11:40** | **11:40 - 01:20** | **Break** | **01:30 - 02:50** | **02:50 - 04:10** |
+|----------|-------------------|-------------------|-------------------|-----------|-------------------|-------------------|
+| **Sat**  | CSE-435 212_D1 R: J-109 | Research Time | CSE-436 212_D2 R: K-101 |           |                   |                   |
+| **Sun**  | CSE-315 221_D10 R: A-605 | Tutor Time | CSE-436 213_D1 R: A-501 |           |                   |                   |
+| **Mon**  |                   | Research Time |                   |           | **Weekly Academic Meeting** |                   |
+| **Tue**  | CSE-315 221_D10 R: A-605 | Tutor Time |                   |           | CSE 316 221_D20 R: K-109 |                   |
+| **Wed**  |                   |                   |                   |           |                   |                   |
+|          | **08:30 - 09:50** | **09:50 - 11:10** | **11:10 - 12:50** | **Break** | **02:00 - 03:20** | **03:20 - 04:40** |
+| **Fri**  | CSE-435 212_D1 R: J-109 | Tutor Time | CSE-436 212_D1 R: J-108 |           |                   |                   |
 
 
 
