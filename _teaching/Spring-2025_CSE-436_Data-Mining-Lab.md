@@ -9,7 +9,9 @@ description: Hands-on exploration of data mining techniques, including preproces
 # CSE-435 Data Mining Lab
 <br>
 E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
+
 🕾 Mob. +8801912961096 
+
 :office: Room: A-510 Desk No. : 06
 <br>
 <br>
