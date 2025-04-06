@@ -6,7 +6,7 @@ permalink: /teaching/Spring-2025_CSE-435_Data-Mining/
 semester: "Spring 2025"
 description: "An introduction to data mining techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications."
 ---
-# CSE-435 DataMining
+# CSE-435 Data Mining
  <br>
 E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)  
 🕾 Mob. +8801912961096  
