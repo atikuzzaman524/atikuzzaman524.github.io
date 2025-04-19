@@ -11,7 +11,7 @@ social: true # includes social icons at the bottom of the page
 
 
 ## Green University of Bangladesh
-
+<br><br>  
 {% assign courses_by_semester = site.teaching | group_by: "semester" %}
 {% for group in courses_by_semester %}
   <h3>{{ group.name }}</h3>
@@ -31,6 +31,7 @@ social: true # includes social icons at the bottom of the page
       {% endfor %}
     </tbody>
   </table>
+  <br><br>  
 {% endfor %}
 
 
