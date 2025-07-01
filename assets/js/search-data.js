@@ -37,15 +37,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-lecture1-introduction",
+        },{id: "post-lecture-jupyter-notebook",
       
-        title: "Lecture1 Introduction",
+        title: "lecture jupyter notebook",
       
-      description: "",
+      description: "an example of a blog post with jupyter notebook",
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/lecture1-introduction/";
+          window.location.href = "/blog/2025/lecture/";
         
       },
     },{id: "post-a-post-with-image-galleries",
