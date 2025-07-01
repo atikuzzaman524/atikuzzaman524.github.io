@@ -458,6 +458,11 @@ ninja.data = [{
           description: "Hands-on exploration of data mining techniques, including preprocessing, pattern mining, classification, clustering, and model evaluation using Python.&quot;",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2025_CSE-436_Data-Mining-Lab/";
+            },},{id: "teaching-machine-learning",
+          title: 'Machine Learning',
+          description: "An introduction to machine learning/ techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Summer-2025_CSE-411-%20Machine-Learning/";
             },},{
         id: 'social-email',
         title: 'email',
