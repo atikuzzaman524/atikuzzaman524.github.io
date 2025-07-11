@@ -4,7 +4,7 @@ title: 	Introduction to ML
 date: 2025-07-01 08:57:00-0400
 description: Introduction to ML- Introduction data and relevant Python libraries a blog post with jupyter notebook
 tags: formatting jupyter
-categories: Ml Code
+categories: ML Code
 giscus_comments: true
 related_posts: false
 ---
