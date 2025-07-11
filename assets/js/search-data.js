@@ -41,7 +41,7 @@ ninja.data = [{
       
         title: "Markov Decision Processes (MDPs)",
       
-      description: "Convolutional Neural Networks (CNNs) a blog post with jupyter notebook",
+      description: "Markov Decision Processes (MDPs) a blog post with jupyter notebook",
       section: "Posts",
       handler: () => {
         
@@ -68,6 +68,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/Convolutional_Neural_Networks_(CNNs)/";
+        
+      },
+    },{id: "post-naive-bayes-classifier",
+      
+        title: "Naive Bayes Classifier",
+      
+      description: "Naive Bayes Classifier a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Naive_Bayes_Classifier/";
         
       },
     },{id: "post-backpropagation-algorithm",
