@@ -48,6 +48,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/K-means_algorithm/";
         
       },
+    },{id: "post-k-nearest-neighbors-knn",
+      
+        title: "K-Nearest Neighbors (KNN)",
+      
+      description: "K-Nearest Neighbors (KNN) algorithm a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/K-Nearest_Neighbors/";
+        
+      },
     },{id: "post-logistic-regression",
       
         title: "Logistic Regression",
