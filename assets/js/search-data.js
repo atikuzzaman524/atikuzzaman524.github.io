@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-k-means-clustering-algorithm",
+        },{id: "post-backpropagation-algorithm",
+      
+        title: "Backpropagation Algorithm",
+      
+      description: "Backpropagation Algorithm a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Backpropagation_Algorithm/";
+        
+      },
+    },{id: "post-k-means-clustering-algorithm",
       
         title: "K-means Clustering Algorithm",
       
