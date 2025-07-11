@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-convolutional-neural-networks-cnns",
+        },{id: "post-hidden-markov-models-hmms",
+      
+        title: "Hidden Markov Models (HMMs)",
+      
+      description: "Hidden Markov Models (HMMs) a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Hidden_Markov_Models_(HMMs)/";
+        
+      },
+    },{id: "post-convolutional-neural-networks-cnns",
       
         title: "Convolutional Neural Networks (CNNs)",
       
