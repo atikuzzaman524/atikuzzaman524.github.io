@@ -41,7 +41,7 @@ ninja.data = [{
       
         title: "Markov Decision Processes (MDPs)",
       
-      description: "Markov Decision Processes (MDPs) a blog post with jupyter notebook",
+      description: "Convolutional Neural Networks (CNNs) a blog post with jupyter notebook",
       section: "Posts",
       handler: () => {
         
