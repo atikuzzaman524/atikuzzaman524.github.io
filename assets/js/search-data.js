@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-backpropagation-algorithm",
+        },{id: "post-convolutional-neural-networks-cnns",
+      
+        title: "Convolutional Neural Networks (CNNs)",
+      
+      description: "Convolutional Neural Networks (CNNs) a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Convolutional_Neural_Networks_(CNNs)/";
+        
+      },
+    },{id: "post-backpropagation-algorithm",
       
         title: "Backpropagation Algorithm",
       
