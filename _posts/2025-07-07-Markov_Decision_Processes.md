@@ -2,7 +2,7 @@
 layout: post
 title: Markov Decision Processes (MDPs)
 date: 2025-07-05 08:57:00-0400
-description: Convolutional Neural Networks (CNNs) a blog post with jupyter notebook
+description: Markov Decision Processes (MDPs) a blog post with jupyter notebook
 tags: formatting jupyter
 categories: ML Code
 giscus_comments: true
