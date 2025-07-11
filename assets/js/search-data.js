@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-linear-regression",
+        },{id: "post-logistic-regression",
+      
+        title: "Logistic Regression",
+      
+      description: "Logistic Regression a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Logistic_Regression/";
+        
+      },
+    },{id: "post-linear-regression",
       
         title: "Linear Regression",
       
