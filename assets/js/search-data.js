@@ -48,6 +48,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Backpropagation_Algorithm/";
         
       },
+    },{id: "post-artificial-neural-network",
+      
+        title: "Artificial Neural Network",
+      
+      description: "Artificial Neural Network a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Artificial_Neural_Network/";
+        
+      },
     },{id: "post-k-means-clustering-algorithm",
       
         title: "K-means Clustering Algorithm",
