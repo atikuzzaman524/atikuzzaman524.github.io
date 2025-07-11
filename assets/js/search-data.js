@@ -59,6 +59,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Introduction_ML/";
         
       },
+    },{id: "post-data-preprocessing-techniques-in-ml",
+      
+        title: "Data preprocessing techniques in ML",
+      
+      description: "Data preprocessing techniques in ML a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Data_preprocessing/";
+        
+      },
     },{id: "post-a-post-with-image-galleries",
       
         title: "a post with image galleries",
