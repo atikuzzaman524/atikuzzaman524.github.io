@@ -45,7 +45,7 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/Introduction-to-ML/";
+          window.location.href = "/blog/2025/Introduction_ML/";
         
       },
     },{id: "post-a-post-with-image-galleries",
