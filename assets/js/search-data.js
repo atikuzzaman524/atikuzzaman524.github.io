@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-hidden-markov-models-hmms",
+        },{id: "post-markov-decision-processes-mdps",
+      
+        title: "Markov Decision Processes (MDPs)",
+      
+      description: "Convolutional Neural Networks (CNNs) a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Markov_Decision_Processes/";
+        
+      },
+    },{id: "post-hidden-markov-models-hmms",
       
         title: "Hidden Markov Models (HMMs)",
       
