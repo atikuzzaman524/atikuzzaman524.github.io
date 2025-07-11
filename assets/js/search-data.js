@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-introduction-to-ml",
+        },{id: "post-linear-regression",
+      
+        title: "Linear Regression",
+      
+      description: "Linear Regressiona blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Linear_Regression/";
+        
+      },
+    },{id: "post-introduction-to-ml",
       
         title: "Introduction to ML",
       
