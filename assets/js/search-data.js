@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-logistic-regression",
+        },{id: "post-k-means-clustering-algorithm",
+      
+        title: "K-means Clustering Algorithm",
+      
+      description: "K-means clustering algorithm a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/K-means_algorithm/";
+        
+      },
+    },{id: "post-logistic-regression",
       
         title: "Logistic Regression",
       
