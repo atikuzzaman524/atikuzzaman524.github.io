@@ -37,11 +37,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-lecture-jupyter-notebook",
+        },{id: "post-introduction-to-ml",
       
-        title: "lecture jupyter notebook",
+        title: "Introduction to ML",
       
-      description: "an example of a blog post with jupyter notebook",
+      description: "Introduction to ML- Introduction data and relevant Python libraries a blog post with jupyter notebook",
       section: "Posts",
       handler: () => {
         
