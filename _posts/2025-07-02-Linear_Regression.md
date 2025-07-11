@@ -4,7 +4,7 @@ title: 	Linear Regression
 date: 2025-07-01 08:57:00-0400
 description: Linear Regressiona blog post with jupyter notebook
 tags: formatting jupyter
-categories: sample-posts
+categories: ML Code
 giscus_comments: true
 related_posts: false
 ---
