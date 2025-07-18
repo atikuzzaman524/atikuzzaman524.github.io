@@ -48,6 +48,17 @@ ninja.data = [{
           window.location.href = "/assets/html/Interactive_Linear_Regression.html";
         
       },
+    },{id: "post-interactive-k-means-clustering",
+      
+        title: "Interactive K-Means Clustering",
+      
+      description: "Interactive K-Means Clustering",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/assets/html/Interactive_K-Means_Clustering.html";
+        
+      },
     },{id: "post-markov-decision-processes-mdps",
       
         title: "Markov Decision Processes (MDPs)",
