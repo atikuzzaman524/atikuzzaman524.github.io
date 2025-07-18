@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-markov-decision-processes-mdps",
+        },{id: "post-interactive-linear-regression",
+      
+        title: "Interactive Linear Regression",
+      
+      description: "Interactive Linear Regression",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/assets/html/Interactive_Linear_Regression.html";
+        
+      },
+    },{id: "post-markov-decision-processes-mdps",
       
         title: "Markov Decision Processes (MDPs)",
       
