@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive K-Means Clustering Explainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm Neutrals & Slate -->
+    <!-- Application Structure Plan: The application is structured as a guided learning path with five thematic sections, navigated by a top tab bar. This non-linear structure allows users to explore topics based on interest, from a high-level overview to an interactive algorithm simulation, practical challenges, deep mathematical concepts, and finally, a comparison with related algorithms. This design prioritizes active learning and user engagement over a passive, linear reading of the source report. The core of the experience is the "Algorithm in Action" section, which visually and interactively demonstrates the step-by-step process, making the abstract algorithm tangible. -->
+    <!-- Visualization & Content Choices: 
+        1.  Report Info: The iterative steps of Lloyd's algorithm.
+            - Goal: Demystify the abstract algorithmic process.
+            - Viz/Presentation: An interactive scatter plot (Chart.js) with step-by-step controls.
+            - Interaction: Users click "Next Step" to initialize centroids, assign points (color change), and update centroids (marker movement). Explanatory text updates with each step. A new text area dynamically displays calculation steps (distances, assignments, centroid updates) for the current simulation step.
+            - Justification: A dynamic, visual simulation combined with real-time calculation display is the most effective pedagogical tool for teaching an iterative algorithm, vastly superior to static text descriptions.
+            - Library/Method: Chart.js (Canvas) and Vanilla JS for dynamic text updates.
+        2.  Report Info: Methods for choosing the optimal K (Elbow, Silhouette).
+            - Goal: Explain the common heuristics for solving a key practical problem in K-Means.
+            - Viz/Presentation: Two side-by-side line charts (Chart.js).
+            - Interaction: Hovering over points on the charts reveals exact WCSS/Silhouette scores. Explanatory text guides interpretation.
+            - Justification: Visualizing these diagnostic plots makes the concepts of "diminishing returns" and "peak cluster quality" immediately apparent. Data for the Elbow method is specifically chosen to show a clear "elbow" at K=3.
+            - Library/Method: Chart.js (Canvas).
+        3.  Report Info: Comparison of K-Means to related algorithms (K-Medoids, DBSCAN, etc.).
+            - Goal: Contextualize K-Means within the broader field of clustering.
+            - Viz/Presentation: A grid of interactive cards built with HTML/CSS.
+            - Interaction: Clicking on a card expands it to show detailed pros and cons.
+            - Justification: This modern UI pattern presents comparative information cleanly and encourages user interaction without overwhelming the screen.
+            - Library/Method: HTML/CSS with JS toggle.
+        4. Report Info: Mathematical Formulas (WCSS, Centroid Update), and a detailed WCSS calculation example.
+            - Goal: Present mathematical notation and detailed step-by-step examples clearly and accurately.
+            - Viz/Presentation: HTML/CSS structured text using custom classes for mathematical formatting.
+            - Interaction: Static display.
+            - Justification: Using HTML/CSS for equations enhances readability and accessibility for a broader audience, providing a more human-readable format than raw LaTeX strings. The detailed WCSS example with 10 points and 3 clusters provides concrete application of the formulas.
+            - Library/Method: HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+            color: #292524; /* stone-800 */
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-button.active {
+            border-bottom-color: #4f46e5; /* indigo-600 */
+            color: #4f46e5; /* indigo-600 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .info-card {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .info-card.open .card-content {
+            max-height: 500px;
+        }
+        .math-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e7e5e4; /* stone-200 */
+            padding: 1rem;
+            border-radius: 0.25rem;
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            overflow-x: auto; /* For horizontal scrolling on small screens */
+        }
+        .math-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .math-label {
+            min-width: 2rem;
+            text-align: right;
+            margin-right: 0.5rem;
+        }
+        .math-formula {
+            flex-grow: 1;
+        }
+        .math-sum-symbol {
+            font-size: 2.5rem; /* Larger summation symbol */
+            vertical-align: middle;
+            line-height: 1;
+            display: inline-block;
+            margin-right: 0.25rem;
+        }
+        .math-subscript {
+            font-size: 0.75em;
+            vertical-align: sub;
+        }
+        .math-superscript {
+            font-size: 0.75em;
+            vertical-align: super;
+        }
+        .calculation-output {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d6d3d1; /* stone-300 */
+            min-height: 200px; /* Ensure visibility even with little content */
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
+            color: #44403c; /* stone-700 */
+        }
+        .calculation-output h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #292524; /* stone-800 */
+        }
+        .calculation-output pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800">Interactive K-Means Explainer</h1>
+            <p class="mt-2 text-lg text-slate-600"></p>
+        </header>
+
+        <nav id="main-nav" class="flex justify-center border-b border-stone-300 mb-8 flex-wrap">
+            <button data-target="overview" class="nav-button active py-4 px-6 text-slate-600 hover:text-indigo-600 font-medium">The Big Picture</button>
+            <button data-target="simulation" class="nav-button py-4 px-6 text-slate-600 hover:text-indigo-600 font-medium">Algorithm in Action</button>
+            <button data-target="dilemma" class="nav-button py-4 px-6 text-slate-600 hover:text-indigo-600 font-medium">The 'K' Dilemma</button>
+            <button data-target="hood" class="nav-button py-4 px-6 text-slate-600 hover:text-indigo-600 font-medium">Under the Hood</button>
+            <button data-target="family" class="nav-button py-4 px-6 text-slate-600 hover:text-indigo-600 font-medium">The K-Means Family</button>
+        </nav>
+
+        <main id="content-container">
+            <!-- Section 1: The Big Picture -->
+            <section id="overview" class="content-section space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold text-slate-700 mb-4">What is K-Means Clustering?</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        K-Means is a fundamental algorithm in unsupervised machine learning, designed to partition a dataset into a pre-defined number of 'K' distinct, non-overlapping groups or "clusters". The core principle is simple yet powerful: group data points in such a way that points within the same cluster are more similar to each other than to those in other clusters. This is achieved by minimizing the distance from each point to the "centroid" (or mean) of its assigned cluster. This section introduces the core concepts and real-world scenarios where K-Means provides valuable insights.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4">Real-World Applications</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-slate-600">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-indigo-500 text-2xl mt-1">&#128101;</span>
+                            <div>
+                                <h4 class="font-semibold">Customer Segmentation</h4>
+                                <p>Grouping customers by purchasing behavior to tailor marketing campaigns.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-indigo-500 text-2xl mt-1">&#128444;&#65039;</span>
+                            <div>
+                                <h4 class="font-semibold">Image Segmentation</h4>
+                                <p>Partitioning an image into regions of similar pixels for object detection or color quantization.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                             <span class="text-indigo-500 text-2xl mt-1">&#128218;</span>
+                            <div>
+                                <h4 class="font-semibold">Document Analysis</h4>
+                                <p>Organizing vast collections of documents into thematic groups for easier searching.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                             <span class="text-indigo-500 text-2xl mt-1">&#128270;</span>
+                            <div>
+                                <h4 class="font-semibold">Anomaly Detection</h4>
+                                <p>Identifying unusual data points (outliers) that don't fit into any defined cluster.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Algorithm in Action -->
+            <section id="simulation" class="content-section space-y-6">
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold text-slate-700 mb-2">Algorithm in Action: An Interactive Simulation</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        The K-Means algorithm (often called Lloyd's algorithm) works iteratively to find the best cluster centers. This simulation visualizes the two main steps that repeat until the clusters are stable: the <strong>Assignment Step</strong> (assigning points to the nearest centroid) and the <strong>Update Step</strong> (moving the centroid to the mean of its assigned points). Use the controls below to walk through the process.
+                    </p>
+
+                    <h3 class="text-xl font-bold text-slate-700 mb-2">The K-Means Algorithm (Lloyd's Algorithm) Steps:</h3>
+                    <ol class="list-decimal list-inside text-slate-600 space-y-2 mb-6">
+                        <li><strong>Initialization:</strong> Randomly select K data points from the dataset to be the initial cluster centroids.</li>
+                        <li><strong>Assignment Step (E-step):</strong> For each data point, assign it to the cluster whose centroid is closest in terms of Euclidean distance.</li>
+                        <li><strong>Update Step (M-step):</strong> Recalculate the new centroids for each cluster by taking the mean of all data points currently assigned to that cluster.</li>
+                        <li><strong>Convergence Check:</strong> Repeat steps 2 and 3 until the cluster assignments no longer change, or the change in centroids is below a predefined threshold, or a maximum number of iterations is reached.</li>
+                    </ol>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <div class="chart-container">
+                                <canvas id="kmeans-simulation-chart"></canvas>
+                            </div>
+                            <div class="flex justify-center items-center space-x-4 mt-6">
+                                <button id="reset-sim-btn" class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Reset</button>
+                                <button id="step-sim-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Start (Initialize Centroids)</button>
+                            </div>
+                            <div id="simulation-status" class="mt-4 text-center text-slate-700 bg-slate-100 p-3 rounded-lg">
+                                Welcome! Click "Start" to begin the simulation.
+                            </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-xl font-bold text-slate-700 mb-2">Current Step Calculations:</h3>
+                            <div id="calculation-output" class="calculation-output flex-grow">
+                                <p>Calculations for each step will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: The 'K' Dilemma -->
+            <section id="dilemma" class="content-section hidden space-y-6">
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold text-slate-700 mb-2">The 'K' Dilemma: Choosing the Right Number of Clusters</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        A major practical challenge of K-Means is that you must specify the number of clusters, 'K', beforehand. An incorrect 'K' can lead to misleading results. This section explores two popular heuristic methods—the Elbow Method and the Silhouette Score—that provide quantitative guidance for selecting an optimal 'K'.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-700 text-center mb-2">Elbow Method (WCSS)</h3>
+                             <p class="text-sm text-slate-500 text-center mb-4">Look for the "elbow" point where the drop in Within-Cluster Sum of Squares (WCSS) slows, indicating diminishing returns. A clear elbow often suggests the optimal K.</p>
+                            <div class="chart-container h-64 md:h-80">
+                                <canvas id="elbow-chart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-700 text-center mb-2">Silhouette Score</h3>
+                             <p class="text-sm text-slate-500 text-center mb-4">Choose the 'K' that maximizes the average Silhouette Score, which measures both cluster tightness and separation.</p>
+                            <div class="chart-container h-64 md:h-80">
+                                <canvas id="silhouette-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <!-- Section 4: Under the Hood -->
+            <section id="hood" class="content-section hidden space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold text-slate-700 mb-4">Under the Hood: Math & Mechanics</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        This section delves into the mathematical foundations and core mechanics that govern K-Means. Understanding the objective function and the algorithm's implicit assumptions is key to appreciating both its power and its limitations.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4">The Objective: Minimizing WCSS</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        K-Means aims to minimize the <strong>Within-Cluster Sum of Squares (WCSS)</strong>, often referred to as Inertia. This metric quantifies the compactness of the clusters by summing the squared Euclidean distances between each data point and the centroid of its assigned cluster. A lower WCSS indicates more tightly packed and coherent clusters.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        The objective function $J$ is formally defined as:
+                    </p>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">J = </span>
+                            <span class="math-formula">
+                                <span class="math-sum-symbol">&sum;</span>
+                                <span class="math-subscript">i=1</span>
+                                <span class="math-superscript">K</span>
+                                <span class="math-sum-symbol">&sum;</span>
+                                <span class="math-subscript">x<sub>j</sub> &isin; C<sub>i</sub></span>
+                                ||x<sub>j</sub> - &mu;<sub>i</sub>||<sup>2</sup>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed mt-4">
+                        Where: <br>
+                        &bull; <strong>K</strong>: The total number of clusters. <br>
+                        &bull; <strong>C<sub>i</sub></strong>: The set of all data points belonging to cluster $i$. <br>
+                        &bull; <strong>x<sub>j</sub></strong>: A specific data point in the dataset. <br>
+                        &bull; <strong>&mu;<sub>i</sub></strong>: The centroid (mean) of cluster $i$. <br>
+                        &bull; <strong>|| &middot; ||<sup>2</sup></strong>: Represents the squared Euclidean distance between a data point and its assigned centroid.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-700 mb-4">Step-by-Step K-Means Example (Iteration 1)</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Let's walk through the first iteration of K-Means with a small 2D dataset and $K=3$.
+                    </p>
+
+                    <h4 class="text-lg font-semibold text-slate-700 mb-2">Problem Setup:</h4>
+                    <p class="text-slate-600 leading-relaxed mb-2">
+                        <strong>Data Points (P<sub>x</sub>, P<sub>y</sub>):</strong>
+                        <ul class="list-disc list-inside ml-4 text-slate-600">
+                            <li>P<sub>1</sub>=(1,2)</li>
+                            <li>P<sub>2</sub>=(2,1)</li>
+                            <li>P<sub>3</sub>=(1,0)</li>
+                            <li>P<sub>4</sub>=(10,8)</li>
+                            <li>P<sub>5</sub>=(9,10)</li>
+                            <li>P<sub>6</sub>=(10,9)</li>
+                            <li>P<sub>7</sub>=(7,8)</li>
+                            <li>P<sub>8</sub>=(25,30)</li>
+                            <li>P<sub>9</sub>=(24,27)</li>
+                            <li>P<sub>10</sub>=(23,29)</li>
+                        </ul>
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        <strong>Initial Centroids (randomly chosen):</strong>
+                        <ul class="list-disc list-inside ml-4 text-slate-600">
+                            <li>C<sub>1</sub> = (1, 1)</li>
+                            <li>C<sub>2</sub> = (10, 10)</li>
+                            <li>C<sub>3</sub> = (24, 28)</li>
+                        </ul>
+                    </p>
+
+                    <h4 class="text-lg font-semibold text-slate-700 mt-6 mb-2">Step 1: Assignment Step &mdash; Distance Calculations</h4>
+                    <p class="text-slate-600 leading-relaxed mb-2">
+                        For each data point, we calculate its Euclidean distance to each centroid. The Euclidean distance between two points (x<sub>p</sub>, y<sub>p</sub>) and (x<sub>c</sub>, y<sub>c</sub>) is:
+                    </p>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">d(P, C) = </span>
+                            <span class="math-formula">&radic;((x<sub>p</sub> - x<sub>c</sub>)<sup>2</sup> + (y<sub>p</sub> - y<sub>c</sub>)<sup>2</sup>)</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed mt-4">
+                        Let's calculate for P<sub>1</sub>=(1,2):
+                    </p>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">d(P<sub>1</sub>, C<sub>1</sub>) = </span>
+                            <span class="math-formula">&radic;((1 - 1)<sup>2</sup> + (2 - 1)<sup>2</sup>) = &radic;(0<sup>2</sup> + 1<sup>2</sup>) = &radic;(0 + 1) = &radic;1 = 1.00</span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">d(P<sub>1</sub>, C<sub>2</sub>) = </span>
+                            <span class="math-formula">&radic;((1 - 10)<sup>2</sup> + (2 - 10)<sup>2</sup>) = &radic;((-9)<sup>2</sup> + (-8)<sup>2</sup>) = &radic;(81 + 64) = &radic;145 &approx; 12.04</span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">d(P<sub>1</sub>, C<sub>3</sub>) = </span>
+                            <span class="math-formula">&radic;((1 - 24)<sup>2</sup> + (2 - 28)<sup>2</sup>) = &radic;((-23)<sup>2</sup> + (-26)<sup>2</sup>) = &radic;(529 + 676) = &radic;1205 &approx; 34.72</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed mt-2">
+                        P<sub>1</sub> is assigned to C<sub>1</sub> (smallest distance = 1.00).
+                    </p>
+
+                    <p class="text-slate-600 leading-relaxed mt-4">
+                        Continuing for all other points:
+                    </p>
+                    <div class="overflow-x-auto mb-4">
+                        <table class="min-w-full bg-white border border-stone-300 rounded-lg shadow-sm text-sm">
+                            <thead>
+                                <tr class="bg-stone-100">
+                                    <th class="py-2 px-4 border-b text-left text-slate-700 font-semibold">Point</th>
+                                    <th class="py-2 px-4 border-b text-left text-slate-700 font-semibold">d(C<sub>1</sub>)</th>
+                                    <th class="py-2 px-4 border-b text-left text-slate-700 font-semibold">d(C<sub>2</sub>)</th>
+                                    <th class="py-2 px-4 border-b text-left text-slate-700 font-semibold">d(C<sub>3</sub>)</th>
+                                    <th class="py-2 px-4 border-b text-left text-slate-700 font-semibold">Assigned Cluster</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="py-2 px-4 border-b">P<sub>1</sub> (1,2)</td><td class="py-2 px-4 border-b">1.00</td><td class="py-2 px-4 border-b">12.04</td><td class="py-2 px-4 border-b">34.72</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>1</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>2</sub> (2,1)</td><td class="py-2 px-4 border-b">1.00</td><td class="py-2 px-4 border-b">12.04</td><td class="py-2 px-4 border-b">34.67</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>1</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>3</sub> (1,0)</td><td class="py-2 px-4 border-b">1.00</td><td class="py-2 px-4 border-b">13.45</td><td class="py-2 px-4 border-b">36.01</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>1</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>4</sub> (10,8)</td><td class="py-2 px-4 border-b">11.40</td><td class="py-2 px-4 border-b">2.00</td><td class="py-2 px-4 border-b">23.77</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>2</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>5</sub> (9,10)</td><td class="py-2 px-4 border-b">12.04</td><td class="py-2 px-4 border-b">1.00</td><td class="py-2 px-4 border-b">22.67</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>2</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>6</sub> (10,9)</td><td class="py-2 px-4 border-b">11.40</td><td class="py-2 px-4 border-b">1.41</td><td class="py-2 px-4 border-b">23.09</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>2</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>7</sub> (7,8)</td><td class="py-2 px-4 border-b">9.22</td><td class="py-2 px-4 border-b">3.61</td><td class="py-2 px-4 border-b">25.71</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>2</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>8</sub> (25,30)</td><td class="py-2 px-4 border-b">34.87</td><td class="py-2 px-4 border-b">21.21</td><td class="py-2 px-4 border-b">2.24</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>3</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>9</sub> (24,27)</td><td class="py-2 px-4 border-b">33.09</td><td class="py-2 px-4 border-b">19.70</td><td class="py-2 px-4 border-b">1.41</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>3</sub></td></tr>
+                                <tr><td class="py-2 px-4 border-b">P<sub>10</sub> (23,29)</td><td class="py-2 px-4 border-b">32.23</td><td class="py-2 px-4 border-b">19.21</td><td class="py-2 px-4 border-b">1.41</td><td class="py-2 px-4 border-b font-semibold text-indigo-600">C<sub>3</sub></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="text-slate-600 leading-relaxed mt-4">
+                        <strong>Cluster Assignment After Step 1:</strong>
+                        <ul class="list-disc list-inside ml-4 text-slate-600">
+                            <li><strong>Cluster C<sub>1</sub>:</strong> {P<sub>1</sub>(1,2), P<sub>2</sub>(2,1), P<sub>3</sub>(1,0)}</li>
+                            <li><strong>Cluster C<sub>2</sub>:</strong> {P<sub>4</sub>(10,8), P<sub>5</sub>(9,10), P<sub>6</sub>(10,9), P<sub>7</sub>(7,8)}</li>
+                            <li><strong>Cluster C<sub>3</sub>:</strong> {P<sub>8</sub>(25,30), P<sub>9</sub>(24,27), P<sub>10</sub>(23,29)}</li>
+                        </ul>
+                    </p>
+
+                    <h4 class="text-lg font-semibold text-slate-700 mt-6 mb-2">Step 2: Update Centroids</h4>
+                    <p class="text-slate-600 leading-relaxed mb-2">
+                        The new centroid for each cluster is the mean of all data points assigned to it.
+                    </p>
+                    <h5 class="font-medium text-slate-700 mt-4 mb-2">For Cluster C<sub>1</sub>:</h5>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">&mu;<sub>1</sub> = </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>(1+2+1)</sup>&frasl;<sub>3</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>(2+1+0)</sup>&frasl;<sub>3</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>4</sup>&frasl;<sub>3</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>3</sup>&frasl;<sub>3</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">(1.33, 1.00)</span>
+                        </div>
+                    </div>
+                    <h5 class="font-medium text-slate-700 mt-4 mb-2">For Cluster C<sub>2</sub>:</h5>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">&mu;<sub>2</sub> = </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>(10+9+10+7)</sup>&frasl;<sub>4</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>(8+10+9+8)</sup>&frasl;<sub>4</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>36</sup>&frasl;<sub>4</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>35</sup>&frasl;<sub>4</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">(9.00, 8.75)</span>
+                        </div>
+                    </div>
+                    <h5 class="font-medium text-slate-700 mt-4 mb-2">For Cluster C<sub>3</sub>:</h5>
+                    <div class="math-block">
+                        <div class="math-line">
+                            <span class="math-label">&mu;<sub>3</sub> = </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>(25+24+23)</sup>&frasl;<sub>3</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>(30+27+29)</sup>&frasl;<sub>3</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">
+                                <span class="text-xl inline-block align-middle"><sup>72</sup>&frasl;<sub>3</sub></span>
+                                ,
+                                <span class="text-xl inline-block align-middle"><sup>86</sup>&frasl;<sub>3</sub></span>
+                            </span>
+                        </div>
+                        <div class="math-line">
+                            <span class="math-label">= </span>
+                            <span class="math-formula">(24.00, 28.67)</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed mt-4">
+                        These new centroids will be used for the next iteration's assignment step. The algorithm continues to iterate until the centroids no longer change significantly, indicating convergence.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h3 class="text-xl font-bold text-slate-700 mb-4">Assumptions & Limitations</h3>
+                     <div class="space-y-4 text-slate-600">
+                         <p><strong class="text-slate-700">Spherical Clusters:</strong> K-Means performs best when clusters are spherical and of similar size. It struggles with elongated or irregular shapes.</p>
+                         <p><strong class="text-slate-700">Sensitivity to Outliers:</strong> Since centroids are based on the mean, a few extreme outliers can significantly skew the cluster centers.</p>
+                         <p><strong class="text-slate-700">Curse of Dimensionality:</strong> In very high-dimensional spaces, the concept of distance can become less meaningful, potentially reducing clustering effectiveness.</p>
+                     </div>
+                </div>
+            </section>
+
+            <!-- Section 5: The K-Means Family -->
+            <section id="family" class="content-section hidden space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h2 class="text-2xl font-bold text-slate-700 mb-4">The K-Means Family & Alternatives</h2>
+                     <p class="text-slate-600 leading-relaxed mb-6">
+                        While K-Means is powerful, its limitations have inspired many variations and alternative algorithms. Each offers a different approach to grouping data, with unique strengths. Click on the cards below to compare their key features.
+                    </p>
+                    <div id="comparison-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Cards will be injected by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- State and Data ---
+        const appState = {
+            activeSection: 'overview',
+            sim: {
+                step: -1, // -1: initial, 0: initialized, 1: assigned, 2: updated, ...
+                chart: null,
+                data: [],
+                centroids: [],
+                k: 3,
+                statusEl: document.getElementById('simulation-status'),
+                stepBtn: document.getElementById('step-sim-btn'),
+                calculationOutputEl: document.getElementById('calculation-output')
+            }
+        };
+
+        // Specific data points for the simulation and manual example
+        const simulationDataPoints = [
+            { id: 'P1', x: 1, y: 2 },
+            { id: 'P2', x: 2, y: 1 },
+            { id: 'P3', x: 1, y: 0 },
+            { id: 'P4', x: 10, y: 8 },
+            { id: 'P5', x: 9, y: 10 },
+            { id: 'P6', x: 10, y: 9 },
+            { id: 'P7', x: 7, y: 8 },
+            { id: 'P8', x: 25, y: 30 },
+            { id: 'P9', x: 24, y: 27 },
+            { id: 'P10', x: 23, y: 29 }
+        ];
+
+        // Initial centroids for the simulation and manual example
+        // These are now only for the *manual example* in "Under the Hood"
+        // The simulation will generate its own random centroids.
+        const manualExampleInitialCentroids = [
+            { x: 1, y: 1 },
+            { x: 10, y: 10 },
+            { x: 24, y: 28 }
+        ];
+
+        const comparisonData = [
+            { name: 'K-Medoids (PAM)', description: 'Uses actual data points (medoids) as centers instead of means.', pros: 'Robust to outliers and noise.', cons: 'More computationally expensive than K-Means.' },
+            { name: 'Fuzzy C-Means', description: 'A "soft" clustering method where each point has a probability of belonging to each cluster.', pros: 'Handles overlapping clusters well.', cons: 'More complex and computationally intensive.' },
+            { name: 'DBSCAN', description: 'A density-based algorithm that groups together points that are closely packed together.', pros: 'Finds arbitrarily shaped clusters and is robust to outliers.', cons: 'Struggles with clusters of varying density.' },
+            { name: 'Hierarchical Clustering', description: 'Builds a hierarchy of clusters either top-down (divisive) or bottom-up (agglomerative).', pros: 'Does not require pre-specifying K; produces an informative dendrogram.', cons: 'Computationally expensive for large datasets (O(n^2) or more).' },
+            { name: 'Gaussian Mixture Models (GMM)', description: 'A probabilistic model assuming data points are generated from a mixture of several Gaussian distributions.', pros: 'Flexible in cluster shape (can model ellipses).', cons: 'More computationally intensive; sensitive to initialization.' },
+        ];
+
+        // --- Navigation Logic ---
+        const navContainer = document.getElementById('main-nav');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        navContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const targetId = e.target.dataset.target;
+                if (targetId !== appState.activeSection) {
+                    appState.activeSection = targetId;
+                    
+                    // Update buttons
+                    navContainer.querySelectorAll('button').forEach(btn => {
+                        btn.classList.toggle('active', btn.dataset.target === targetId);
+                    });
+
+                    // Update content
+                    contentSections.forEach(section => {
+                        section.classList.toggle('hidden', section.id !== targetId);
+                    });
+                }
+            }
+        });
+
+        // --- Charting Logic ---
+        function initCharts() {
+            // Elbow Chart
+            const elbowCtx = document.getElementById('elbow-chart').getContext('2d');
+            new Chart(elbowCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: 'WCSS',
+                        // Data showing a clear elbow at K=3
+                        data: [3000, 1000, 300, 250, 220, 200, 190, 185, 180, 178], 
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { title: { display: true, text: 'WCSS Value' } }, x: { title: { display: true, text: 'Number of Clusters (K)' } } }
+                }
+            });
+
+            // Silhouette Chart
+            const silhouetteCtx = document.getElementById('silhouette-chart').getContext('2d');
+            new Chart(silhouetteCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: 'Avg Silhouette Score',
+                        data: [0.55, 0.68, 0.59, 0.51, 0.49, 0.45, 0.43, 0.41, 0.39],
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                     scales: { y: { title: { display: true, text: 'Avg. Silhouette Score' } }, x: { title: { display: true, text: 'Number of Clusters (K)' } } }
+                }
+            });
+
+            // K-Means Simulation Chart
+            initSimulation();
+        }
+
+        // --- K-Means Simulation Logic ---
+        function calculateDistance(p1, p2) {
+            return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+        }
+
+        function initSimulation() {
+            appState.sim.step = -1;
+            appState.sim.data = simulationDataPoints.map(p => ({ ...p, cluster: -1 })); // Reset cluster assignments
+            appState.sim.centroids = [];
+            appState.sim.statusEl.textContent = 'Welcome! Click "Start" to begin the simulation.';
+            appState.sim.stepBtn.textContent = 'Start (Initialize Centroids)';
+            appState.sim.stepBtn.disabled = false;
+            appState.sim.calculationOutputEl.innerHTML = '<p>Calculations for each step will appear here.</p>';
+
+            const simCtx = document.getElementById('kmeans-simulation-chart').getContext('2d');
+            
+            if (appState.sim.chart) {
+                appState.sim.chart.destroy();
+            }
+
+            appState.sim.chart = new Chart(simCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Data Points',
+                            data: appState.sim.data.map(d => ({x: d.x, y: d.y})),
+                            backgroundColor: '#a8a29e', // stone-400
+                        },
+                        {
+                            label: 'Centroids',
+                            data: [],
+                            backgroundColor: ['#ef4444', '#3b82f6', '#22c55e'], // red, blue, green
+                            pointStyle: 'triangle',
+                            radius: 10,
+                            borderWidth: 2,
+                            borderColor: '#1c1917' // stone-900
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { min: 0, max: 30 },
+                        y: { min: 0, max: 35 }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+        
+        function runSimulationStep() {
+            const { sim } = appState;
+            const colors = ['#ef4444', '#3b82f6', '#22c55e'];
+            let outputHtml = '';
+
+            switch (sim.step) {
+                // Initial state, click to initialize centroids randomly
+                case -1: 
+                    // Randomly select K data points as initial centroids
+                    const dataPointsCopy = [...sim.data]; // Create a mutable copy
+                    for (let i = 0; i < sim.k; i++) {
+                        const randomIndex = Math.floor(Math.random() * dataPointsCopy.length);
+                        sim.centroids.push({ ...dataPointsCopy[randomIndex] });
+                        dataPointsCopy.splice(randomIndex, 1); // Remove selected point to avoid duplicates
+                    }
+
+                    sim.chart.data.datasets[1].data = sim.centroids.map(c => ({x: c.x, y: c.y}));
+                    sim.statusEl.textContent = 'Step 1: Centroids initialized randomly from data points.';
+                    sim.stepBtn.textContent = 'Next (Assignment Step)';
+
+                    outputHtml += '<h4>Step 1: Random Centroid Initialization</h4>';
+                    sim.centroids.forEach((c, i) => {
+                        outputHtml += `<p>C<sub>${i+1}</sub> = (${c.x.toFixed(2)}, ${c.y.toFixed(2)})</p>`;
+                    });
+                    sim.step++;
+                    break;
+                
+                // Assignment Step
+                case 0:
+                    const pointColors = [];
+                    const assignments = Array(sim.k).fill(0).map(() => []);
+                    outputHtml += '<h4>Step 2: Assignment Step (Euclidean Distance)</h4>';
+                    outputHtml += '<p>d(P, C) = &radic;((x<sub>p</sub> - x<sub>c</sub>)<sup>2</sup> + (y<sub>p</sub> - y<sub>c</sub>)<sup>2</sup>)</p>';
+                    outputHtml += '<table class="min-w-full text-sm mt-4"><thead><tr class="bg-stone-100"><th class="py-1 px-2 border-b text-left">Point</th>';
+                    sim.centroids.forEach((c, i) => {
+                        outputHtml += `<th class="py-1 px-2 border-b text-left">d(C<sub>${i+1}</sub>)</th>`;
+                    });
+                    outputHtml += `<th class="py-1 px-2 border-b text-left">Assigned</th></tr></thead><tbody>`;
+
+                    sim.data.forEach(point => {
+                        let minDist = Infinity;
+                        let bestCluster = -1;
+                        const distances = [];
+
+                        sim.centroids.forEach((centroid, i) => {
+                            const dist = calculateDistance(point, centroid);
+                            distances.push(dist.toFixed(2));
+                            if (dist < minDist) {
+                                minDist = dist;
+                                bestCluster = i;
+                            }
+                        });
+                        point.cluster = bestCluster;
+                        pointColors.push(colors[bestCluster]);
+                        assignments[bestCluster].push(point.id);
+
+                        outputHtml += `<tr><td class="py-1 px-2 border-b">${point.id} (${point.x},${point.y})</td>`;
+                        distances.forEach(d => {
+                            outputHtml += `<td class="py-1 px-2 border-b">${d}</td>`;
+                        });
+                        outputHtml += `<td class="py-1 px-2 border-b font-semibold text-indigo-600">C<sub>${bestCluster + 1}</sub></td></tr>`;
+                    });
+                    outputHtml += '</tbody></table>';
+
+                    outputHtml += '<h4>Cluster Assignments:</h4>';
+                    assignments.forEach((points, i) => {
+                        outputHtml += `<p>C<sub>${i+1}</sub>: {${points.join(', ')}}</p>`;
+                    });
+
+                    sim.chart.data.datasets[0].backgroundColor = pointColors;
+                    sim.statusEl.textContent = 'Step 2: Points assigned to closest centroids.';
+                    sim.stepBtn.textContent = 'Next (Update Centroids)';
+                    sim.step++;
+                    break;
+
+                // Update Step
+                case 1:
+                    const newCentroids = [];
+                    let hasConverged = true;
+                    outputHtml += '<h4>Step 3: Centroid Update Step</h4>';
+                    outputHtml += '<p>&mu;<sub>i</sub> = (1 / |C<sub>i</sub>|) &sum;<sub>x<sub>j</sub> &isin; C<sub>i</sub></sub> x<sub>j</sub></p>';
+
+                    for(let i=0; i<sim.k; i++) {
+                        const pointsInCluster = sim.data.filter(p => p.cluster === i);
+                        if (pointsInCluster.length > 0) {
+                            const sumX = pointsInCluster.reduce((sum, p) => sum + p.x, 0);
+                            const sumY = pointsInCluster.reduce((sum, p) => sum + p.y, 0);
+                            const newX = sumX / pointsInCluster.length;
+                            const newY = sumY / pointsInCluster.length;
+
+                            outputHtml += `<h5 class="font-medium text-slate-700 mt-4 mb-2">For Cluster C<sub>${i+1}</sub>:</h5>`;
+                            outputHtml += `<p>&mu;<sub>${i+1}</sub> = ((${pointsInCluster.map(p => p.x).join('+')}) / ${pointsInCluster.length}, (${pointsInCluster.map(p => p.y).join('+')}) / ${pointsInCluster.length})</p>`;
+                            outputHtml += `<p>= (${sumX.toFixed(2)} / ${pointsInCluster.length}, ${sumY.toFixed(2)} / ${pointsInCluster.length})</p>`;
+                            outputHtml += `<p>= (${newX.toFixed(2)}, ${newY.toFixed(2)})</p>`;
+
+                            if (Math.abs(sim.centroids[i].x - newX) > 0.01 || Math.abs(sim.centroids[i].y - newY) > 0.01) {
+                                hasConverged = false;
+                            }
+                            newCentroids.push({ x: newX, y: newY });
+                        } else {
+                            // Handle empty clusters: if a cluster becomes empty, re-initialize its centroid randomly
+                            const randomIndex = Math.floor(Math.random() * sim.data.length);
+                            newCentroids.push({ ...sim.data[randomIndex] });
+                            outputHtml += `<h5 class="font-medium text-slate-700 mt-4 mb-2">For Cluster C<sub>${i+1}</sub>:</h5>`;
+                            outputHtml += `<p>Cluster C<sub>${i+1}</sub> became empty. Re-initializing centroid randomly to (${newCentroids[i].x.toFixed(2)}, ${newCentroids[i].y.toFixed(2)}).</p>`;
+                            hasConverged = false; // Force another iteration if a centroid was re-initialized
+                        }
+                    }
+                    sim.centroids = newCentroids;
+                    sim.chart.data.datasets[1].data = sim.centroids.map(c => ({x: c.x, y: c.y}));
+                    
+                    if (hasConverged) {
+                        sim.statusEl.textContent = 'Converged! The clusters are now stable.';
+                        sim.stepBtn.disabled = true;
+                    } else {
+                        sim.statusEl.textContent = 'Step 3: Centroids updated. Next, re-assign points.';
+                        sim.stepBtn.textContent = 'Next (Assignment Step)';
+                        sim.step = 0; // Go back to assignment step
+                    }
+                    break;
+            }
+            sim.chart.update();
+            sim.calculationOutputEl.innerHTML = outputHtml;
+        }
+
+        document.getElementById('reset-sim-btn').addEventListener('click', () => {
+             initSimulation();
+        });
+        document.getElementById('step-sim-btn').addEventListener('click', runSimulationStep);
+
+
+        // --- Comparison Cards Logic ---
+        function createComparisonCards() {
+            const grid = document.getElementById('comparison-grid');
+            comparisonData.forEach(algo => {
+                const card = document.createElement('div');
+                card.className = 'info-card bg-white p-6 rounded-lg shadow-sm border border-stone-200';
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-slate-700">${algo.name}</h3>
+                        <span class="text-2xl text-slate-400 transform transition-transform duration-300">&darr;</span>
+                    </div>
+                    <p class="text-slate-500 mt-2">${algo.description}</p>
+                    <div class="card-content mt-4 space-y-2 text-sm">
+                        <p><strong class="text-green-600">Pro:</strong> ${algo.pros}</p>
+                        <p><strong class="text-red-600">Con:</strong> ${algo.cons}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                card.addEventListener('click', () => {
+                    card.classList.toggle('open');
+                    const arrow = card.querySelector('span');
+                    arrow.classList.toggle('rotate-180');
+                });
+            });
+        }
+
+        // --- Initializer ---
+        initCharts();
+        createComparisonCards();
+    });
+    </script>
+</body>
+</html>

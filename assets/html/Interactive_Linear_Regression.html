@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Linear Regression Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Academic Calm -->
+    <!-- Application Structure Plan: The application is designed as a single-page, vertically scrolling tutorial that guides the user from intuition to theory. It starts with an interactive playground (Section 1) to build an intuitive understanding of "best fit" by allowing users to manipulate a line and see the immediate impact on errors. This hands-on approach is more effective for learning than static text. Subsequent sections deconstruct the components of the model (Section 2), clarify the necessary assumptions with visual examples (Section 3), explain model evaluation (Section 4), and finally provide context on advanced topics and applications (Section 5). This structure was chosen to build knowledge progressively, ensuring that users grasp the core concepts through interaction before moving to more abstract details, thereby enhancing comprehension and retention for a graduate-level audience. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: OLS & SSR -> Goal: Inform/Interact -> Viz: Interactive scatter plot with user-controlled sliders for slope/intercept and a real-time SSR calculation -> Interaction: Users adjust sliders to visually grasp the concept of minimizing residuals -> Justification: Makes the abstract OLS goal tangible and intuitive -> Library: Chart.js, Vanilla JS.
+        - Report Info: Model Equation -> Goal: Inform -> Viz: Static text with interactive highlights -> Interaction: Hovering over equation terms highlights the corresponding concept in text -> Justification: Connects mathematical symbols to their conceptual meaning -> Library: JS/CSS.
+        - Report Info: Assumptions -> Goal: Organize/Compare -> Viz: Tabbed interface with "Good vs. Bad" visual chart examples for each assumption -> Interaction: User clicks tabs to reveal focused content -> Justification: Breaks down a dense list into digestible, comparable visual chunks -> Library: Chart.js, Vanilla JS.
+        - Report Info: R-squared -> Goal: Inform -> Viz: Dynamic text and a visual progress bar -> Interaction: Updates automatically when the best-fit line is calculated -> Justification: Provides an immediate, easy-to-understand measure of the model's performance -> Library: JS/HTML/CSS.
+        - Report Info: Applications/Advanced -> Goal: Inform -> Viz: Accordion-style lists -> Interaction: Click to expand -> Justification: Keeps supplementary information organized and unobtrusive -> Library: JS/HTML.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #2c3e50;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .assumption-chart-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            max-height: 25vh;
+        }
+        .slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .slider-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #d1d5db;
+            border-radius: 5px;
+        }
+        .nav-button-active {
+            background-color: #3498db;
+            color: white;
+        }
+        .term-highlight {
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">An Interactive Guide to Linear Regression</h1>
+        </header>
+
+        <!-- Section 1: The Core Idea -->
+        <section id="interactive-tool" class="mb-16 bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">1. The Core Idea: Finding the "Best Fit" Line</h2>
+            <p class="text-gray-600 mb-6">
+                Linear regression aims to find a straight line that best represents the relationship between two variables. But what does "best" mean? It means finding the line that minimizes the total squared error (or "residuals")—the vertical distances from each data point to the line. Try it yourself! Adjust the sliders to change the line's intercept and slope, and watch how the **Sum of Squared Residuals (SSR)** changes. Your goal is to find the line with the lowest possible SSR.
+            </p>
+
+            <div class="chart-container mb-6">
+                <canvas id="mainChart"></canvas>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div class="md:col-span-2">
+                    <div class="mb-4">
+                        <label for="interceptSlider" class="block text-sm font-medium text-gray-700">Y-Intercept (β₀)</label>
+                        <input id="interceptSlider" type="range" min="0" max="100" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <label for="slopeSlider" class="block text-sm font-medium text-gray-700">Slope (β₁)</label>
+                        <input id="slopeSlider" type="range" min="-100" max="100" value="0" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+                <div class="text-center bg-blue-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-700">Sum of Squared Residuals (SSR)</h3>
+                    <p id="ssrValue" class="text-4xl font-bold text-blue-600">0.00</p>
+                    <button id="olsButton" class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Find Best Fit (OLS)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Deconstructing the Equation -->
+        <section id="equation" class="mb-16 bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">2. Deconstructing the Model Equation</h2>
+            <p class="text-gray-600 mb-4">
+                The relationship is formally described by this equation. Hover over each term to learn about its role. The model you built above is trying to find the best estimates (denoted with a "hat", e.g., $\hat{\beta}_0$) for these true, unknown population parameters.
+            </p>
+            <div class="text-center bg-gray-100 p-6 rounded-lg text-2xl md:text-3xl font-mono tracking-wider">
+                <span id="term-Y" class="term-highlight p-2 rounded-md">Y</span> = 
+                <span id="term-b0" class="term-highlight p-2 rounded-md">β₀</span> + 
+                <span id="term-b1" class="term-highlight p-2 rounded-md">β₁</span>X + 
+                <span id="term-e" class="term-highlight p-2 rounded-md">ε</span>
+            </div>
+            <div id="term-explanation" class="mt-4 p-4 bg-blue-50 border-l-4 border-blue-400 text-gray-700 rounded-r-lg min-h-[50px]">
+                <p>Hover over a term in the equation to see its definition here.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: Key Assumptions -->
+        <section id="assumptions" class="mb-16 bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">3. Key Assumptions of Linear Regression</h2>
+            <p class="text-gray-600 mb-6">
+                For the results of a linear regression to be reliable and unbiased (specifically for inference), a few key assumptions about the data and the error term ($\epsilon$) must be met. This is often remembered by the acronym LINE: Linearity, Independence, Normality, and Equal variance.
+            </p>
+            <div>
+                <div class="flex border-b border-gray-200">
+                    <button data-tab="linearity" class="nav-button py-2 px-4 font-medium text-gray-600 hover:bg-gray-100 focus:outline-none nav-button-active">Linearity</button>
+                    <button data-tab="homoscedasticity" class="nav-button py-2 px-4 font-medium text-gray-600 hover:bg-gray-100 focus:outline-none">Equal Variance</button>
+                    <button data-tab="normality" class="nav-button py-2 px-4 font-medium text-gray-600 hover:bg-gray-100 focus:outline-none">Normality</button>
+                    <button data-tab="independence" class="nav-button py-2 px-4 font-medium text-gray-600 hover:bg-gray-100 focus:outline-none">Independence</button>
+                </div>
+                <div class="p-4">
+                    <div id="linearity" class="tab-content">
+                        <p class="mb-4">The underlying relationship between the independent variable (X) and the dependent variable (Y) is linear. If the relationship is curved, a straight line will not be a good fit.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><h4 class="text-center font-semibold text-green-600">✓ Good (Linear)</h4><div class="assumption-chart-container"><canvas id="linearityChartGood"></canvas></div></div>
+                            <div><h4 class="text-center font-semibold text-red-600">✗ Bad (Non-linear)</h4><div class="assumption-chart-container"><canvas id="linearityChartBad"></canvas></div></div>
+                        </div>
+                    </div>
+                    <div id="homoscedasticity" class="tab-content hidden">
+                        <p class="mb-4"><strong>Homoscedasticity:</strong> The errors have constant variance at every level of X. In other words, the spread of the residuals should be consistent across the range of predicted values. The opposite is heteroscedasticity.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><h4 class="text-center font-semibold text-green-600">✓ Good (Homoscedastic)</h4><div class="assumption-chart-container"><canvas id="homoChartGood"></canvas></div></div>
+                            <div><h4 class="text-center font-semibold text-red-600">✗ Bad (Heteroscedastic)</h4><div class="assumption-chart-container"><canvas id="homoChartBad"></canvas></div></div>
+                        </div>
+                    </div>
+                    <div id="normality" class="tab-content hidden">
+                        <p class="mb-4">The errors are normally distributed. This means that if you plotted a histogram of the residuals, it would look like a bell curve. This assumption is particularly important for hypothesis testing.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><h4 class="text-center font-semibold text-green-600">✓ Good (Normal Residuals)</h4><div class="assumption-chart-container"><canvas id="normalityChartGood"></canvas></div></div>
+                            <div><h4 class="text-center font-semibold text-red-600">✗ Bad (Skewed Residuals)</h4><div class="assumption-chart-container"><canvas id="normalityChartBad"></canvas></div></div>
+                        </div>
+                    </div>
+                    <div id="independence" class="tab-content hidden">
+                         <p class="mb-4">The errors are independent of each other. This means the residual for one observation is not correlated with the residual for another. This is often a concern with time-series data where an observation at one point in time might influence the next.</p>
+                         <p class="mt-4 text-center text-gray-500">(This assumption is typically checked via statistical tests like Durbin-Watson rather than simple plots).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Interpretation & Evaluation -->
+        <section id="evaluation" class="mb-16 bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">4. Interpretation & Evaluation</h2>
+            <p class="text-gray-600 mb-6">Once you have the best-fit line, how do you know if it's any good? We use metrics like **R-squared (R²)**. Click the "Find Best Fit" button in the first section to see the results for this dataset.</p>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-gray-700 mb-4">Model Fit Summary</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold">R-squared (R²)</h4>
+                        <p id="rSquaredValue" class="text-3xl font-bold text-blue-600">-</p>
+                        <p id="rSquaredExplanation" class="text-sm text-gray-600 mt-1">This value indicates the proportion of the variance in the dependent variable that is predictable from the independent variable(s).</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">Adjusted R-squared</h4>
+                        <p id="adjRSquaredValue" class="text-3xl font-bold text-blue-600">-</p>
+                        <p class="text-sm text-gray-600 mt-1">A modified R² that penalizes for adding predictors that don't improve the model. Useful for Multiple Regression.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: Advanced Topics & Applications -->
+        <section id="advanced" class="bg-white p-6 rounded-xl shadow-lg">
+             <h2 class="text-3xl font-bold text-gray-800 mb-2">5. Beyond the Basics</h2>
+             <p class="text-gray-600 mb-6">
+                 Simple Linear Regression is a powerful starting point. In practice, you will encounter more complex scenarios that require extensions of these core ideas. Here are some key areas for further study.
+             </p>
+             <div id="accordion" class="space-y-4">
+                 <div>
+                     <button class="accordion-header w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-left font-semibold text-lg">
+                         <span>Multiple Linear Regression (MLR)</span>
+                         <span class="transform transition-transform duration-300">▼</span>
+                     </button>
+                     <div class="accordion-content hidden p-4 bg-gray-50 rounded-b-lg">
+                         <p>MLR extends the model to include multiple independent variables ($X_1, X_2, \dots, X_p$) to predict a single dependent variable Y. The goal is the same, but interpreting each coefficient requires holding all other variables constant. This introduces challenges like multicollinearity (when predictors are correlated with each other).</p>
+                     </div>
+                 </div>
+                 <div>
+                     <button class="accordion-header w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-left font-semibold text-lg">
+                         <span>Advanced Considerations</span>
+                         <span class="transform transition-transform duration-300">▼</span>
+                     </button>
+                     <div class="accordion-content hidden p-4 bg-gray-50 rounded-b-lg">
+                         <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Model Selection:</strong> Techniques like Stepwise regression, AIC, and BIC to choose the most relevant predictors.</li>
+                            <li><strong>Diagnostic Plots:</strong> Using residual plots to rigorously check the assumptions discussed earlier.</li>
+                            <li><strong>Outliers & Influential Points:</strong> Identifying and deciding how to handle data points that can disproportionately affect the model.</li>
+                            <li><strong>Non-linear Relationships:</strong> Using transformations (e.g., log, polynomial terms) or Generalized Linear Models when the relationship isn't a straight line.</li>
+                            <li><strong>Regularization:</strong> Techniques like Ridge and Lasso to prevent overfitting, especially with many predictors.</li>
+                         </ul>
+                     </div>
+                 </div>
+                 <div>
+                     <button class="accordion-header w-full flex justify-between items-center p-4 bg-gray-100 hover:bg-gray-200 rounded-lg text-left font-semibold text-lg">
+                         <span>Real-World Applications</span>
+                         <span class="transform transition-transform duration-300">▼</span>
+                     </button>
+                     <div class="accordion-content hidden p-4 bg-gray-50 rounded-b-lg">
+                         <ul class="list-disc list-inside space-y-2 text-gray-700">
+                             <li><strong>Economics:</strong> Predicting GDP growth based on inflation and unemployment rates.</li>
+                             <li><strong>Finance:</strong> Modeling stock returns based on market indices and company performance.</li>
+                             <li><strong>Healthcare:</strong> Predicting a patient's risk of disease based on lifestyle factors and biometric data.</li>
+                             <li><strong>Marketing:</strong> Forecasting product sales based on advertising spend and seasonal trends.</li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Data & State ---
+            const dataPoints = [
+                { x: 1, y: 3.5 }, { x: 2, y: 4.5 }, { x: 3, y: 5 }, { x: 4, y: 7 }, 
+                { x: 5, y: 6.5 }, { x: 6, y: 9 }, { x: 7, y: 8.5 }, { x: 8, y: 11 },
+                { x: 9, y: 10.5 }, { x: 10, y: 13 }
+            ];
+            
+            let userLine = { intercept: 50, slope: 0 };
+            const interceptSlider = document.getElementById('interceptSlider');
+            const slopeSlider = document.getElementById('slopeSlider');
+            const ssrValueEl = document.getElementById('ssrValue');
+            const olsButton = document.getElementById('olsButton');
+
+            // Map slider values to reasonable ranges
+            const mapSliderToIntercept = val => (val / 100) * 15; // Map 0-100 to 0-15
+            const mapSliderToSlope = val => (val / 100) * 2;     // Map -100-100 to -2-2
+
+            // --- OLS Calculation Functions ---
+            function calculateOLS(data) {
+                const n = data.length;
+                let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+                data.forEach(p => {
+                    sumX += p.x;
+                    sumY += p.y;
+                    sumXY += p.x * p.y;
+                    sumX2 += p.x * p.x;
+                });
+                const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+                const intercept = (sumY - slope * sumX) / n;
+                return { slope, intercept };
+            }
+
+            const olsResult = calculateOLS(dataPoints);
+
+            function calculateSSR(data, intercept, slope) {
+                return data.reduce((sum, p) => {
+                    const predictedY = intercept + slope * p.x;
+                    const residual = p.y - predictedY;
+                    return sum + residual * residual;
+                }, 0);
+            }
+
+            function calculateR2(data, intercept, slope) {
+                const ssr = calculateSSR(data, intercept, slope);
+                const meanY = data.reduce((sum, p) => sum + p.y, 0) / data.length;
+                const sst = data.reduce((sum, p) => sum + Math.pow(p.y - meanY, 2), 0);
+                return (sst - ssr) / sst;
+            }
+
+            // --- Chart.js Main Interactive Chart ---
+            const ctxMain = document.getElementById('mainChart').getContext('2d');
+            const mainChart = new Chart(ctxMain, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Data Points',
+                            data: dataPoints,
+                            backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: 'Your Line',
+                            type: 'line',
+                            data: [],
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            borderWidth: 3,
+                            fill: false,
+                            pointRadius: 0
+                        },
+                         {
+                            label: 'Residuals',
+                            type: 'line',
+                            data: [],
+                            borderColor: 'rgba(231, 76, 60, 0.4)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            showLine: false, // Custom drawing for residuals
+                            fill: false
+                        },
+                        {
+                            label: 'Best Fit (OLS)',
+                            type: 'line',
+                            data: [],
+                            borderColor: 'rgba(46, 204, 113, 1)',
+                            borderWidth: 3,
+                            borderDash: [10, 5],
+                            fill: false,
+                            pointRadius: 0,
+                            hidden: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { beginAtZero: true, max: 11 },
+                        y: { beginAtZero: true, max: 15 }
+                    },
+                    plugins: {
+                        tooltip: { enabled: true },
+                        legend: { position: 'bottom' }
+                    },
+                    animation: {
+                        duration: 500
+                    }
+                },
+                 plugins: [{
+                    id: 'residualDrawer',
+                    afterDraw: (chart) => {
+                        const lineDataset = chart.data.datasets[1];
+                        if (!lineDataset.data || lineDataset.data.length < 2) return;
+                        const intercept = mapSliderToIntercept(interceptSlider.value);
+                        const slope = mapSliderToSlope(slopeSlider.value);
+                        
+                        const ctx = chart.ctx;
+                        const meta = chart.getDatasetMeta(0);
+                        
+                        ctx.save();
+                        ctx.strokeStyle = 'rgba(231, 76, 60, 0.4)';
+                        ctx.lineWidth = 1.5;
+
+                        meta.data.forEach((point, index) => {
+                            const dataPoint = chart.data.datasets[0].data[index];
+                            const predictedY = intercept + slope * dataPoint.x;
+                            const yPixel = chart.scales.y.getPixelForValue(predictedY);
+                            
+                            ctx.beginPath();
+                            ctx.moveTo(point.x, point.y);
+                            ctx.lineTo(point.x, yPixel);
+                            ctx.stroke();
+                        });
+                        ctx.restore();
+                    }
+                }]
+            });
+            
+            function updateChart() {
+                userLine.intercept = mapSliderToIntercept(interceptSlider.value);
+                userLine.slope = mapSliderToSlope(slopeSlider.value);
+
+                const lineData = [{x: 0, y: userLine.intercept}, {x: 11, y: userLine.intercept + userLine.slope * 11}];
+                mainChart.data.datasets[1].data = lineData;
+                
+                const ssr = calculateSSR(dataPoints, userLine.intercept, userLine.slope);
+                ssrValueEl.textContent = ssr.toFixed(2);
+                
+                mainChart.update('none');
+            }
+
+            interceptSlider.addEventListener('input', updateChart);
+            slopeSlider.addEventListener('input', updateChart);
+
+            olsButton.addEventListener('click', () => {
+                const olsLineData = [{x: 0, y: olsResult.intercept}, {x: 11, y: olsResult.intercept + olsResult.slope * 11}];
+                mainChart.data.datasets[3].data = olsLineData;
+                mainChart.data.datasets[3].hidden = false;
+                mainChart.update();
+
+                const r2 = calculateR2(dataPoints, olsResult.intercept, olsResult.slope);
+                const n = dataPoints.length;
+                const p = 1; // number of predictors
+                const adjR2 = 1 - ((1 - r2) * (n - 1)) / (n - p - 1);
+
+                document.getElementById('rSquaredValue').textContent = r2.toFixed(3);
+                document.getElementById('adjRSquaredValue').textContent = adjR2.toFixed(3);
+                document.getElementById('rSquaredExplanation').textContent = `${(r2 * 100).toFixed(1)}% of the variation in Y can be explained by X using this model.`;
+            });
+
+            // --- Equation Section ---
+            const termExplanations = {
+                'term-Y': '<strong>Y (Dependent Variable):</strong> The outcome you are trying to predict or explain.',
+                'term-b0': '<strong>β₀ (Y-Intercept):</strong> The value of Y when X is 0. It\'s where the regression line crosses the Y-axis.',
+                'term-b1': '<strong>β₁ (Slope Coefficient):</strong> The change in Y for a one-unit increase in X. It represents the strength and direction of the relationship.',
+                'term-e': '<strong>ε (Error Term):</strong> The random, unexplained variation in Y. It captures all other factors that influence Y besides X.'
+            };
+            const explanationEl = document.getElementById('term-explanation');
+            document.querySelectorAll('.term-highlight').forEach(term => {
+                term.addEventListener('mouseover', () => {
+                    explanationEl.innerHTML = termExplanations[term.id];
+                    term.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+                });
+                term.addEventListener('mouseout', () => {
+                    term.style.backgroundColor = 'transparent';
+                });
+            });
+
+            // --- Assumptions Section (Tabs & Charts) ---
+            const tabs = document.querySelectorAll('.nav-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('nav-button-active'));
+                    tab.classList.add('nav-button-active');
+                    tabContents.forEach(content => {
+                        content.id === tab.dataset.tab ? content.classList.remove('hidden') : content.classList.add('hidden');
+                    });
+                });
+            });
+
+            // Assumption Chart Data
+            const goodLinearData = [{x:1,y:2},{x:2,y:3},{x:3,y:4.2},{x:4,y:4.9},{x:5,y:6},{x:6,y:7.1},{x:7,y:8.2},{x:8,y:9}];
+            const badLinearData = [{x:1,y:1},{x:2,y:3},{x:3,y:4.5},{x:4,y:5},{x:5,y:4.6},{x:6,y:3.5},{x:7,y:2},{x:8,y:1}];
+            const commonChartOptions = {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                scales: { x: { ticks: { display: false } }, y: { ticks: { display: false } } }
+            };
+
+            new Chart('linearityChartGood', { type: 'scatter', data: { datasets: [{ data: goodLinearData, backgroundColor: 'green' }] }, options: commonChartOptions });
+            new Chart('linearityChartBad', { type: 'scatter', data: { datasets: [{ data: badLinearData, backgroundColor: 'red' }] }, options: commonChartOptions });
+            
+            const goodHomoData = [{x:1,y:5.5},{x:2,y:4.5},{x:3,y:5.2},{x:4,y:4.8},{x:5,y:5.3},{x:6,y:4.7},{x:7,y:5.1},{x:8,y:4.9}];
+            const badHomoData = [{x:1,y:5.1},{x:2,y:4.8},{x:3,y:5.5},{x:4,y:4.5},{x:5,y:6},{x:6,y:4},{x:7,y:6.5},{x:8,y:3.5}];
+            new Chart('homoChartGood', { type: 'scatter', data: { datasets: [{ data: goodHomoData, backgroundColor: 'green' }] }, options: {...commonChartOptions, scales:{...commonChartOptions.scales, y: {min:4, max:6}}} });
+            new Chart('homoChartBad', { type: 'scatter', data: { datasets: [{ data: badHomoData, backgroundColor: 'red' }] }, options: {...commonChartOptions, scales:{...commonChartOptions.scales, y: {min:3, max:7}}} });
+
+            new Chart('normalityChartGood', { type: 'bar', data: { labels: ['-3','-2','-1','0','1','2','3'], datasets: [{ data: [5,20,50,80,50,20,5], backgroundColor: 'green' }] }, options: commonChartOptions });
+            new Chart('normalityChartBad', { type: 'bar', data: { labels: ['-3','-2','-1','0','1','2','3'], datasets: [{ data: [80,60,40,20,10,5,2], backgroundColor: 'red' }] }, options: commonChartOptions });
+
+
+            // --- Accordion Section ---
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Initial chart render
+            updateChart();
+        });
+    </script>
+</body>
+</html>
