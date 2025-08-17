@@ -526,18 +526,18 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
           section: "News",},{id: "news-exciting-news-my-recent-paper-has-been-published-efficient-and-effective-inr-a-dive-into-levels-of-experts-loe-and-sine-activation-check-it-out",
           title: '📢 Exciting News! My recent paper has been published: Efficient and Effective INR:...',
           description: "",
-          section: "News",},{id: "projects-project-1",
+          section: "News",},{id: "news-master-39-s-degree-announcement",
+          title: 'Master&amp;#39;s Degree Announcement',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
           section: "Projects",handler: () => {
