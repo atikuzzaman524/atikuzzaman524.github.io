@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Master's Degree Announcement
+title: 🎓 Master's Degree Announcement 
 date: 2024-08-20 10:00:00-0400
 inline: false
 related_posts: false
