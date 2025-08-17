@@ -530,7 +530,7 @@ ninja.data = [{
           title: '📢 Exciting News! My recent paper has been published: Efficient and Effective INR:...',
           description: "",
           section: "News",},{id: "news-master-39-s-degree-announcement",
-          title: 'Master&amp;#39;s Degree Announcement',
+          title: '🎓 Master&amp;#39;s Degree Announcement',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/announcement_2/";
