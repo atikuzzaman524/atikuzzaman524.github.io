@@ -10,19 +10,20 @@ related_posts: false
 
 I am delighted to share that I have successfully completed my **Master of Artificial Intelligence** at **Kyung Hee University** (Department of Artificial Intelligence).  
 
-This journey has been full of challenges, growth, and amazing learning experiences. I am deeply grateful to my professors, colleagues, and family for their constant support throughout this academic path.  
+This journey has been full of challenges, growth, and amazing learning experiences. I am deeply grateful to my professors, colleagues, family, and friends for their constant support throughout this academic path.  
 
 ---
 
 #### 📸 Memories from the Journey  
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<div style="display: flex; gap: 10px; margin-bottom: 10px;">
+  <img src="https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/img/ms1.jpg?raw=true" alt="Master's Photo 1" width="49%"/>
+  <img src="https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/img/ms2.jpg?raw=true" alt="Master's Photo 2" width="49%"/>
+</div>
 
-<img src="assets/img/ms1.jpg" alt="Master's Photo 1" width="100%"/>
-<img src="assets/img/ms2.jpg" alt="Master's Photo 2" width="100%"/>
-<img src="assets/img/ms3.jpg" alt="Master's Photo 3" width="100%"/>
-<img src="assets/img/ms4.jpg" alt="Master's Photo 4" width="100%"/>
-
+<div style="display: flex; gap: 10px;">
+  <img src="https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/img/ms3.jpg?raw=true" alt="Master's Photo 3" width="49%"/>
+  <img src="https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/img/ms4.jpg?raw=true" alt="Master's Photo 4" width="49%"/>
 </div>
 
 ---
