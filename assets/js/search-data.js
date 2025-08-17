@@ -526,10 +526,7 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
-          description: "",
-          section: "News",},{id: "news-exciting-news-my-recent-paper-has-been-published-efficient-and-effective-inr-a-dive-into-levels-of-experts-loe-and-sine-activation-check-it-out",
+            },},{id: "news-exciting-news-my-recent-paper-has-been-published-efficient-and-effective-inr-a-dive-into-levels-of-experts-loe-and-sine-activation-check-it-out",
           title: '📢 Exciting News! My recent paper has been published: Efficient and Effective INR:...',
           description: "",
           section: "News",},{id: "news-master-39-s-degree-announcement",
@@ -537,7 +534,10 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/announcement_2/";
-            },},{id: "projects-project-1",
+            },},{id: "news-i-am-excited-to-share-that-i-have-rejoined-as-lecturer-in-the-department-of-computer-science-and-engineering-green-university-of-bangladesh",
+          title: '📢 I am excited to share that I have rejoined as Lecturer in...',
+          description: "",
+          section: "News",},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
           section: "Projects",handler: () => {
