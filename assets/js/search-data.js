@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-data-preprocessing-for-data-mining",
+        },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
+      
+        title: "Feature Engineering techniques in Data Mining.ipynb",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Feature_Engineering_techniques_in_DM/";
+        
+      },
+    },{id: "post-data-preprocessing-for-data-mining",
       
         title: "Data Preprocessing for Data Mining",
       
