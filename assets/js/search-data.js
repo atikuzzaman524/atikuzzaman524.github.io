@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-interactive-linear-regression",
+        },{id: "post-data-preprocessing-for-data-mining",
+      
+        title: "Data Preprocessing for Data Mining",
+      
+      description: "Introduction to ML- Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Data_preprocessing_for_DM/";
+        
+      },
+    },{id: "post-interactive-linear-regression",
       
         title: "Interactive Linear Regression",
       
