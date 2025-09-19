@@ -10,7 +10,7 @@ related_posts: false
 ---
 
 {::nomarkdown}
-{% assign jupyter_path = "assets/jupyter/Introduction_to_ML.ipynb" | relative_url %}
+{% assign jupyter_path = "assets/jupyter/Feature Engineering techniques in Data Mining.ipynb" | relative_url %}
 {% capture notebook_exists %}{% file_exists assets/jupyter/Feature Engineering techniques in Data Mining.ipynb %}{% endcapture %}
 {% if notebook_exists == "true" %}
 {% jupyter_notebook jupyter_path %}
