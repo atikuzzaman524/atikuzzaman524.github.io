@@ -48,6 +48,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Statistical-Analysis-and-Exploratory-Data-Analysis-using-visualization-techniques/";
         
       },
+    },{id: "post-dimensionality-reduction-with-pca-and-visualization-with-t-sne",
+      
+        title: "Dimensionality Reduction with PCA and Visualization with t-SNE",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Dimensionality-Reduction-with-PCA-and-Visualization-with-t-SNE/";
+        
+      },
     },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
       
         title: "Feature Engineering techniques in Data Mining.ipynb",
