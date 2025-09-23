@@ -16,20 +16,18 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 :office: Room: A-510 Desk No. : 06
 <br>
 <br>
-### Class Routine – Spring 2025 Semester
-<br>
+### Class Routine – Fall 2025 Semester
+---
 
-| **Time** <br> **Day** | **09:00 - 10:20** | **10:20 - 11:40** | **11:40 - 01:20** | **Break** | **01:30 - 02:50** | **02:50 - 04:10** |
-|----------|-------------------|-------------------|-------------------|-----------|-------------------|-------------------|
-| **Sat**  | CSE-435 212_D1 R: J-109 | Research Time | CSE-436 212_D2 R: K-101 |           |                   |                   |
-| **Sun**  | CSE-315 221_D10 R: A-605 | Tutor Time | CSE-436 213_D1 R: A-501 |           |                   |                   |
-| **Mon**  |                   | Research Time |                   |           | **Weekly Academic Meeting** |                   |
-| **Tue**  | CSE-315 221_D10 R: A-605 | Tutor Time |                   |           | CSE 316 221_D20 R: K-109 |                   |
-| **Wed**  |                   |                   |                   |           |                   |                   |
-|          | **08:30 - 09:50** | **09:50 - 11:10** | **11:10 - 12:50** | **Break** | **02:00 - 03:20** | **03:20 - 04:40** |
-| **Fri**  | CSE-435 212_D1 R: J-109 | Tutor Time | CSE-436 212_D1 R: J-108 |           |                   |                   |
+| Day | 08:30-10:00 | 10:00-11:30 | 11:30-1:00 | Break | 01:30-03:00 | 03:00-04:30 | 06:00-07:30 | 07:30-09:00 |
+| :-- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Sat** | [cite_start]CSE 435<br>221 D6<br>J-105 [cite: 11] | [cite_start]CSE 435<br>221 D2<br>K-104 [cite: 11] | [cite_start]CSE 436<br>221 D6<br>A-501 [cite: 11] | | [cite_start]CSE 436 221 D16<br>A-503 [cite: 11] | | | |
+| **Sun** | | | [cite_start]TUTOR TIME [cite: 11] | | [cite_start]TUTOR TIME [cite: 11] | [cite_start]Capstone<br>Project/Thesis<br>Meeting [cite: 11] | | |
+| **Mon** | | | | | | | | |
+| **Tue** | [cite_start]CSE 436<br>222 D1<br>J-103 [cite: 11] | | [cite_start]TUTOR TIME [cite: 11] | | [cite_start]TUTOR TIME [cite: 11] | [cite_start]CSE 104 250 D6<br>A-502 [cite: 11] | [cite_start]CSE 435<br>221 D6<br>Online [cite: 11] | [cite_start]CSE 435 221 D2<br>Online<br>PSD 400 221 D2<br>Online [cite: 11] |
+| **Wed** | | | | | | | | |
 
-
+---
 <br>
 <br>
 
