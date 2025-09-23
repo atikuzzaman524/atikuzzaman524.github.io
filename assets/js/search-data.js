@@ -136,6 +136,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Classification-with-Decision-Trees-and-SVMs/";
         
       },
+    },{id: "post-boosting-techniques-adaboost-and-gradient-boosting-implementation",
+      
+        title: "Boosting Techniques AdaBoost and Gradient Boosting implementation",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Boosting-Techniques-AdaBoost-and-Gradient-Boosting-implementation/";
+        
+      },
     },{id: "post-data-preprocessing-for-data-mining",
       
         title: "Data Preprocessing for Data Mining",
