@@ -12,18 +12,18 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 🕾 Mob. +8801912961096 
 
-:office: Room: A-510 Desk No. : 06
+:office: Room: A-510 Desk No. : 08
 <br>
 <br>
 ### Class Routine – Fall 2025 Semester
 ---
 
 | Day | 08:30-10:00 | 10:00-11:30 | 11:30-1:00 | Break | 01:30-03:00 | 03:00-04:30 | 06:00-07:30 | 07:30-09:00 |
-| :-- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Sat** | CSE 435<br>221 D6<br>J-105 | CSE 435<br>221 D2<br>K-104 | CSE 436<br>221 D6<br>A-501 | | CSE 436 221 D16<br>A-503 | | | |
-| **Sun** | | | TUTOR TIME | | TUTOR TIME |  | | Capstone<br>Project/Thesis<br>Meeting|
-| **Mon** | | | TUTOR TIME | |CSE 104 250 D6<br>A-502  |CSE 104 250 D6<br>A-502  | CSE 435<br>221 D6<br>Online | CSE 435 221 D2<br>Online|
-| **Tue** | CSE 436<br>222 D1<br>J-103 | | TUTOR TIME | | TUTOR TIME | | | PSD 400 221 D2<br>Online |
+| :---: | :----: | :----: | :----: | :---: | :----: | :----: | :----: | :----: |
+| **Sat** | CSE-435 221_D6<br>J-105 | CSE-435 221_D2<br>K-104 | CSE-436 221_D6<br>A-501 | | CSE-436 221_D16<br>A-503 | | | |
+| **Sun** | | | TUTOR TIME | | TUTOR TIME |  | | Thesis/Project Meeting <br>Online|
+| **Mon** | | | TUTOR TIME | |CSE-104 250_D6<br>A-502  |CSE-104 250_D6<br>A-502  | CSE-435 221_D6<br>Online | CSE-435 221_D2<br>Online|
+| **Tue** | CSE-436 222_D1<br>J-103 | | TUTOR TIME | | TUTOR TIME | | | PSD-400 221_D2<br>Online |
 | **Wed** | | | | | | | | |
 
 ---
