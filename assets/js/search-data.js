@@ -37,18 +37,7 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-",
-      
-        title: "",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN/";
-        
-      },
-    },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
+        },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
       
         title: "Statistical Analysis and Exploratory Data Analysis using visualization techniques",
       
@@ -112,6 +101,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/Efficient-Frequent-Itemset-Mining-with-the-FP-Growth-Algorithm/";
+        
+      },
+    },{id: "post-clustering-implementation-of-dbscan-clustering-algorithm-using-python",
+      
+        title: "Clustering Implementation of DBSCAN Clustering Algorithm Using Python",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Density-Based-Clustering-with-DBSCAN/";
         
       },
     },{id: "post-classification-with-decision-trees-and-svms",
