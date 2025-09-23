@@ -35,20 +35,19 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 ### Lab Activity Outline
 
-| Class | Experiment Title | COs | Reference | Activities |
-|--------|----------------|-----|-----------|------------|
-| 1  | Python Basics | 1 | Lab Manual 1 | Experiments |
-| 2  | Python Programming (Loop, Functions, Class and Object) | 1 | Lab Manual 2 | Experiments |
-| 3  | Data Preprocessing Techniques using Python | 1 | Lab Manual 3 | Experiments |
-| 4  | Statistical Analysis and Data Visualization using Python | 1 | Lab Manual 4 | Experiments |
-| 5  | Implementation of Apriori algorithm for frequent itemset mining | 1 | Lab Manual 5 | Experiments |
-| 6  | Implementation of Frequent Pattern Growth (FP-Growth) Algorithm using Python | 2 | Lab Manual 6 | Experiments |
-| 7  | Machine Learning Classification: Decision Trees, k-Nearest Neighbor Implementation using Python | 3 | Lab Manual 7 | Experiments |
-| 8  | Clustering: Implementation of K-Means Clustering Algorithm Using Python | 3 | Lab Manual 8 | Experiments |
-| 9  | Clustering: Implementation of DBSCAN Clustering Algorithm Using Python | 3 | Lab Manual 9 | Experiments |
-| 10 | Ensembles: Combining multiple models (bagging, boosting, stacking), Experiments using Python | 1 | Lab Manual 10 | Experiments |
-| 11 | Installing Weka 3 Data Mining System, Brief Intro to Weka, Basic use of Weka, Data loading, etc. | 1 | Lab Manual 11 | Experiments |
-| 12 | WEKA - Preprocessing, visualization, classification, evaluation experiments using Python | 2 | Lab Manual 12 | Experiments |
-| 13 | WEKA - Machine Learning Classifiers and Overfitting | 2 | Lab Manual 13 | Experiments |
-| 14 | Project Presentation and Viva | 1, 2, 3 | | Presentation, Viva |
-| 15 | **Final Term Examination (Quiz, Lab Test, Viva, Project Presentation)** | 1, 2, 3 | | |
+| Class | Experiment Title                                                                 | COs      | Reference       | Activities                                                                 |
+|-------|----------------------------------------------------------------------------------|----------|-----------------|-----------------------------------------------------------------------------|
+| 1     | Data Preprocessing techniques in Data Mining                                     | 1        | Lab Manual 1    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Data_preprocessing_for_DM/) |
+| 2     | Feature Engineering techniques in Data Mining                                    | 1        | Lab Manual 2    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Feature_Engineering_techniques_in_DM/) |
+| 3     | Statistical Analysis and Exploratory Data Analysis using visualization techniques| 1        | Lab Manual 3    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Statistical-Analysis-and-Exploratory-Data-Analysis-using-visualization-techniques/) |
+| 4     | Implementation of PCA for dimensionality reduction and t-SNE for visualization   | 1        | Lab Manual 4    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Dimensionality-Reduction-with-PCA-and-Visualization-with-t-SNE/) |
+| 5     | Implementation of Apriori algorithm for frequent itemset mining                  | 1        | Lab Manual 5    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Frequent-Itemset-Mining-with-the-Apriori-Algorithm/) |
+| 6     | Implementation Frequent Pattern Growth (FP-Growth) Algorithm using Python        | 2        | Lab Manual 6    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Efficient-Frequent-Itemset-Mining-with-the-FP-Growth-Algorithm/) |
+| 7     | Machine Learning Classification: Decision Trees, SVM Implementation using Python | 3        | Lab Manual 7    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Classification-with-Decision-Trees-and-SVMs/) |
+| 8     | Clustering: Implementation of Hierarchical Clustering Using Python               | 3        | Lab Manual 8    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Hierarchical-Clustering/) |
+| 9     | Clustering: Implementation of DBSCAN Clustering Algorithm Using Python           | 3        | Lab Manual 9    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Density-Based-Clustering-with-DBSCAN/) |
+| 10    | Ensemble Learning: Bagging and Stacking with real-world datasets                 | 2        | Lab Manual 10   | [Experiments](https://atikuzzaman524.github.io/blog/2025/Ensemble-Learning-Bagging-and-Stacking-with-real-world-datasets/) |
+| 11    | Boosting Techniques: AdaBoost and Gradient Boosting implementation               | 2        | Lab Manual 11   | [Experiments](https://atikuzzaman524.github.io/blog/2025/Boosting-Techniques-AdaBoost-and-Gradient-Boosting-implementation/) |
+| 12    | Anomaly Detection using Isolation Forest or Z-score                              | 2        | Lab Manual 12   | [Experiments](https://atikuzzaman524.github.io/blog/2025/Anomaly-Detection-using-Isolation-Forest-or-Z-score/) |
+| 13    | Project Presentation and Viva                                                    | 1, 2, 3  |                 | Presentation, Viva                                                          |
+| 14    | Lab Final Examination                                                            | 1, 2, 3  |                 | Examination                                                                 |
