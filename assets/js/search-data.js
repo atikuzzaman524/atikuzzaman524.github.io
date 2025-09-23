@@ -56,7 +56,7 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN";
+          window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN/";
         
       },
     },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
