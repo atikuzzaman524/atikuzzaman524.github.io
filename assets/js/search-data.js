@@ -92,6 +92,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Efficient-Frequent-Itemset-Mining-with-the-FP-Growth-Algorithm/";
         
       },
+    },{id: "post-classification-with-decision-trees-and-svms",
+      
+        title: "Classification with Decision Trees and SVMs",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Classification-with-Decision-Trees-and-SVMs/";
+        
+      },
     },{id: "post-data-preprocessing-for-data-mining",
       
         title: "Data Preprocessing for Data Mining",
