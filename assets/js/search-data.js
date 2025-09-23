@@ -147,6 +147,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Boosting-Techniques-AdaBoost-and-Gradient-Boosting-implementation/";
         
       },
+    },{id: "post-anomaly-detection-using-isolation-forest-or-z-score",
+      
+        title: "Anomaly Detection using Isolation Forest or Z-score",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Anomaly-Detection-using-Isolation-Forest-or-Z-score/";
+        
+      },
     },{id: "post-data-preprocessing-for-data-mining",
       
         title: "Data Preprocessing for Data Mining",
