@@ -614,6 +614,11 @@ ninja.data = [{
           description: "An introduction to machine learning lab techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Fall-2024_CSE-412-%20Machine-Learning-Lab/";
+            },},{id: "teaching-structured-programming-lab",
+          title: 'Structured Programming Lab',
+          description: "A hands-on introduction to structured programming concepts using the C language. Covers fundamental syntax, control structures, arrays, functions, pointers, and file operations.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Fall-2025_CSE-104_Structured-Programming-Lab/";
             },},{id: "teaching-data-mining",
           title: 'Data Mining',
           description: "An introduction to data mining techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
