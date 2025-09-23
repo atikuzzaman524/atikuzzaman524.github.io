@@ -45,17 +45,6 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/2025-09-10-Hierarchical-Clustering/";
-        
-      },
-    },{id: "post-",
-      
-        title: "",
-      
-      description: "",
-      section: "Posts",
-      handler: () => {
-        
           window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN/";
         
       },
@@ -79,6 +68,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2025/Dimensionality-Reduction-with-PCA-and-Visualization-with-t-SNE/";
+        
+      },
+    },{id: "post-clustering-implementation-of-hierarchical-clustering-using-python",
+      
+        title: "Clustering Implementation of Hierarchical Clustering Using Python",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Hierarchical-Clustering/";
         
       },
     },{id: "post-frequent-itemset-mining-with-the-apriori-algorithm",
