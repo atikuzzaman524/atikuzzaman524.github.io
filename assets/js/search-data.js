@@ -45,6 +45,17 @@ ninja.data = [{
       section: "Posts",
       handler: () => {
         
+          window.location.href = "/blog/2025/2025-09-10-Hierarchical-Clustering/";
+        
+      },
+    },{id: "post-",
+      
+        title: "",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
           window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN";
         
       },
