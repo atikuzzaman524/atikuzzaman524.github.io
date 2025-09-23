@@ -70,9 +70,9 @@ ninja.data = [{
           window.location.href = "/blog/2025/Frequent-Itemset-Mining-with-the-Apriori-Algorithm/";
         
       },
-    },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
+    },{id: "post-feature-engineering-techniques-in-data-mining",
       
-        title: "Feature Engineering techniques in Data Mining.ipynb",
+        title: "Feature Engineering techniques in Data Mining",
       
       description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
       section: "Posts",
