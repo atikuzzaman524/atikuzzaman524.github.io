@@ -59,6 +59,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Dimensionality-Reduction-with-PCA-and-Visualization-with-t-SNE/";
         
       },
+    },{id: "post-frequent-itemset-mining-with-the-apriori-algorithm",
+      
+        title: "Frequent Itemset Mining with the Apriori Algorithm",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Frequent-Itemset-Mining-with-the-Apriori-Algorithm/";
+        
+      },
     },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
       
         title: "Feature Engineering techniques in Data Mining.ipynb",
