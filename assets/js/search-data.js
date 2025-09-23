@@ -81,6 +81,17 @@ ninja.data = [{
           window.location.href = "/blog/2025/Feature_Engineering_techniques_in_DM/";
         
       },
+    },{id: "post-efficient-frequent-itemset-mining-with-the-fp-growth-algorithm",
+      
+        title: "Efficient Frequent Itemset Mining with the FP-Growth Algorithm",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Efficient-Frequent-Itemset-Mining-with-the-FP-Growth-Algorithm/";
+        
+      },
     },{id: "post-data-preprocessing-for-data-mining",
       
         title: "Data Preprocessing for Data Mining",
