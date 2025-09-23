@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
+        },{id: "post-",
+      
+        title: "",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/2025-09-10-Density-Based-Clustering-with-DBSCAN";
+        
+      },
+    },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
       
         title: "Statistical Analysis and Exploratory Data Analysis using visualization techniques",
       
