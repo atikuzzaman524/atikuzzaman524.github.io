@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
+        },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
+      
+        title: "Statistical Analysis and Exploratory Data Analysis using visualization techniques",
+      
+      description: "Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Statistical-Analysis-and-Exploratory-Data-Analysis-using-visualization-techniques/";
+        
+      },
+    },{id: "post-feature-engineering-techniques-in-data-mining-ipynb",
       
         title: "Feature Engineering techniques in Data Mining.ipynb",
       
