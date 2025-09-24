@@ -2,9 +2,9 @@
 layout: post
 title: Basic Structure and Syntax of C Programming Language
 date: 2025-09-23 22:30:00
-description: A comprehensive lab manual-style post on the structure and syntax of C language
-tags: C-programming basics syntax lab-manual
-categories: programming
+description: an example of a blog post with some code on the structure and syntax of C language
+tags: C-programming
+categories: sample-posts
 featured: true
 ---
 
