@@ -37,9 +37,9 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 | Lecture  | Selected Topic  | Article  | Problems  | Slides |
 |----------|-----------------|----------|-----------|--------|
-| (1-3)    | Introduction to Data Mining and its applications  |  |  | [Slides](https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/pdf/Data_Mining_Chapter1.pdf) |
+| (1-3)    | Introduction to Data Mining and its applications  |  |  | [Slides](/assets/pdf/Data_Mining_Chapter1.pdf) |
 |          | What Is Data Mining? Major Issues in Data Mining  | Ch. 1 | Ex. 1.2-1.5, 1.7, 1.9 | [Slides](#) |
-| (4-7)    | Knowing data, Structured Data, Statistical Data Descriptions  |  |  | [Slides](https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/pdf/Data_Mining_Chapter2.pdf) |
+| (4-7)    | Knowing data, Structured Data, Statistical Data Descriptions  |  |  | [Slides](/assets/pdf/Data_Mining_Chapter2.pdf) |
 |          | Data Visualization, Data Similarity and Dissimilarity  | Ch. 2 | Ex. 2.2-2.4, 2.6, 2.8 | [Slides](#) |
 | (8-9)    | Data Preprocessing, Cleaning, Integration, and Reduction  | Ch. 3 | Ex. 3.1-3.8 | [Slides](#) |
 | (10)     | Mining Frequent Patterns  | Ch. 6.1 |  | [Slides](#) |
