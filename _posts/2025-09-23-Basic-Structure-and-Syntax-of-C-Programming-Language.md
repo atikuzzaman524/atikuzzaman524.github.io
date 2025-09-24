@@ -5,7 +5,7 @@ date: 2025-09-23 22:30:00
 description: an example of a blog post with some code on the structure and syntax of C language
 tags: C-programming
 categories: sample-posts
-featured: true
+featured: false
 ---
 
 ## 🎯 Lab Objective
