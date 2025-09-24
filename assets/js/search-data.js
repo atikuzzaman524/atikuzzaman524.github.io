@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
+        },{id: "post-basic-structure-and-syntax-of-c-programming-language",
+      
+        title: "Basic Structure and Syntax of C Programming Language",
+      
+      description: "an example of a blog post with some code on the structure and syntax of C language",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/Basic-Structure-and-Syntax-of-C-Programming-Language/";
+        
+      },
+    },{id: "post-statistical-analysis-and-exploratory-data-analysis-using-visualization-techniques",
       
         title: "Statistical Analysis and Exploratory Data Analysis using visualization techniques",
       
