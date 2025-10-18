@@ -41,9 +41,9 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 |          | What Is Data Mining? Major Issues in Data Mining  | Ch. 1 | Ex. 1.2-1.5, 1.7, 1.9 | - | - |
 | (4-7)    | Knowing data, Structured Data, Statistical Data Descriptions  |  |  | [Slides](/assets/pdf/Data_Minig_Chapter_2_Part_1.pdf) | [Math Note](/assets/pdf/Math_Note_Data_mining_Chapter_2.pdf) |
 |          | Data Visualization, Data Similarity and Dissimilarity  | Ch. 2 | Ex. 2.2-2.4, 2.6, 2.8 | - |- |
-| (8-9)    | Data Preprocessing, Cleaning, Integration, and Reduction  | Ch. 3 | Ex. 3.1-3.8 | [Slides](/assets/pdf/Data_Minig_Chapter_2_Part_2.pdf) | - |
-| (10)     | Mining Frequent Patterns  | Ch. 6.1 |  | - |- |
-| (11-12)  | Mining Frequent Patterns with Apriori Algorithm  | Ch. 6.2 | Ex. 6.1-6.5 | - |- |
+| (8-9)    | Data Preprocessing, Cleaning, Integration, and Reduction  | Ch. 2 | Ex. 3.1-3.8 | [Slides](/assets/pdf/Data_Minig_Chapter_2_Part_2.pdf) | - |
+| (10)     | Mining Frequent Patterns  | Ch. 4|  | [Slides](/assets/pdf/Data_Mining_Chapter_4.pdf) |- |
+| (11-12)  | Mining Frequent Patterns with Apriori Algorithm  | Ch. 4 | Ex. 6.1-6.5 | - |- |
 | (13-14)  | Mining Frequent Patterns with Pattern Growth Approach  | Ch. 6.2.4 |  |- | - |
 | (15)     | Pattern Evaluation Methods  | Ch. 6.3 |  | - | - |
 |          | **Midterm** |  |  | - | - |
