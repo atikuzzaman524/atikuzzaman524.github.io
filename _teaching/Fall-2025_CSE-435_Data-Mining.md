@@ -42,13 +42,13 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 | (4–7) | Data Types, Statistics of Data, Similarity and Distance Measures, Data Quality; Graphic displays of basic statistics of data; Data Cleaning and Integration | Ch. 2 | Ex. 2.8 | [Slides](/assets/pdf/Data_Minig_Chapter_2_Part_1.pdf) | [Math Note](/assets/pdf/Math_Note_Data_mining_Chapter_2.pdf) |
 | (8–9) | Data Transformation, Dimensionality Reduction (PCA), Feature Selection | Ch. 2 | Ex. 2.8 | [Slides](/assets/pdf/Data_Minig_Chapter_2_Part_2.pdf) | – |
 | (10) | Pattern Mining: Basic Concepts and Methods; Frequent Itemset Mining Methods | Ch. 4 | Ex. 4.5 | [Slides](/assets/pdf/Data_Mining_Chapter_4.pdf) | [Math Note](/assets/pdf/Math_Data_mining_Chapter_4.pdf) |
-| (11–12) | Mining Frequent Patterns with Apriori Algorithm and Pattern Growth Approach | Ch. 4 | Ex. 4.5 | – | – |
-| (13–14) | Mining Frequent Itemsets using the Vertical Data Format; Mining Closed and Max Patterns | Ch. 4 | Ex. 4.5 | – | – |
-| (15) | Which Patterns Are Interesting? — Pattern Evaluation Methods | Ch. 4 | Ex. 4.5 | – | – |
+| (11–12) | Mining Frequent Patterns with Apriori Algorithm and Pattern Growth Approach | Ch. 4 | Ex. 4.5 |  [Slides](/assets/pdf/Data_Mining_Chapter_4.pdf) | [Math Note](/assets/pdf/Math_Data_mining_Chapter_4.pdf) |
+| (13–14) | Mining Frequent Itemsets using the Vertical Data Format; Mining Closed and Max Patterns | Ch. 4 | Ex. 4.5 |  [Slides](/assets/pdf/Data_Mining_Chapter_4.pdf) | [Math Note](/assets/pdf/Math_Data_mining_Chapter_4.pdf) |
+| (15) | Which Patterns Are Interesting? — Pattern Evaluation Methods | Ch. 4 | Ex. 4.5 |  [Slides](/assets/pdf/Data_Mining_Chapter_4.pdf) | [Math Note](/assets/pdf/Math_Data_mining_Chapter_4.pdf) |
 |  | **Midterm Examination** | – | – | – | – |
-| (16–19) | Classification: Basic Concepts and Methods; Decision Tree Induction, Attribute Selection Measures, Tree Pruning | Ch. 6 | Ex. 6.9 | – | – |
-| (20) | Model Evaluation and Selection (Metrics, Holdout Method, Random Subsampling, Cross-Validation, Bootstrap etc.) | Ch. 6 | Ex. 6.9 | – | – |
-| (21–22) | Ensemble Methods (Bagging, Boosting, Random Forests); Improving Classification Accuracy for Imbalanced Data | Ch. 6 | Ex. 6.9 | – | – |
+| (16–19) | Classification: Basic Concepts and Methods; Decision Tree Induction, Attribute Selection Measures, Tree Pruning | Ch. 6 | Ex. 6.9 | [Slides](/assets/pdf/Data_Mining_Chapter_6.pdf)  | – |
+| (20) | Model Evaluation and Selection (Metrics, Holdout Method, Random Subsampling, Cross-Validation, Bootstrap etc.) | Ch. 6 | Ex. 6.9 |  [Slides](/assets/pdf/Data_Mining_Chapter_6.pdf) | – |
+| (21–22) | Ensemble Methods (Bagging, Boosting, Random Forests); Improving Classification Accuracy for Imbalanced Data | Ch. 6 | Ex. 6.9 |  [Slides](/assets/pdf/Data_Mining_Chapter_6.pdf) | – |
 | (23) | Support Vector Machines (Linear & Nonlinear Models), Kernel Functions | Ch. 7 | Ex. 7.9 | – | – |
 | (24) | Classification with Weak Supervision (Active Learning, Transfer Learning, Distant Supervision, Zero-Shot Learning) | Ch. 7 | Ex. 7.9 | – | – |
 | (25–26) | Cluster Analysis: Basic Concepts and Methods; Partitioning Methods (k-Medoids, k-Modes) | Ch. 8 | Ex. 8.7 | – | – |
