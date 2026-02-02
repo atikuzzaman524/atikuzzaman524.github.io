@@ -780,6 +780,11 @@ ninja.data = [{
           description: "An introduction to machine learning lab techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Spring-2026_CSE-404-%20Machine-Learning-Lab/";
+            },},{id: "teaching-ict-and-computer-applications",
+          title: 'ICT and Computer Applications',
+          description: "A comprehensive introduction to computer fundamentals, number systems, networking, and practical office automation tools.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Spring-2026_GED-103-ICT-and-Computer-Applications/";
             },},{id: "teaching-computer-networking-lab",
           title: 'Computer Networking Lab',
           description: "A practical lab course on computer networking concepts including network configuration, protocol analysis, client-server architecture, and simulation of network behaviors.",
