@@ -33,18 +33,24 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 ### Topic Outline
 
-| **Lecture** | **Selected Topic** | **Article** | **Problems** |
-|-------------|--------------------|-------------|--------------|
-| (1) | Introduction | Class Notes |  |
-| (2-6) | Supervised Learning (Regression, Classification, Linear Regression, Logistic Regression, Importance of designing effective cost function, convex function, learning parameters and parameter optimization concepts) | Class Notes | Assignment 1 |
-| (7-10) | Bayesian Decision Theory (review of probability concepts, uncertainty modeling, likelihood, posterior probability, naive decision rules, sensitivity and specificity) | Class Notes |  |
-| (11-12) | Parametric and non-parametric Methods for density estimation | Class Notes | Quiz 1 |
-| (13-14) | Unsupervised Learning (Association rule, KMeans Clustering, etc.) | Class Notes |  |
-|  | **Midterm Exam** |  |  |
-| (15-15) | Perceptron learning (basic architecture and limitations) | Class Notes | Call for a Group Project |
-| (16-19) | Multilayer Perceptrons (importance of non-linearity, understanding artificial neural network architecture, cost function, understanding multivariate calculus and its role in Neural networks, Stochastic Gradient Descent optimization, hyperparameter tuning) | Class Notes |  |
-| (20-21) | Introduction to Graphical Models | Class Notes | Quiz 2 |
-| (22-25) | Time series modeling/online learning (Markov model, Hidden Markov Models, and their applications, Bayesian Networks) | Class Notes |  |
-| (26-28) | Reinforcement Learning (Markov decision processes and Q-learning) | Class Notes |  |
-| (29-30) | Design and Analysis of Machine Learning Experiments | Class Notes |  |
-|  | **Final Exam** |  |  |
+# Topic Outline
+
+| **Lecture** | **Selected Topic** | **Article / Materials** | **Problems** |
+|---|---|---|---|
+| (1--2) | Introduction to Machine Learning; What is ML? Three Approaches: Supervised, Unsupervised, Reinforcement Learning | Class Notes, Slides |  |
+| (3--4) | Elements of a Supervised Learning Problem; Dataset and Learning Algorithm Overview | Class Notes, Slides | Assignment 1 |
+| (5--6) | Linear Regression: Concepts, Gradient Descent, Ordinary Least Squares | Class Notes, Slides, Math Notes |  |
+| (7--9) | Classification: Classification Basics, Logistic Regression, Softmax Regression, Multi-Class Classification | Class Notes, Slides, Math Notes |  |
+| (10--11) | K-Nearest Neighbors, Naive Bayes Classifier | Class Notes, Slides, Math Notes | Quiz 1 |
+| (12--13) | Support Vector Machines (Linear & Nonlinear), Decision Trees (ID3) | Class Notes, Slides, Math Notes |  |
+|  | **Midterm Examination** |  |  |
+| (14--15) | Regularization & Model Evaluation: L1/L2 Regularization, Overfitting, Bias-Variance, Metrics, Cross-Validation, Bootstrap | Class Notes, Slides, Math Notes |  |
+| (16) | Ensemble Methods: Bagging, Boosting, Random Forests | Class Notes, Slides | Call for a Group Project |
+| (17--18) | Neural Networks: Neuron Model, Activation Functions, Network Architecture, Forward Propagation | Class Notes, Slides, Math Notes |  |
+| (19--20) | Loss Functions, Backpropagation, Gradient Descent, Initialization, Normalization, Vanishing/Exploding Gradients | Class Notes, Slides, Math Notes | Quiz 2 |
+| (21) | Neural Network Regularization (Dropout, Weight Decay), Optimization (SGD, Adam, RMSprop), Hyperparameter Tuning, Model Evaluation | Class Notes, Slides, Math Notes |  |
+| (22) | Convolutional Neural Networks (CNNs): Convolution, Filters, Layers, Feature Maps, Pooling, Architecture Design | Class Notes, Slides, Math Notes |  |
+| (23) | CNNs: Forward Propagation, Loss Functions, Backpropagation, Popular Architectures (VGG, ResNet) | Class Notes, Slides, Math Notes |  |
+| (24) | CNNs with Attention Mechanisms (SE Block, CBAM Overview), Transfer Learning, Fine-Tuning, Model Visualization | Class Notes, Slides |  |
+| (25) | Generative Models: Autoencoders, VAE, GANs, Conditional/Modern Generative Models, Applications, Evaluation, Ethics, Course Wrap-Up | Class Notes, Slides, Math Notes |  |
+|  | **Final Examination** |  |  |
