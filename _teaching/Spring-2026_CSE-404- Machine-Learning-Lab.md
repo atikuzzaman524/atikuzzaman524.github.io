@@ -33,21 +33,17 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 ### Lab Activity Outline
 
-| Class | Experiment Title                                                         | COs      | Reference           | Activities                                                                 |
-|-------|---------------------------------------------------------------------------|----------|----------------------|-----------------------------------------------------------------------------|
-| 1     | Introduction to ML: Introduction data and relevant Python libraries.     | 1, 2, 3  | Lab Manual No. 1     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Introduction_ML/) |
-| 2     | Implementing Data preprocessing techniques in ML                         | 1, 2, 3  | Lab Manual No. 2     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Data_preprocessing/) |
-| 3     | Implementing and Analyzing linear regression algorithm                   | 1, 2, 3  | Lab Manual No. 3     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Linear_Regression/) |
-| 4     | Implementing and Analyzing logistic regression algorithm                 | 1, 2, 3  | Lab Manual No. 4     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Logistic_Regression/) |
-| 5     | Implementing and Analyzing K means algorithm                             | 1, 2, 3  | Lab Manual No. 5     | [Experiments](https://atikuzzaman524.github.io/blog/2025/K-means_algorithm/) |
-| 6     | Implementing and Analyzing KNN algorithm                                 | 1, 2, 3  | Lab Manual No. 6     | [Experiments](https://atikuzzaman524.github.io/blog/2025/K-Nearest_Neighbors/)  |
-| 7     | Implementing and Analyzing artificial neural network algorithm           | 1, 2, 3  | Lab Manual No. 7     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Artificial_Neural_Network/)  |
-| 8     | Implementing and Analyzing backpropagation algorithm                     | 1, 2, 3  | Lab Manual No. 8     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Backpropagation_Algorithm/)  |
-|       | **Midterm Examination**                                                  |          |                      |                                                                             |
-| 9     | Introduction to convolutional neural networks                            | 1, 2, 3  | Lab Manual No. 9     | [Experiments](https://atikuzzaman524.github.io/blog/2025/Convolutional_Neural_Networks_(CNNs)/) |
-| 10    | Implementing and analyzing naive Bayes classifier                        | 1, 2, 3  | Lab Manual No. 10    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Naive_Bayes_Classifier/) |
-| 11    | Implementing and analyzing hidden Markov models                          | 1, 2, 3  | Lab Manual No. 11    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Hidden_Markov_Models_(HMMs)/) |
-| 12    | Implementing and analyzing Markov decision processes                     | 1, 2, 3  | Lab Manual No. 12    | [Experiments](https://atikuzzaman524.github.io/blog/2025/Markov_Decision_Processes/)  |
-| 13    | Review                                                                    |          |                      |                      |
-| 14    | Project Presentation                                                     | 1, 2, 3  |                      | Presentation, Viva                                                          |
-| 15    | **Final Examination**                                                   | 1, 2, 3  |                      |                                                                             |
+| Class | Experiment Title | COs | Reference | Activities |
+|-------|-------------------|------|------------|-------------|
+| 1 | Introduction to ML: Introduction to data and relevant Python libraries | 1, 2, 3 | Lab Manual No. 1 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Introduction_ML/) |
+| 2 | Implementing Data Preprocessing Techniques in ML | 1, 2, 3 | Lab Manual No. 2 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Data_preprocessing/) |
+| 3 | Implementing and Analyzing Linear Regression Algorithm | 1, 2, 3 | Lab Manual No. 3 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Linear_Regression/) |
+| 4 | Implementing and Analyzing Logistic Regression Algorithm | 1, 2, 3 | Lab Manual No. 4 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Logistic_Regression/) |
+| 5 | Implementing and Analyzing K-Nearest Neighbors (KNN) Algorithm & Naive Bayes Classifier | 1, 2, 3 | Lab Manual No. 5 | [KNN](https://atikuzzaman524.github.io/blog/2025/K-Nearest_Neighbors/) , [Naive Bayes]([https://atikuzzaman524.github.io/blog/2025/K-Nearest_Neighbors/](https://atikuzzaman524.github.io/blog/2025/Naive_Bayes_Classifier/)) |
+| 6 | Implementing and Analyzing Decision Trees and SVM | 1, 2, 3 | Lab Manual No. 6 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Classification-with-Decision-Trees-and-SVMs/) |
+| 7 | Implementing and Analyzing Artificial Neural Network Algorithm | 1, 2, 3 | Lab Manual No. 7 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Artificial_Neural_Network/) |
+| 8 | Introduction and Implementing Convolutional Neural Networks | 1, 2, 3 | Lab Manual No. 8 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Convolutional_Neural_Networks_(CNNs)/) |
+| 9 | Introduction and Implementing Generative Adversarial Networks | 1, 2, 3 | Lab Manual No. 9 | [Experiments](https://atikuzzaman524.github.io/2026/GANs/) |
+| 10 | Ensemble Learning: Bagging, Boosting and Stacking with real-world datasets | 1, 2, 3 | Lab Manual No. 10 | [Experiments](https://atikuzzaman524.github.io/blog/2025/Ensemble-Learning-Bagging-and-Stacking-with-real-world-datasets/) |
+| 11 | Project Presentation | 1, 2, 3 |  | Presentation, Viva |
+| 12 | **Final Examination** | 1, 2, 3 |  |  |
