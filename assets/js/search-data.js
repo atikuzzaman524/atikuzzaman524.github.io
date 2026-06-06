@@ -805,6 +805,11 @@ ninja.data = [{
           description: "An introduction to machine learning/ techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Summer-2026_CSE-403-%20Machine-Learning/";
+            },},{id: "teaching-machine-learning-lab",
+          title: 'Machine Learning Lab',
+          description: "An introduction to machine learning lab techniques, covering preprocessing, pattern mining, classification, and real-world applications.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Summer-2026_CSE-404-%20Machine-Learning-Lab/";
             },},{id: "teaching-data-mining",
           title: 'Data Mining',
           description: "An introduction to data mining techniques, covering preprocessing, pattern mining, classification, clustering, and real-world applications.",
