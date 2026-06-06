@@ -32,8 +32,6 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 <br>
 ### Topic Outline
 
-# Topic Outline
-
 | **Lecture** | **Selected Topic** | **Article / Materials** | **Problems** |
 |---|---|---|---|
 | (1-2) | Introduction to Machine Learning; What is ML? Three Approaches: Supervised, Unsupervised, Reinforcement Learning |[Slides](/assets/pdf/Machine_Learning_Chapter_01.pdf) |  |
