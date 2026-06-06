@@ -24,7 +24,7 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 | :--- | :--- | :--- | :--- | :---: | :--- | :--- |
 | **Sat** | **CSE 435**<br>223_D1<br>K-105 | **CSE 435**<br>223_D1<br>K-105 |  |  | Tutor Time | Research Meeting |
 | **Sun** |  | **CSE 403**<br>232_D2<br>K-105 | Tutor Time |  | **CSE 315**<br>241_D2<br>K-108 | Research Meeting |
-| **Mon** | **CSE 404**<br>232_D4<br>L-106 |  | Research Meeting |  |  | **CSE 310**<br>Old Batch<br>K-102 |
+| **Mon** | **CSE 404**<br>232_D4<br>L-106 | **CSE 404**<br>232_D4<br>L-106 | Research Meeting |  | **CSE 310**<br>Old Batch<br>A-502 | **CSE 310**<br>Old Batch<br>A-502 |
 | **Tue** | **CSE 315**<br>241_D2<br>K-108 | **CSE 403**<br>232_D2<br>K-105 | Research Meeting |  | Tutor Time | Tutor Time |
 | **Wed** |  |  |  |  |  |  |
 
