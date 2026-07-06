@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Statistical Analysis and Exploratory Data Analysis using visualization techniques
+title: Statistical Analysis and Exploratory Data Analysis using visualization techniques
 date: 2025-09-12 09:00:00-0400
 description: Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook
 tags: formatting jupyter

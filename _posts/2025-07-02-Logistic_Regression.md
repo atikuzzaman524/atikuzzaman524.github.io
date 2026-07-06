@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Logistic Regression
+title: Logistic Regression
 date: 2025-07-01 08:57:00-0400
 description: Logistic Regression a blog post with jupyter notebook
 tags: formatting jupyter

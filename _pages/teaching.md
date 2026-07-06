@@ -9,11 +9,12 @@ description: Academic Courses and Teaching Materials
 social: true # includes social icons at the bottom of the page
 ---
 
-
 ## Green University of Bangladesh
+
 <br><br>  
 {% assign courses_by_semester = site.teaching | group_by: "semester" %}
 {% for group in courses_by_semester %}
+
   <h3>{{ group.name }}</h3>
   <table>
     <thead>
@@ -34,9 +35,7 @@ social: true # includes social icons at the bottom of the page
   <br><br>  
 {% endfor %}
 
-
-
-<br><br>  
+<br><br>
 
 ### More Information
 
@@ -60,7 +59,3 @@ social: true # includes social icons at the bottom of the page
     </div>
   </div>
 </div>
-
-
-
-

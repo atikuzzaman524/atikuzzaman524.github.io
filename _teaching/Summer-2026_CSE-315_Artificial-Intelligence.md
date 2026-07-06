@@ -1,5 +1,4 @@
 ---
-
 title: "Artificial Intelligence"
 course_code: "CSE-315"
 layout: default
@@ -25,13 +24,13 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 <br>
 
-| Day | 08:30-10:00 | 10:00-11:30 | 11:30-1:00 | Break | 1:30-03:00 | 3:00-4:30 |
-| :--- | :--- | :--- | :--- | :---: | :--- | :--- |
-| **Sat** | **CSE 435**<br>223_D1<br>K-105 | **CSE 435**<br>223_D1<br>K-105 |  |  | Tutor Time | Research Meeting |
-| **Sun** |  | **CSE 403**<br>232_D2<br>K-105 | Tutor Time |  | **CSE 315**<br>241_D2<br>K-108 | Research Meeting |
-| **Mon** | **CSE 404**<br>232_D4<br>L-106 | **CSE 404**<br>232_D4<br>L-106 | Research Meeting |  | **CSE 310**<br>Old Batch<br>A-502 | **CSE 310**<br>Old Batch<br>A-502 |
-| **Tue** | **CSE 315**<br>241_D2<br>K-108 | **CSE 403**<br>232_D2<br>K-105 | Research Meeting |  | Tutor Time | Tutor Time |
-| **Wed** |  |  |  |  |  |  |
+| Day     | 08:30-10:00                    | 10:00-11:30                    | 11:30-1:00       | Break | 1:30-03:00                        | 3:00-4:30                         |
+| :------ | :----------------------------- | :----------------------------- | :--------------- | :---: | :-------------------------------- | :-------------------------------- |
+| **Sat** | **CSE 435**<br>223_D1<br>K-105 | **CSE 435**<br>223_D1<br>K-105 |                  |       | Tutor Time                        | Research Meeting                  |
+| **Sun** |                                | **CSE 403**<br>232_D2<br>K-105 | Tutor Time       |       | **CSE 315**<br>241_D2<br>K-108    | Research Meeting                  |
+| **Mon** | **CSE 404**<br>232_D4<br>L-106 | **CSE 404**<br>232_D4<br>L-106 | Research Meeting |       | **CSE 310**<br>Old Batch<br>A-502 | **CSE 310**<br>Old Batch<br>A-502 |
+| **Tue** | **CSE 315**<br>241_D2<br>K-108 | **CSE 403**<br>232_D2<br>K-105 | Research Meeting |       | Tutor Time                        | Tutor Time                        |
+| **Wed** |                                |                                |                  |       |                                   |                                   |
 
 <br>
 <br>
@@ -39,11 +38,11 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 ### Topic Outline
 
 | **Lecture** | **Selected Topic**                                                                                                                                                                                                                                                                                                                         | **Article / Materials** | **Problems** |
-| :----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- | ------------ |
+| :---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- | ------------ |
 | (1)         | Socialization and Introduction to the Course                                                                                                                                                                                                                                                                                               | Class Notes, Slides     |              |
 | (2–3)       | What is AI? Real-World Impact of AI, Rational Decisions, History of AI, What Can AI Do?, Designing Rational Agents, Reflex Agents, Planning Agents                                                                                                                                                                                         | Class Notes, Slides     | CT 1         |
 | (4–5)       | Uninformed Search: Search Problems, Depth First Search, Search Algorithm Properties, Breadth-First Search, Iterative Deepening, Uniform Cost Search, Search and Models                                                                                                                                                                     | Class Notes, Slides     |              |
-| (6–8)       | Informed Search: Heuristics, Greedy Search, A* Search, Graph Search                                                                                                                                                                                                                                                                        | Class Notes, Slides     | Assignment 1 |
+| (6–8)       | Informed Search: Heuristics, Greedy Search, A\* Search, Graph Search                                                                                                                                                                                                                                                                       | Class Notes, Slides     | Assignment 1 |
 | (9–11)      | Constraint Satisfaction Problems: Constraint Propagation, Backtracking Search, Forward Checking                                                                                                                                                                                                                                            | Class Notes, Slides     |              |
 | (12)        | Local Search: Hill Climbing, Genetic Algorithms                                                                                                                                                                                                                                                                                            | Class Notes, Slides     |              |
 |             | **Midterm Examination**                                                                                                                                                                                                                                                                                                                    |                         |              |
@@ -59,12 +58,10 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 
 ### Recommended Textbooks
 
-1. Stuart Russell and Peter Norvig, *Artificial Intelligence: A Modern Approach*, 4th Edition.
-2. Elaine Rich and Kevin Knight, *Artificial Intelligence*.
-3. Dan W. Patterson, *Introduction to Artificial Intelligence and Expert Systems*.
+1. Stuart Russell and Peter Norvig, _Artificial Intelligence: A Modern Approach_, 4th Edition.
+2. Elaine Rich and Kevin Knight, _Artificial Intelligence_.
+3. Dan W. Patterson, _Introduction to Artificial Intelligence and Expert Systems_.
 4. Class Notes, Slides, and Supplementary Reading Materials.
 
 <br>
 <br>
-
-

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Frequent Itemset Mining with the Apriori Algorithm
+title: Frequent Itemset Mining with the Apriori Algorithm
 date: 2025-09-10 09:00:00-0400
 description: Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook
 tags: formatting jupyter

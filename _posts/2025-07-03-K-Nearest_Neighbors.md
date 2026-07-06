@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	K-Nearest Neighbors (KNN)
+title: K-Nearest Neighbors (KNN)
 date: 2025-07-03 08:57:00-0400
 description: K-Nearest Neighbors (KNN) algorithm a blog post with jupyter notebook
 tags: formatting jupyter

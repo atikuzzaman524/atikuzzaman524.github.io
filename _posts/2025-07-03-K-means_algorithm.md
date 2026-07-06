@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	K-means Clustering Algorithm
+title: K-means Clustering Algorithm
 date: 2025-07-03 08:57:00-0400
 description: K-means clustering algorithm a blog post with jupyter notebook
 tags: formatting jupyter
