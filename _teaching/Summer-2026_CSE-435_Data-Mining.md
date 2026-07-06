@@ -28,7 +28,7 @@ E-mail: [atik@cse.green.edu.bd](mailto:atik@cse.green.edu.bd)
 | **Tue** | **CSE 315**<br>241_D2<br>K-108 | **CSE 403**<br>232_D2<br>K-105 | Research Meeting |  | Tutor Time | Tutor Time |
 | **Wed** |  |  |  |  |  |  |
 
-<br>
+
 <br>
 
 ### Topic Outline
