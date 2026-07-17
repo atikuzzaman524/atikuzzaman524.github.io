@@ -4,7 +4,7 @@
 
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Md.
-middle_name: 
+middle_name:
 last_name: Atikuzzaman
 contact_note: >
   Feel free to WhatsApp me or drop a line via email.
@@ -87,7 +87,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: NextWave with AZ # blog_name will be displayed in your blog page
-blog_description: Tech || Reseach || Adventure 
+blog_description: Tech || Reseach || Adventure
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -200,8 +200,6 @@ exclude:
   # - _pages/profiles.md
   # - _pages/projects.md
 
-
-  
 keep_files:
   - CNAME
   - .nojekyll
@@ -334,7 +332,7 @@ filtered_bibtex_keywords:
   ]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
-max_author_limit:  # leave blank to always show all authors
+max_author_limit: # leave blank to always show all authors
 more_authors_animation_delay: 10 # more authors are revealed on click using animation; smaller delay means faster animation
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.

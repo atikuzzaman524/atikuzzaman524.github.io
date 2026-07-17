@@ -67,7 +67,7 @@
       "endDate": "2019-01-01",
       "Thesis": "Vehicle Number Plate Detection and Categorization Using CNNs"
     },
-     {
+    {
       "institution": "Adamjee Cantonment College",
       "location": "Bangladesh",
       "url": "https://www.acps.edu.bd/",
@@ -84,7 +84,6 @@
       "startDate": "2006-01-01",
       "endDate": "2011-06-12"
     }
-    
   ],
   "awards": [
     {
@@ -131,7 +130,7 @@
       "url": ""
     }
   ],
- 
+
   "skills": [
     {
       "name": "Programming Languages",
@@ -169,7 +168,6 @@
       "name": "Hobbies",
       "keywords": ["Travelling", "Reading Books", "Watching Movies", "Photography"]
     }
-    
   ],
   "projects": [
     {

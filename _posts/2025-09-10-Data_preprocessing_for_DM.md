@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Data Preprocessing for Data Mining
+title: Data Preprocessing for Data Mining
 date: 2025-09-10 08:57:00-0400
 description: Introduction to ML- Introduction data and relevant Python libraries a blog post with jupyter notebook
 tags: formatting jupyter

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Artificial Neural Network
+title: Artificial Neural Network
 date: 2025-07-04 08:57:00-0400
 description: Artificial Neural Network a blog post with jupyter notebook
 tags: formatting jupyter

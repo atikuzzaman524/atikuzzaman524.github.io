@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Backpropagation Algorithm
+title: Backpropagation Algorithm
 date: 2025-07-04 08:57:00-0400
 description: Backpropagation Algorithm a blog post with jupyter notebook
 tags: formatting jupyter

@@ -9,17 +9,20 @@ featured: false
 ---
 
 ## 🎯 Lab Objective
+
 The objective of this lab is to:
+
 - Understand the **basic structure** of a C program.
 - Learn the role of **header files, main function, and statements**.
 - Write, compile, and execute a simple C program.
 - Get familiar with **syntax rules** such as semicolons, case-sensitivity, and indentation.
 
-
 ## 📖 Background
+
 C is one of the most widely used programming languages, developed by **Dennis Ritchie** in the early 1970s at Bell Labs. It is the foundation of many modern languages (like C++, Java, and Python).
 
 A C program typically contains:
+
 1.  **Preprocessor directives** (like `#include`)
 2.  **Main function** (`int main()`)
 3.  **Variable declarations**
@@ -48,43 +51,55 @@ int main() {
 ```
 
 ##🔎 Explanation of Each Part
+
 1. Preprocessor Directives
 
 Lines starting with `#` are instructions to the compiler before actual compilation.
 
-Example: 
+Example:
+
 ```c
-#include <stdio.h>    
+#include <stdio.h>
 ```
-Includes the **Standard Input Output library** so that we can use `printf()` and `scanf()` 
+
+Includes the **Standard Input Output library** so that we can use `printf()` and `scanf()`
 
 2. Main Function
 
-Every C program must have `main()` 
+Every C program must have `main()`
 Execution begins here:
+
 ```c
-int main() { ... } 
+int main() { ... }
 ```
+
 3. Variable Declarations
 
 All variables must be declared before use.
 Example:
+
 ```c
 int number;
 ```
+
 4. Input and Output
 
 - Input:
+
 ```c
 scanf("%d", &number);
 ```
+
 - Output:
+
 ```c
 printf("You entered: %d\n", number);
 ```
+
 5. Return Statement
 
 Ends the program and returns control to the operating system:
+
 ```c
 return 0;
 ```

@@ -5,9 +5,9 @@ inline: true
 related_posts: false
 ---
 
-📢 Exciting News!  
+📢 Exciting News!
 
 My recent paper has been published:  
-[**Efficient and Effective INR: A Dive into Levels-of-Experts (LoE) and Sine Activation**](https://ieeexplore.ieee.org/abstract/document/10572090)  
+[**Efficient and Effective INR: A Dive into Levels-of-Experts (LoE) and Sine Activation**](https://ieeexplore.ieee.org/abstract/document/10572090)
 
 Check it out!

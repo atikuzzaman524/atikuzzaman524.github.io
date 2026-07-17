@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 	Dimensionality Reduction with PCA and Visualization with t-SNE
+title: Dimensionality Reduction with PCA and Visualization with t-SNE
 date: 2025-09-12 09:00:00-0400
 description: Introduction to Data Mining - Introduction data and relevant Python libraries a blog post with jupyter notebook
 tags: formatting jupyter

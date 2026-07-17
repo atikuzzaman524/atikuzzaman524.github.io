@@ -1,20 +1,20 @@
 ---
 layout: post
-title: 🎓 Master's Degree Announcement 
+title: 🎓 Master's Degree Announcement
 date: 2024-08-20 10:00:00-0400
 inline: false
 related_posts: false
 ---
 
-🎓 **Big Announcement!**  
+🎓 **Big Announcement!**
 
-I am delighted to share that I have successfully completed my **Master of Artificial Intelligence** at **Kyung Hee University** (Department of Artificial Intelligence).  
+I am delighted to share that I have successfully completed my **Master of Artificial Intelligence** at **Kyung Hee University** (Department of Artificial Intelligence).
 
-This journey has been full of challenges, growth, and amazing learning experiences. I am deeply grateful to my professors, colleagues, family, and friends for their constant support throughout this academic path.  
+This journey has been full of challenges, growth, and amazing learning experiences. I am deeply grateful to my professors, colleagues, family, and friends for their constant support throughout this academic path.
 
 ---
 
-#### 📸 Memories from the Journey  
+#### 📸 Memories from the Journey
 
 <div style="display: flex; gap: 10px; margin-bottom: 10px;">
   <img src="https://github.com/atikuzzaman524/atikuzzaman524.github.io/blob/main/assets/img/ms1.jpg?raw=true" alt="Master's Photo 1" width="49%"/>
