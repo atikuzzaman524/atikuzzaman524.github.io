@@ -11,7 +11,8 @@ profile:
   image: IMG_6993.JPG
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p> Email: atikuzzaman524@gmail.com </p>
+    <p> Email : atikuzzaman524@gmail.com </p>
+    <p> University Email : atik@cse.green.ac.bd </p>
     <p> Phone: +8801912961096 </p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
