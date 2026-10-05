@@ -750,6 +750,11 @@ ninja.data = [{
           description: "Hands-on exploration of data mining techniques, including preprocessing, pattern mining, classification, clustering, and model evaluation using Python.&quot;",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Fall-2025_CSE-436_Data-Mining-Lab/";
+            },},{id: "teaching-operating-system",
+          title: 'Operating System',
+          description: "An introduction to operating system concepts, including operating system structure, processes, inter-process communication, synchronization, CPU scheduling, deadlocks, memory management, virtual memory, I/O systems, and file systems.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Fall-2026_CSE-401-Operating-System/";
             },},{id: "teaching-machine-learning",
           title: 'Machine Learning',
           description: "An introduction to machine learning techniques, covering supervised and unsupervised learning, regression, classification, neural networks, convolutional neural networks, ensemble methods, model evaluation, and generative models.",
