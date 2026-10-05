@@ -37,15 +37,15 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-",
+        },{id: "post-introduction-to-machine-learning",
       
-        title: "",
+        title: "Introduction to Machine Learning",
       
-      description: "",
+      description: "Introduction to Machine Learning",
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2026/2026-10-04-Introduction-to-Machine-Learning/";
+          window.location.href = "/assets/html/CSE403_Intro_to_ML.html";
         
       },
     },{id: "post-basic-structure-and-syntax-of-c-programming-language",
