@@ -6,5 +6,5 @@ description:Introduction to Machine Learning
 tags: ML
 categories: sample-posts
 related_posts: true
-redirect: /assets/html/Interactive_K-Means_Clustering.html
+redirect: /assets/html/CSE403_Intro_to_ML.html
 ---
