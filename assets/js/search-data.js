@@ -755,6 +755,11 @@ ninja.data = [{
           description: "An introduction to machine learning techniques, covering supervised and unsupervised learning, regression, classification, neural networks, convolutional neural networks, ensemble methods, model evaluation, and generative models.",
           section: "Teaching",handler: () => {
               window.location.href = "/teaching/Fall-2026_CSE-403-Machine-Learning/";
+            },},{id: "teaching-machine-learning-lab",
+          title: 'Machine Learning Lab',
+          description: "A practical introduction to machine learning, covering data preprocessing, regression, classification, neural networks, convolutional neural networks, generative models, ensemble learning, and real-world applications.",
+          section: "Teaching",handler: () => {
+              window.location.href = "/teaching/Fall-2026_CSE-404-Machine-Learning-Lab/";
             },},{id: "teaching-artificial-intelligence",
           title: 'Artificial Intelligence',
           description: "An introduction to AI covering search, logic, planning, uncertainty, and NLP with real-world applications.",
