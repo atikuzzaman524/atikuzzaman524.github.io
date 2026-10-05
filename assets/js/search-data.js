@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-basic-structure-and-syntax-of-c-programming-language",
+        },{id: "post-",
+      
+        title: "",
+      
+      description: "",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2026/2026-10-04-Introduction-to-Machine-Learning/";
+        
+      },
+    },{id: "post-basic-structure-and-syntax-of-c-programming-language",
       
         title: "Basic Structure and Syntax of C Programming Language",
       
