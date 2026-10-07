@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-introduction-to-machine-learning",
+        },{id: "post-elements-of-a-supervised-learning",
+      
+        title: "Elements of a Supervised Learning",
+      
+      description: "Elements of a Supervised Learning Problem; Dataset and Learning Algorithm Overview",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/assets/html/CSE403_Supervised_Learning_Elements.html";
+        
+      },
+    },{id: "post-introduction-to-machine-learning",
       
         title: "Introduction to Machine Learning",
       
