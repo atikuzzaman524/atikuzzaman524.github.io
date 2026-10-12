@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-elements-of-a-supervised-learning",
+        },{id: "post-linear-regression",
+      
+        title: "Linear Regression",
+      
+      description: "Introduction to Linear Regression; Simple and Multiple Linear Regression, Cost Function, Gradient Descent, and Model Evaluation",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/assets/html/CSE403_Linear_Regression.html";
+        
+      },
+    },{id: "post-elements-of-a-supervised-learning",
       
         title: "Elements of a Supervised Learning",
       
