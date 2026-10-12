@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CSE-403 Machine Learning | Linear Regression</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root{--crimson:#A51C30;--ink:#111827;--muted:#667085;--cream:#fbfaf8;--soft:#f8fafc;--line:#e5e7eb;--dark:#111827;--green:#047857;--orange:#c2410c;}
+  .reveal{font-family:"Inter","Segoe UI",Arial,sans-serif;color:var(--ink);}
+  .reveal h1,.reveal h2,.reveal h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-0.025em;color:#111827;}
+  .reveal h1{font-size:1.72em;line-height:1.05;}
+  .reveal h2{font-size:1.25em;margin-bottom:.26em;line-height:1.05;}
+  .reveal h3{font-size:.82em;margin:.2em 0 .35em;color:var(--crimson);}
+  .reveal p,.reveal li{font-size:.62em;line-height:1.32;}
+  .eyebrow{color:var(--crimson);text-transform:uppercase;font-size:.33em;letter-spacing:.14em;font-weight:800;}
+  .subtitle{font-size:.54em;color:var(--muted);line-height:1.35;}
+  .note{font-size:.45em;color:var(--muted);}
+  .accent{color:var(--crimson);font-weight:800;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;}
+  .two-55{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center;}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;}
+  .four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch;}
+  .card{border:1.4px solid var(--line);border-radius:17px;padding:18px;background:white;box-shadow:0 8px 26px rgba(0,0,0,.055);}
+  .soft{background:var(--soft);}
+  .formula{font-size:.70em;padding:15px 18px;background:#f9fafb;border-left:7px solid var(--crimson);border-radius:12px;font-family:Consolas,"Courier New",monospace;line-height:1.45;}
+  .eq{font-size:.78em;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:14px 16px;}
+  .mini{font-size:.48em;color:var(--muted);}
+  .badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#f3f4f6;font-size:.43em;font-weight:800;margin:3px 4px 3px 0;}
+  .metric{font-size:.95em;font-weight:900;color:var(--crimson);}
+  table.clean{width:100%;border-collapse:collapse;font-size:.48em;}
+  table.clean th{background:var(--crimson);color:white;}
+  table.clean th,table.clean td{border:1px solid #e5e7eb;padding:7px;text-align:center;}
+  .small-list li{margin:5px 0;}
+  .prompt{border-left:6px solid var(--crimson);background:#fff7ed;padding:13px 15px;border-radius:12px;font-size:.58em;}
+  .darkbox{background:#111827;color:#fff;border-radius:14px;padding:16px;font-family:Consolas,"Courier New",monospace;font-size:.58em;line-height:1.45;}
+  .action-btn{border:0;background:var(--crimson);color:white;padding:9px 15px;border-radius:999px;margin:5px;cursor:pointer;font-weight:800;font-size:.45em;}
+  .action-btn.secondary{background:#374151;}
+  .slider{width:100%;accent-color:var(--crimson);}
+  .control label{display:flex;justify-content:space-between;font-size:.48em;font-weight:800;margin:6px 0;}
+  canvas.plot{width:100%;max-width:700px;height:auto;border:1px solid var(--line);border-radius:15px;background:white;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+  .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+  .kpi{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:9px;font-size:.50em;}
+  .center{text-align:center;}
+  .flow{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .flow .node{border:1.5px solid #e5e7eb;border-radius:15px;padding:14px 16px;background:white;min-width:120px;text-align:center;font-size:.54em;font-weight:800;}
+  .arrow{font-size:1em;color:var(--crimson);font-weight:900;}
+  .reveal pre code{max-height:510px;font-size:.73em;line-height:1.22;}
+  .tiny{font-size:.40em;color:var(--muted);}
+  .math-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
+  .stepbox{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:11px 13px;font-size:.52em;line-height:1.45;}
+  svg.fitgraph{width:100%;height:auto;border:1px solid var(--line);border-radius:15px;background:white;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section data-background-color="#fbfaf8">
+  <div class="eyebrow">CSE-403 Machine Learning</div>
+  <h1>Linear Regression</h1>
+  <p class="subtitle">Concepts, Gradient Descent, Ordinary Least Squares, Regularization and Model Evaluation</p>
+  <p class="note"><strong>Md. Atikuzzaman</strong><br>Lecturer, Department of Computer Science & Engineering<br>atik@cse.green.edu.bd</p>
+</section>
+
+<section>
+  <h2>From Data to Prediction</h2>
+  <div class="two">
+    <div>
+      <p>A teacher wants to predict a student’s final mark using weekly study hours.</p>
+      <p>We start with a few observed students, fit a line, then use that line to predict new students.</p>
+      <p><span class="badge">Data</span><span class="badge">Model</span><span class="badge">Error</span><span class="badge">Learning</span><span class="badge">Evaluation</span></p>
+    </div>
+    <div class="flow">
+      <div class="node">Study hours</div><div class="arrow">→</div><div class="node">Linear model</div><div class="arrow">→</div><div class="node">Final mark</div>
+    </div>
+  </div>
+  </section>
+
+<section>
+  <h2>Why Linear Regression First?</h2>
+  <div class="three">
+    <div class="card"><h3>Simple</h3><p>It introduces the full ML pipeline without too much mathematical overhead.</p></div>
+    <div class="card"><h3>Interpretable</h3><p>Each coefficient shows how the prediction changes when a feature changes.</p></div>
+    <div class="card"><h3>Foundation</h3><p>Loss functions, optimization, overfitting and regularization all become visible.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Supervised Learning Notation</h2>
+  <div class="two-55">
+    <div class="eq">
+      \[
+      \mathcal{D}=\{(\mathbf{x}^{(i)}, y^{(i)})\}_{i=1}^{n}
+      \]
+      \[
+      \mathbf{x}^{(i)}=[x_1^{(i)},x_2^{(i)},\ldots,x_d^{(i)}]^T,\quad y^{(i)}\in\mathbb{R}
+      \]
+    </div>
+    <div class="card">
+      <p><span class="accent">n</span> = number of training examples</p>
+      <p><span class="accent">d</span> = number of input features</p>
+      <p><span class="accent">x</span> = input/features</p>
+      <p><span class="accent">y</span> = target/output</p>
+      <p><span class="accent">ŷ</span> = model prediction</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Dataset Example</h2>
+  <div class="two">
+    <table class="clean">
+      <thead><tr><th>#</th><th>Study hours x</th><th>Final mark y</th><th>Split</th></tr></thead>
+      <tbody><tr><td>1</td><td>1</td><td>42</td><td>Training</td></tr><tr><td>2</td><td>2</td><td>50</td><td>Training</td></tr><tr><td>3</td><td>3</td><td>55</td><td>Training</td></tr><tr><td>4</td><td>4</td><td>60</td><td>Training</td></tr><tr><td>5</td><td>5</td><td>70</td><td>Training</td></tr><tr><td>6</td><td>6</td><td>75</td><td>Training</td></tr><tr><td>7</td><td>7</td><td>82</td><td>Test</td></tr><tr><td>8</td><td>8</td><td>88</td><td>Test</td></tr></tbody>
+    </table>
+    <div class="card">
+      <h3>Learning problem</h3>
+      <p>Learn a function that maps study hours to final marks.</p>
+      <div class="formula">Input: x = study hours<br>Target: y = final mark<br>Model: ŷ = wx + b</div>
+      <p class="mini">The last two examples are kept for testing the model after training.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The Linear Regression Model</h2>
+  <div class="two">
+    <div class="eq">
+      <p><strong>Simple linear regression</strong></p>
+      \[
+      \hat{y}=wx+b
+      \]
+      <p><strong>Multiple linear regression</strong></p>
+      \[
+      \hat{y}=\theta_0+\theta_1x_1+\cdots+\theta_dx_d
+      \]
+      \[
+      \hat{y}=\boldsymbol{\theta}^{T}\tilde{\mathbf{x}},\quad \tilde{\mathbf{x}}=[1,x_1,\ldots,x_d]^T
+      \]
+    </div>
+    <div class="card">
+      <h3>Meaning</h3>
+      <p><span class="accent">w or θj</span> controls the effect of a feature.</p>
+      <p><span class="accent">b or θ0</span> is the intercept/bias term.</p>
+      <p>The model is linear in its parameters, not necessarily only a straight line in raw features.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Loss Function: How Wrong Is the Line?</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      e^{(i)} = y^{(i)} - \hat{y}^{(i)}
+      \]
+      \[
+      J(w,b)=\frac{1}{2n}\sum_{i=1}^{n}(\hat{y}^{(i)}-y^{(i)})^2
+      \]
+      <p class="mini">The factor \(\frac{1}{2}\) makes derivatives cleaner.</p>
+    </div>
+    <div class="card">
+      <h3>Residual</h3>
+      <p>A residual is the vertical distance between the actual data point and the model’s predicted line.</p>
+      <p>Training tries to make the residuals small on average.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Interactive Concept: Move the Line</h2>
+  <div class="two-55">
+    <div class="center"><canvas id="fitCanvas" class="plot" width="700" height="430"></canvas></div>
+    <div class="card">
+      <h3>Change parameters</h3>
+      <div class="control"><label><span>Slope w</span><span id="wLabel">6.00</span></label><input class="slider" id="wSlider" type="range" min="0" max="12" step="0.1" value="6" oninput="updateFit()"></div>
+      <div class="control"><label><span>Intercept b</span><span id="bLabel">35.00</span></label><input class="slider" id="bSlider" type="range" min="0" max="70" step="1" value="35" oninput="updateFit()"></div>
+      <button class="action-btn" onclick="setOLSLine()">Use fitted line</button>
+      <button class="action-btn secondary" onclick="resetBadLine()">Bad starting line</button>
+      <div class="darkbox" id="fitOutput">ŷ = 6.00x + 35.00</div>
+      <div class="kpi-grid"><div class="kpi"><strong>MSE</strong><br><span id="fitMSE"></span></div><div class="kpi"><strong>Prediction for 6.5h</strong><br><span id="pred65"></span></div></div>
+      <p class="mini">The best line balances all points, not just one point.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ordinary Least Squares (OLS)</h2>
+  <div class="two">
+    <div class="eq">
+      <p>OLS chooses the parameters that minimize the sum of squared residuals.</p>
+      \[
+      \min_{\boldsymbol{\theta}} \; ||\mathbf{X}\boldsymbol{\theta}-\mathbf{y}||_2^2
+      \]
+      \[
+      \boldsymbol{\theta}^{*}=(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{y}
+      \]
+    </div>
+    <div class="card">
+      <h3>Important condition</h3>
+      <p>The closed-form solution requires \(\mathbf{X}^{T}\mathbf{X}\) to be invertible.</p>
+      <p>If features are highly correlated or columns are redundant, use pseudo-inverse or regularization.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>OLS Matrix View</h2>
+  <div class="eq">
+    \[
+    \mathbf{X}=\begin{bmatrix}
+    1 & x_1^{(1)} & \cdots & x_d^{(1)}\\
+    1 & x_1^{(2)} & \cdots & x_d^{(2)}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    1 & x_1^{(n)} & \cdots & x_d^{(n)}
+    \end{bmatrix},\quad
+    \boldsymbol{\theta}=\begin{bmatrix}\theta_0\\\theta_1\\\vdots\\\theta_d\end{bmatrix},\quad
+    \mathbf{y}=\begin{bmatrix}y^{(1)}\\y^{(2)}\\\vdots\\y^{(n)}\end{bmatrix}
+    \]
+    \[
+    \hat{\mathbf{y}}=\mathbf{X}\boldsymbol{\theta}
+    \]
+  </div>
+  <p class="mini">In practice, libraries solve this using numerically stable linear algebra rather than manually computing the inverse.</p>
+</section>
+
+<section>
+  <h2>Gradient Descent: Learn by Small Corrections</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      \theta_j := \theta_j - \alpha \frac{\partial J(\boldsymbol{\theta})}{\partial \theta_j}
+      \]
+      <p><span class="accent">α</span> is the learning rate.</p>
+      <p>The gradient points toward increasing loss, so we move in the opposite direction.</p>
+    </div>
+    <div class="card">
+      <h3>Intuition</h3>
+      <p>Start with a poor line, measure error, update the line, and repeat.</p>
+      <p>Gradient descent is especially useful when datasets are large or models are more complex.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Gradient Descent Derivatives</h2>
+  <div class="two">
+    <div class="eq">
+      <p>For \(\hat{y}=wx+b\):</p>
+      \[
+      \frac{\partial J}{\partial w}=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}^{(i)}-y^{(i)})x^{(i)}
+      \]
+      \[
+      \frac{\partial J}{\partial b}=\frac{1}{n}\sum_{i=1}^{n}(\hat{y}^{(i)}-y^{(i)})
+      \]
+    </div>
+    <div class="eq">
+      <p>Update rules:</p>
+      \[
+      w := w-\alpha\frac{\partial J}{\partial w},\quad
+      b := b-\alpha\frac{\partial J}{\partial b}
+      \]
+      <p class="mini">Repeat until the loss stops decreasing or a fixed number of epochs is reached.</p>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>Interactive Gradient Descent</h2>
+  <div class="two-55">
+    <div class="center"><canvas id="gdCanvas" class="plot" width="700" height="430"></canvas></div>
+    <div class="card">
+      <h3>Training simulation</h3>
+      <button class="action-btn" onclick="runGD()">Run gradient descent</button>
+      <button class="action-btn secondary" onclick="resetGD()">Reset</button>
+      <div class="control"><label><span>Learning rate α</span><span id="lrLabel">0.010</span></label><input class="slider" id="lrSlider" type="range" min="0.001" max="0.030" step="0.001" value="0.010" oninput="document.getElementById('lrLabel').innerText=Number(this.value).toFixed(3)"></div>
+      <div class="darkbox" id="gdOutput">epoch 0 | w = 0.00 | b = 0.00 | loss = ...</div>
+      <p class="mini">Try a large learning rate. If the loss jumps, the step size is too aggressive.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Interactive Loss Curve and Fitted Line</h2>
+  <div class="two">
+    <div class="center">
+      <canvas id="lossLineCanvas" class="plot" width="700" height="380"></canvas>
+      <p class="mini">Current fitted line during optimization</p>
+    </div>
+    <div class="center">
+      <canvas id="lossCurveCanvas" class="plot" width="700" height="380"></canvas>
+      <p class="mini">How the loss changes across epochs</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px;">
+    <div class="two">
+      <div>
+        <button class="action-btn" onclick="runLossGD()">Run optimization</button>
+        <button class="action-btn secondary" onclick="stepLossGD()">One step</button>
+        <button class="action-btn secondary" onclick="resetLossGD()">Reset</button>
+      </div>
+      <div class="control"><label><span>Learning rate α</span><span id="lossLRLabel">0.010</span></label><input class="slider" id="lossLR" type="range" min="0.001" max="0.030" step="0.001" value="0.010" oninput="document.getElementById('lossLRLabel').innerText=Number(this.value).toFixed(3)"></div>
+    </div>
+    <div class="darkbox" id="lossOutput">epoch 0 | w = 0.000 | b = 0.000 | loss = ...</div>
+    <p class="mini">A good learning rate makes the loss curve decrease smoothly. If the curve oscillates or grows, the step size is too large.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Batch, Stochastic and Mini-Batch Gradient Descent</h2>
+  <div class="three">
+    <div class="card"><h3>Batch GD</h3><p>Uses the full dataset for each update.</p><p class="mini">Stable, but slow for very large data.</p></div>
+    <div class="card"><h3>Stochastic GD</h3><p>Uses one example for each update.</p><p class="mini">Fast but noisy.</p></div>
+    <div class="card"><h3>Mini-batch GD</h3><p>Uses a small batch of examples.</p><p class="mini">Most common in modern ML training.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Feature Scaling Matters</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      x'_j=\frac{x_j-\mu_j}{\sigma_j}
+      \]
+      <p>Standardization makes features comparable in scale.</p>
+    </div>
+    <div class="card">
+      <h3>Why important?</h3>
+      <p>Gradient descent may move slowly when one feature is in taka, another in square feet, and another in number of rooms.</p>
+      <p>Scaling can make training faster and more stable.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Multiple Linear Regression</h2>
+  <div class="two">
+    <div class="card">
+      <h3>House price example</h3>
+      <p>Features may include:</p>
+      <ul class="small-list">
+        <li>size in square feet</li>
+        <li>number of bedrooms</li>
+        <li>distance from city center</li>
+        <li>building age</li>
+      </ul>
+    </div>
+    <div class="eq">
+      \[
+      \hat{price}=\theta_0+\theta_1(size)+\theta_2(bedrooms)+\theta_3(distance)+\theta_4(age)
+      \]
+      <p class="mini">The model remains linear in the parameters \(\theta\).</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Polynomial Features: Still Linear Regression</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      \hat{y}=\theta_0+\theta_1x+\theta_2x^2
+      \]
+      <p>This model can fit a curve, but it is still linear in \(\theta_0,\theta_1,\theta_2\).</p>
+    </div>
+    <div class="card">
+      <h3>Careful</h3>
+      <p>Higher-degree polynomial features can fit training data very well but may generalize poorly.</p>
+      <p>This leads to overfitting.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Underfitting, Best Fit and Overfitting</h2>
+  <svg class="fitgraph" viewBox="0 0 960 305" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="960" height="305" fill="white"/>
+    <g font-family="Inter, Arial, sans-serif">
+      <!-- panel 1 -->
+      <g transform="translate(0,0)">
+        <text x="150" y="24" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Underfitting</text>
+        <line x1="35" y1="255" x2="285" y2="255" stroke="#111827" stroke-width="1.5"/>
+        <line x1="35" y1="255" x2="35" y2="55" stroke="#111827" stroke-width="1.5"/>
+        <g fill="#2563eb">
+          <circle cx="55" cy="212" r="4"/><circle cx="85" cy="194" r="4"/><circle cx="115" cy="179" r="4"/><circle cx="145" cy="162" r="4"/>
+          <circle cx="175" cy="132" r="4"/><circle cx="205" cy="114" r="4"/><circle cx="235" cy="94" r="4"/><circle cx="265" cy="82" r="4"/>
+        </g>
+        <path d="M40 225 L280 120" fill="none" stroke="#A51C30" stroke-width="4"/>
+        <text x="150" y="284" text-anchor="middle" font-size="13" fill="#667085">Too simple: misses the trend</text>
+      </g>
+      <!-- panel 2 -->
+      <g transform="translate(320,0)">
+        <text x="150" y="24" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Best fit</text>
+        <line x1="35" y1="255" x2="285" y2="255" stroke="#111827" stroke-width="1.5"/>
+        <line x1="35" y1="255" x2="35" y2="55" stroke="#111827" stroke-width="1.5"/>
+        <g fill="#2563eb">
+          <circle cx="55" cy="212" r="4"/><circle cx="85" cy="194" r="4"/><circle cx="115" cy="179" r="4"/><circle cx="145" cy="162" r="4"/>
+          <circle cx="175" cy="132" r="4"/><circle cx="205" cy="114" r="4"/><circle cx="235" cy="94" r="4"/><circle cx="265" cy="82" r="4"/>
+        </g>
+        <path d="M40 222 C95 196, 145 165, 280 78" fill="none" stroke="#16a34a" stroke-width="4"/>
+        <text x="150" y="284" text-anchor="middle" font-size="13" fill="#667085">Captures the main pattern</text>
+      </g>
+      <!-- panel 3 -->
+      <g transform="translate(640,0)">
+        <text x="150" y="24" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Overfitting</text>
+        <line x1="35" y1="255" x2="285" y2="255" stroke="#111827" stroke-width="1.5"/>
+        <line x1="35" y1="255" x2="35" y2="55" stroke="#111827" stroke-width="1.5"/>
+        <g fill="#2563eb">
+          <circle cx="55" cy="212" r="4"/><circle cx="85" cy="194" r="4"/><circle cx="115" cy="179" r="4"/><circle cx="145" cy="162" r="4"/>
+          <circle cx="175" cy="132" r="4"/><circle cx="205" cy="114" r="4"/><circle cx="235" cy="94" r="4"/><circle cx="265" cy="82" r="4"/>
+        </g>
+        <path d="M40 238 C55 160, 70 238, 85 188 S115 145, 130 187 S160 92, 175 133 S205 64, 220 112 S250 34, 280 84" fill="none" stroke="#ea580c" stroke-width="4"/>
+        <text x="150" y="284" text-anchor="middle" font-size="13" fill="#667085">Too wiggly: fits noise too</text>
+      </g>
+    </g>
+  </svg>
+  <div class="three" style="margin-top:12px;">
+    <div class="card"><h3>Underfitting</h3><p>The model is too simple and performs poorly on both training and test data.</p><p class="mini">High bias.</p></div>
+    <div class="card"><h3>Best fit</h3><p>The model captures the dominant pattern while still generalizing to unseen data.</p><p class="mini">Good bias–variance tradeoff.</p></div>
+    <div class="card"><h3>Overfitting</h3><p>The model follows the noise in the training set and usually performs poorly on new data.</p><p class="mini">High variance.</p></div>
+  </div>
+  <div class="prompt">Teaching example: a student who only memorizes repeated questions may score well on familiar questions but fail on a new scenario-based exam. That is like overfitting.</div>
+</section>
+
+<section>
+  <h2>Regularization: Control Model Complexity</h2>
+  <div class="two">
+    <div class="eq">
+      <p>General idea:</p>
+      \[
+      \text{Training loss} + \lambda \times \text{Penalty}
+      \]
+      <p>The penalty discourages overly large parameter values.</p>
+    </div>
+    <div class="card">
+      <h3>Purpose</h3>
+      <p>Regularization helps reduce overfitting and improve performance on new data.</p>
+      <p><span class="accent">λ</span> controls the strength of the penalty.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ridge Regression: L2 Regularization</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      J_{ridge}(\boldsymbol{\theta})=\frac{1}{n}||\mathbf{X}\boldsymbol{\theta}-\mathbf{y}||_2^2+\lambda||\boldsymbol{\theta}||_2^2
+      \]
+      \[
+      \boldsymbol{\theta}^{*}=(\mathbf{X}^{T}\mathbf{X}+\lambda\mathbf{I})^{-1}\mathbf{X}^{T}\mathbf{y}
+      \]
+    </div>
+    <div class="card">
+      <h3>Effect</h3>
+      <p>Ridge shrinks coefficients toward zero but usually does not make them exactly zero.</p>
+      <p>Useful when features are correlated.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Lasso and Elastic Net</h2>
+  <div class="two">
+    <div class="eq">
+      <p><strong>Lasso</strong></p>
+      \[
+      J_{lasso}=\frac{1}{n}||\mathbf{X}\boldsymbol{\theta}-\mathbf{y}||_2^2+\lambda||\boldsymbol{\theta}||_1
+      \]
+      <p><strong>Elastic Net</strong></p>
+      \[
+      J=\text{MSE}+\lambda_1||\boldsymbol{\theta}||_1+\lambda_2||\boldsymbol{\theta}||_2^2
+      \]
+    </div>
+    <div class="card">
+      <h3>Key difference</h3>
+      <p>Lasso can set some coefficients exactly to zero, so it can perform feature selection.</p>
+      <p>Elastic Net combines L1 and L2 penalties.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Model Evaluation Metrics</h2>
+  <div class="two">
+    <div class="eq">
+      \[
+      MAE=\frac{1}{n}\sum_{i=1}^{n}|y^{(i)}-\hat{y}^{(i)}|
+      \]
+      \[
+      MSE=\frac{1}{n}\sum_{i=1}^{n}(y^{(i)}-\hat{y}^{(i)})^2,\quad RMSE=\sqrt{MSE}
+      \]
+      \[
+      R^2=1-\frac{\sum_i(y^{(i)}-\hat{y}^{(i)})^2}{\sum_i(y^{(i)}-\bar{y})^2}
+      \]
+    </div>
+    <div class="card">
+      <h3>How to choose?</h3>
+      <p><span class="accent">MAE</span> is easy to interpret.</p>
+      <p><span class="accent">MSE/RMSE</span> punish large errors more strongly.</p>
+      <p><span class="accent">R²</span> shows explained variance, but can be misleading alone.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Train, Validation and Test</h2>
+  <div class="three">
+    <div class="card"><h3>Training set</h3><p>Used to learn parameters.</p></div>
+    <div class="card"><h3>Validation set</h3><p>Used to tune choices such as degree, λ and learning rate.</p></div>
+    <div class="card"><h3>Test set</h3><p>Used once at the end to estimate real performance.</p></div>
+  </div>
+  <p class="mini">Never tune the model repeatedly on the test set, otherwise the test result becomes optimistic.</p>
+</section>
+
+<section>
+  <h2>Residual Analysis</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Good signs</h3>
+      <ul class="small-list">
+        <li>Residuals are centered around zero.</li>
+        <li>No clear curve or pattern remains.</li>
+        <li>Error size is roughly stable across predictions.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Warning signs</h3>
+      <ul class="small-list">
+        <li>Curved residual pattern: model too simple.</li>
+        <li>Increasing spread: non-constant variance.</li>
+        <li>Outliers: data quality or special cases.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Colab: From Dataset to Model</h2>
+  <pre><code data-trim data-noescape class="language-python">
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+X = np.array([[1], [2], [3], [4], [5], [6]])
+y = np.array([42, 50, 55, 60, 70, 75])
+
+model = LinearRegression()
+model.fit(X, y)
+
+X_test = np.array([[7], [8]])
+y_test = np.array([82, 88])
+y_pred = model.predict(X_test)
+
+print("w:", model.coef_[0])
+print("b:", model.intercept_)
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("RMSE:", mean_squared_error(y_test, y_pred) ** 0.5)
+print("R2:", r2_score(y_test, y_pred))
+  </code></pre>
+</section>
+
+<section>
+  <h2>Common Mistakes</h2>
+  <div class="four">
+    <div class="card"><h3>Data leakage</h3><p>Using test information during training or preprocessing.</p></div>
+    <div class="card"><h3>No scaling</h3><p>Gradient descent becomes slow or unstable.</p></div>
+    <div class="card"><h3>Only R²</h3><p>A high R² does not guarantee useful predictions.</p></div>
+    <div class="card"><h3>Ignoring residuals</h3><p>Errors may reveal patterns the model missed.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Class Activity</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Task</h3>
+      <p>Use the dataset table and fit a line manually by trying different values of \(w\) and \(b\).</p>
+      <p>Then compare your answer with OLS or gradient descent.</p>
+    </div>
+    <div class="card">
+      <h3>Discussion</h3>
+      <p>Which line looks good visually?</p>
+      <p>Which line has the lowest MSE?</p>
+      <p>Can a line fit every point perfectly?</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Linear Regression Workflow</h2>
+  <div class="flow">
+    <div class="node">Collect data</div><div class="arrow">→</div>
+    <div class="node">Split data</div><div class="arrow">→</div>
+    <div class="node">Train model</div><div class="arrow">→</div>
+    <div class="node">Evaluate</div><div class="arrow">→</div>
+    <div class="node">Improve</div>
+  </div>
+  <p class="mini center">Improvement may mean better features, scaling, regularization, more data or a different model.</p>
+</section>
+
+<section>
+  <h2>Takeaways</h2>
+  <div class="card">
+    <p>Linear regression predicts a continuous value using a weighted sum of features.</p>
+    <p>OLS gives a closed-form solution when the matrix conditions are suitable.</p>
+    <p>Gradient descent learns parameters through repeated small updates.</p>
+    <p>Regularization controls model complexity and helps reduce overfitting.</p>
+    <p>Model evaluation requires test data, appropriate error metrics and residual analysis.</p>
+  </div>
+</section>
+
+<section data-background-color="#111827">
+  <h1 style="color:white">Questions?</h1>
+  <p style="color:#d1d5db">Next: Logistic Regression and Classification</p>
+</section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({ hash:true, slideNumber:true, transition:'slide', plugins:[RevealHighlight] });
+  const X = [1, 2, 3, 4, 5, 6, 7, 8];
+  const Y = [42, 50, 55, 60, 70, 75, 82, 88];
+
+  function computeOLS(x, y){
+    const n = x.length;
+    const mx = x.reduce((a,b)=>a+b,0)/n;
+    const my = y.reduce((a,b)=>a+b,0)/n;
+    let num=0, den=0;
+    for(let i=0;i<n;i++){ num += (x[i]-mx)*(y[i]-my); den += (x[i]-mx)*(x[i]-mx); }
+    const w = num/den;
+    const b = my - w*mx;
+    return {w,b};
+  }
+  const ols = computeOLS(X,Y);
+
+  function mapPlot(canvas, xmin, xmax, ymin, ymax){
+    const W=canvas.width, H=canvas.height;
+    const pad={left:55,right:18,top:20,bottom:42};
+    return {
+      xpix:x=>pad.left + (x-xmin)/(xmax-xmin)*(W-pad.left-pad.right),
+      ypix:y=>H-pad.bottom - (y-ymin)/(ymax-ymin)*(H-pad.top-pad.bottom),
+      pad,W,H
+    };
+  }
+
+  function drawScatterLine(canvasId, w, b, showResiduals=true){
+    const canvas=document.getElementById(canvasId); if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    const xmin=0, xmax=9, ymin=35, ymax=95;
+    const m=mapPlot(canvas,xmin,xmax,ymin,ymax); const {xpix,ypix,pad,W,H}=m;
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    for(let xv=0;xv<=9;xv++){let xp=xpix(xv);ctx.beginPath();ctx.moveTo(xp,pad.top);ctx.lineTo(xp,H-pad.bottom);ctx.stroke();}
+    for(let yv=40;yv<=90;yv+=10){let yp=ypix(yv);ctx.beginPath();ctx.moveTo(pad.left,yp);ctx.lineTo(W-pad.right,yp);ctx.stroke();}
+    ctx.strokeStyle='#111827';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(pad.left,pad.top);ctx.lineTo(pad.left,H-pad.bottom);ctx.lineTo(W-pad.right,H-pad.bottom);ctx.stroke();
+    ctx.fillStyle='#374151';ctx.font='12px sans-serif';
+    for(let xv=0;xv<=9;xv++){let xp=xpix(xv);ctx.fillText(String(xv),xp-4,H-pad.bottom+17);} 
+    for(let yv=40;yv<=90;yv+=10){let yp=ypix(yv);ctx.fillText(String(yv),18,yp+4);} 
+    ctx.fillStyle='#111827';ctx.font='14px sans-serif';ctx.fillText('Study hours',W/2-35,H-10);ctx.save();ctx.translate(16,H/2+35);ctx.rotate(-Math.PI/2);ctx.fillText('Final mark',0,0);ctx.restore();
+    if(showResiduals){
+      ctx.strokeStyle='#f97316';ctx.lineWidth=1.7;ctx.setLineDash([5,5]);
+      for(let i=0;i<X.length;i++){ctx.beginPath();ctx.moveTo(xpix(X[i]),ypix(Y[i]));ctx.lineTo(xpix(X[i]),ypix(w*X[i]+b));ctx.stroke();}
+      ctx.setLineDash([]);
+    }
+    ctx.strokeStyle='#A51C30';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(xpix(xmin),ypix(w*xmin+b));ctx.lineTo(xpix(xmax),ypix(w*xmax+b));ctx.stroke();
+    ctx.fillStyle='#2563eb'; for(let i=0;i<X.length;i++){ctx.beginPath();ctx.arc(xpix(X[i]),ypix(Y[i]),5,0,2*Math.PI);ctx.fill();}
+  }
+
+  function mseFor(w,b){return X.reduce((acc,x,i)=>acc+Math.pow(w*x+b-Y[i],2),0)/X.length;}
+  function updateFit(){
+    if(!document.getElementById('wSlider') || !document.getElementById('bSlider')) return;
+    const w=Number(document.getElementById('wSlider').value); const b=Number(document.getElementById('bSlider').value);
+    document.getElementById('wLabel').innerText=w.toFixed(2); document.getElementById('bLabel').innerText=b.toFixed(2);
+    document.getElementById('fitOutput').innerText=`ŷ = ${w.toFixed(2)}x + ${b.toFixed(2)}`;
+    document.getElementById('fitMSE').innerText=mseFor(w,b).toFixed(2);
+    document.getElementById('pred65').innerText=(w*6.5+b).toFixed(2);
+    drawScatterLine('fitCanvas',w,b,true);
+  }
+  function setOLSLine(){document.getElementById('wSlider').value=ols.w.toFixed(1);document.getElementById('bSlider').value=ols.b.toFixed(0);updateFit();}
+  function resetBadLine(){document.getElementById('wSlider').value=2;document.getElementById('bSlider').value=40;updateFit();}
+
+  let gdTimer=null; let gdW=0, gdB=0, gdEpoch=0;
+  function drawGD(){drawScatterLine('gdCanvas',gdW,gdB,false); if(!document.getElementById('gdOutput')) return; document.getElementById('gdOutput').innerText=`epoch ${gdEpoch} | w = ${gdW.toFixed(3)} | b = ${gdB.toFixed(3)} | loss = ${mseFor(gdW,gdB).toFixed(2)}`;}
+  function stepGD(){
+    const lr=Number(document.getElementById('lrSlider').value); const n=X.length;
+    let dw=0, db=0;
+    for(let i=0;i<n;i++){const err=gdW*X[i]+gdB-Y[i]; dw += err*X[i]; db += err;}
+    dw/=n; db/=n; gdW -= lr*dw; gdB -= lr*db; gdEpoch++; drawGD();
+    if(gdEpoch>=350 || mseFor(gdW,gdB)<8){clearInterval(gdTimer); gdTimer=null;}
+  }
+  function runGD(){ if(gdTimer) clearInterval(gdTimer); gdTimer=setInterval(stepGD,35); }
+  function resetGD(){ if(gdTimer) clearInterval(gdTimer); gdTimer=null; gdW=0; gdB=0; gdEpoch=0; drawGD(); }
+
+
+  function drawLossCurve(canvasId, history){
+    const canvas=document.getElementById(canvasId); if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    const W=canvas.width, H=canvas.height;
+    const pad={left:55,right:16,top:20,bottom:42};
+    const maxEpoch = Math.max(10, history[history.length-1].epoch);
+    const maxLoss = Math.max(20, ...history.map(h=>h.loss)) * 1.05;
+    const xpix=e=>pad.left + (e/maxEpoch)*(W-pad.left-pad.right);
+    const ypix=l=>H-pad.bottom - (l/maxLoss)*(H-pad.top-pad.bottom);
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    for(let e=0;e<=maxEpoch;e+=Math.max(1, Math.round(maxEpoch/5))){ let xp=xpix(e); ctx.beginPath(); ctx.moveTo(xp,pad.top); ctx.lineTo(xp,H-pad.bottom); ctx.stroke(); }
+    for(let l=0;l<=maxLoss;l+=maxLoss/5){ let yp=ypix(l); ctx.beginPath(); ctx.moveTo(pad.left,yp); ctx.lineTo(W-pad.right,yp); ctx.stroke(); }
+    ctx.strokeStyle='#111827'; ctx.lineWidth=1.6; ctx.beginPath(); ctx.moveTo(pad.left,pad.top); ctx.lineTo(pad.left,H-pad.bottom); ctx.lineTo(W-pad.right,H-pad.bottom); ctx.stroke();
+    ctx.fillStyle='#111827'; ctx.font='14px sans-serif'; ctx.fillText('Epoch', W/2-18, H-10); ctx.save(); ctx.translate(16,H/2+20); ctx.rotate(-Math.PI/2); ctx.fillText('MSE loss',0,0); ctx.restore();
+    ctx.fillStyle='#374151'; ctx.font='12px sans-serif';
+    for(let e=0;e<=maxEpoch;e+=Math.max(1, Math.round(maxEpoch/5))){ let xp=xpix(e); ctx.fillText(String(e), xp-6, H-pad.bottom+17); }
+    for(let l=0;l<=maxLoss;l+=maxLoss/5){ let yp=ypix(l); ctx.fillText(String(l.toFixed(0)), 14, yp+4); }
+    ctx.strokeStyle='#A51C30'; ctx.lineWidth=3; ctx.beginPath();
+    history.forEach((h,idx)=>{ if(idx===0) ctx.moveTo(xpix(h.epoch), ypix(h.loss)); else ctx.lineTo(xpix(h.epoch), ypix(h.loss)); });
+    ctx.stroke();
+    const last = history[history.length-1];
+    ctx.fillStyle='#2563eb'; ctx.beginPath(); ctx.arc(xpix(last.epoch), ypix(last.loss), 4.5, 0, Math.PI*2); ctx.fill();
+  }
+
+  let lossTimer=null, lgdW=0, lgdB=0, lgdEpoch=0, lgdHistory=[];
+  function drawLossPanels(){
+    drawScatterLine('lossLineCanvas', lgdW, lgdB, false);
+    drawLossCurve('lossCurveCanvas', lgdHistory);
+    document.getElementById('lossOutput').innerText = `epoch ${lgdEpoch} | w = ${lgdW.toFixed(3)} | b = ${lgdB.toFixed(3)} | loss = ${mseFor(lgdW,lgdB).toFixed(3)}`;
+  }
+  function stepLossGD(){
+    const lr = Number(document.getElementById('lossLR').value);
+    const n = X.length;
+    let dw = 0, db = 0;
+    for(let i=0;i<n;i++){ const err = lgdW*X[i] + lgdB - Y[i]; dw += err*X[i]; db += err; }
+    dw /= n; db /= n; lgdW -= lr*dw; lgdB -= lr*db; lgdEpoch += 1;
+    lgdHistory.push({epoch:lgdEpoch, loss:mseFor(lgdW, lgdB)});
+    drawLossPanels();
+    if(lgdEpoch >= 120 || mseFor(lgdW, lgdB) < 8){ clearInterval(lossTimer); lossTimer = null; }
+  }
+  function runLossGD(){ if(lossTimer) clearInterval(lossTimer); lossTimer = setInterval(stepLossGD, 60); }
+  function resetLossGD(){ if(!document.getElementById('lossLineCanvas') || !document.getElementById('lossCurveCanvas')) return; if(lossTimer) clearInterval(lossTimer); lossTimer = null; lgdW = 0; lgdB = 0; lgdEpoch = 0; lgdHistory = [{epoch:0, loss:mseFor(0,0)}]; drawLossPanels(); }
+
+  updateFit(); resetGD(); resetLossGD();
+</script>
+</body>
+</html>
