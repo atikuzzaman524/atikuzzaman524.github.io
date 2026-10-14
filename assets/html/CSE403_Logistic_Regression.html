@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CSE-403 Machine Learning | Logistic Regression</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root{--crimson:#A51C30;--ink:#111827;--muted:#667085;--line:#e5e7eb;--soft:#f8fafc}
+.reveal{font-family:"Inter","Segoe UI",Arial,sans-serif;color:var(--ink)}
+.reveal h1,.reveal h2,.reveal h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.025em;color:#111827}
+.reveal h1{font-size:1.52em;line-height:1.02}.reveal h2{font-size:1.08em;line-height:1.02;margin-bottom:.18em}.reveal h3{font-size:.73em;color:var(--crimson);margin:.1em 0 .2em}
+.reveal p,.reveal li{font-size:.54em;line-height:1.22}.eyebrow{color:var(--crimson);text-transform:uppercase;font-size:.33em;letter-spacing:.14em;font-weight:800}
+.subtitle{font-size:.48em;color:var(--muted);line-height:1.25}.note{font-size:.39em;color:var(--muted);line-height:1.22}
+.accent{color:var(--crimson);font-weight:800}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.two55{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;align-items:center}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.four{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.card{border:1.2px solid var(--line);border-radius:14px;padding:13px;background:white;box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.formula{font-size:.59em;padding:10px 13px;background:#f9fafb;border-left:6px solid var(--crimson);border-radius:10px;font-family:Consolas,monospace;line-height:1.30}
+.eq{font-size:.64em;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:9px 12px}.mini{font-size:.41em;color:var(--muted);line-height:1.18}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#f3f4f6;font-size:.38em;font-weight:800;margin:2px 3px}
+table.clean{width:100%;border-collapse:collapse;font-size:.42em}table.clean th{background:var(--crimson);color:white}table.clean th,table.clean td{border:1px solid #e5e7eb;padding:5px;text-align:center}
+.darkbox{background:#111827;color:#fff;border-radius:11px;padding:10px;font-family:Consolas,monospace;font-size:.48em;line-height:1.28}.slider{width:100%;accent-color:var(--crimson)}
+.control label{display:flex;justify-content:space-between;font-size:.42em;font-weight:800;margin:4px 0}.btn{border:0;background:var(--crimson);color:white;padding:7px 12px;border-radius:999px;margin:3px;cursor:pointer;font-weight:800;font-size:.39em}.btn.secondary{background:#374151}
+canvas.plot{width:100%;max-width:620px;max-height:360px;height:auto;border:1px solid var(--line);border-radius:13px;background:white;box-shadow:0 6px 20px rgba(0,0,0,.045)}
+svg.fitgraph{width:100%;max-height:330px;height:auto;border:1px solid var(--line);border-radius:13px;background:white;box-shadow:0 6px 20px rgba(0,0,0,.045)}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}.flow .node{border:1.3px solid #e5e7eb;border-radius:12px;padding:9px 11px;background:white;min-width:105px;text-align:center;font-size:.46em;font-weight:800}.arrow{font-size:1em;color:var(--crimson);font-weight:900}
+.confusion{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;font-size:.68em;font-weight:900;text-align:center}.cell{border-radius:10px;padding:14px;border:1px solid #e5e7eb;background:#f8fafc}.good{background:#ecfdf5;color:#065f46}.bad{background:#fff7ed;color:#9a3412}
+.reveal pre code{max-height:430px;font-size:.62em;line-height:1.12}.center{text-align:center}
+.reveal .slides section{box-sizing:border-box;padding:8px 14px;overflow:hidden}
+.reveal .slides section>*:first-child{margin-top:0}
+.reveal .slides section>*:last-child{margin-bottom:0}
+.reveal .slides section p{margin:.25em 0}
+.reveal .slides section ul{margin:.25em 0 .25em 1em}
+.reveal mjx-container[display="true"]{margin:.35em 0 !important}
+.compact-slide .card{padding:10px}
+.compact-slide .eq{padding:7px 10px}
+.compact-slide .formula{padding:8px 10px}
+.compact-slide p,.compact-slide li{font-size:.50em}
+.compact-slide h2{font-size:1.02em}
+
+</style>
+</head><body><div class="reveal"><div class="slides">
+
+<section data-background-color="#fbfaf8"><div class="eyebrow">CSE-403 Machine Learning</div><h1>Logistic Regression</h1><p class="subtitle">Classification Basics, Logistic Regression, Softmax Regression, Multi-Class Classification, Regularization and Model Evaluation</p><p class="note"><strong>Md. Atikuzzaman</strong><br>Lecturer, Department of Computer Science & Engineering<br>atik@cse.green.edu.bd</p></section>
+
+<section><h2>From Scores to Decisions</h2><div class="two"><div><p>Regression predicts a continuous number. Classification predicts a <span class="accent">category</span>.</p><p>Examples: spam/not spam, pass/fail, disease/no disease, grade A/B/C/D/F.</p><p><span class="badge">Features</span><span class="badge">Score</span><span class="badge">Probability</span><span class="badge">Class</span></p></div><div class="flow"><div class="node">Student data</div><div class="arrow">→</div><div class="node">Probability</div><div class="arrow">→</div><div class="node">Pass / Fail</div></div></div></section>
+
+<section><h2>Daily Classification Examples</h2><div class="four"><div class="card"><h3>Email</h3><p>Spam or not spam.</p></div><div class="card"><h3>Medical</h3><p>Normal or abnormal case.</p></div><div class="card"><h3>Finance</h3><p>Fraud or legitimate transaction.</p></div><div class="card"><h3>Education</h3><p>At-risk or not-at-risk student.</p></div></div></section>
+
+<section><h2>Classification Dataset</h2><div class="two"><table class="clean"><thead><tr><th>#</th><th>Study hours</th><th>Attendance</th><th>Previous mark</th><th>Label</th></tr></thead><tbody><tr><td>1</td><td>1.5</td><td>48</td><td>42</td><td>Fail</td></tr><tr><td>2</td><td>2.0</td><td>55</td><td>46</td><td>Fail</td></tr><tr><td>3</td><td>3.5</td><td>64</td><td>58</td><td>Pass</td></tr><tr><td>4</td><td>4.0</td><td>70</td><td>61</td><td>Pass</td></tr><tr><td>5</td><td>5.5</td><td>82</td><td>70</td><td>Pass</td></tr><tr><td>6</td><td>2.8</td><td>60</td><td>50</td><td>Fail</td></tr></tbody></table><div class="card"><h3>Notation</h3><div class="formula">x = input features<br>y ∈ {0,1}<br>ŷ = predicted class<br>p(y=1|x) = predicted probability</div></div></div></section>
+
+<section><h2>Binary, Multi-Class and Multi-Label</h2><div class="three"><div class="card"><h3>Binary</h3><p>Two classes.</p><p class="formula">y ∈ {0,1}</p></div><div class="card"><h3>Multi-Class</h3><p>More than two exclusive classes.</p><p class="formula">y ∈ {1,...,K}</p></div><div class="card"><h3>Multi-Label</h3><p>Multiple labels at the same time.</p><p class="formula">y ∈ {0,1}<sup>K</sup></p></div></div></section>
+
+<section><h2>Regression Line vs Classification Boundary</h2><svg class="fitgraph" viewBox="0 0 920 310"><rect width="920" height="310" fill="white"/><g font-family="Inter,Arial"><g transform="translate(20,0)"><text x="210" y="28" text-anchor="middle" font-size="18" font-weight="700">Regression</text><line x1="40" y1="260" x2="410" y2="260" stroke="#111827"/><line x1="40" y1="260" x2="40" y2="50" stroke="#111827"/><g fill="#2563eb"><circle cx="70" cy="224" r="5"/><circle cx="120" cy="198" r="5"/><circle cx="170" cy="177" r="5"/><circle cx="220" cy="150" r="5"/><circle cx="270" cy="119" r="5"/><circle cx="330" cy="87" r="5"/></g><path d="M55 232 L390 68" stroke="#A51C30" stroke-width="4" fill="none"/><text x="210" y="292" text-anchor="middle" font-size="13" fill="#667085">Predict a continuous value</text></g><g transform="translate(470,0)"><text x="210" y="28" text-anchor="middle" font-size="18" font-weight="700">Classification</text><line x1="40" y1="260" x2="410" y2="260" stroke="#111827"/><line x1="40" y1="260" x2="40" y2="50" stroke="#111827"/><g fill="#2563eb"><circle cx="85" cy="220" r="5"/><circle cx="120" cy="175" r="5"/><circle cx="145" cy="178" r="5"/><circle cx="180" cy="206" r="5"/></g><g fill="#16a34a"><polygon points="265,112 271,124 259,124"/><polygon points="310,85 316,97 304,97"/><polygon points="338,130 344,142 332,142"/><polygon points="280,160 286,172 274,172"/></g><path d="M75 75 L360 235" stroke="#A51C30" stroke-width="4" fill="none" stroke-dasharray="8 5"/><text x="210" y="292" text-anchor="middle" font-size="13" fill="#667085">Find a boundary between classes</text></g></g></svg></section>
+
+
+<section class="compact-slide">
+  <h2>Same Linear Idea, Different Output</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Linear Regression: Study Hours → GPA</h3>
+      <p>Suppose the input is only weekly study hours.</p>
+      <div class="eq">
+        \[
+        z = wx+b
+        \]
+        \[
+        \hat{y}=z
+        \]
+      </div>
+      <p><span class="accent">Output:</span> a continuous value such as GPA.</p>
+      <div class="formula">
+        Study hours = 5<br>
+        z = 0.35(5) + 1.20 = 2.95<br>
+        Predicted GPA = 2.95
+      </div>
+    </div>
+    <div class="card">
+      <h3>Logistic Regression: Study Hours → Pass / Fail</h3>
+      <p>For classification, we can still begin with the same linear score.</p>
+      <div class="eq">
+        \[
+        z = wx+b
+        \]
+      </div>
+      <p>But now the target is not a continuous GPA. The target is a class:</p>
+      <div class="formula">
+        y = 1 → Pass<br>
+        y = 0 → Fail
+      </div>
+      <p class="mini">The problem: the linear score \(z\) can be any real number, so it is not yet a probability.</p>
+    </div>
+  </div>
+  <div class="flow" style="margin-top:14px;">
+    <div class="node">Input x<br><span class="mini">Study hours</span></div>
+    <div class="arrow">→</div>
+    <div class="node">Linear score<br>\(z=wx+b\)</div>
+    <div class="arrow">→</div>
+    <div class="node">Regression: use z directly<br><span class="mini">GPA</span></div>
+  </div>
+</section>
+
+<section class="compact-slide">
+  <h2>Why Logistic Regression Adds the Sigmoid</h2>
+  <div class="two55">
+    <div class="center">
+      <svg class="fitgraph" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+        <rect width="720" height="420" fill="white"/>
+        <g font-family="Inter, Arial, sans-serif">
+          <line x1="70" y1="300" x2="660" y2="300" stroke="#111827" stroke-width="1.5"/>
+          <line x1="70" y1="300" x2="70" y2="40" stroke="#111827" stroke-width="1.5"/>
+          <text x="365" y="342" text-anchor="middle" font-size="16" fill="#111827">Linear score z = wx + b</text>
+          <text x="20" y="175" transform="rotate(-90 20 175)" text-anchor="middle" font-size="16" fill="#111827">Probability of Pass</text>
+
+          <line x1="70" y1="170" x2="660" y2="170" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="7 5"/>
+          <text x="82" y="160" font-size="13" fill="#667085">0.5 threshold</text>
+
+          <path d="M80 290 C170 287, 235 275, 290 235 C330 205, 350 183, 365 170 C380 157, 400 135, 440 105 C495 68, 560 54, 650 50"
+                fill="none" stroke="#A51C30" stroke-width="5"/>
+          <circle cx="365" cy="170" r="6" fill="#2563eb"/>
+
+          <text x="92" y="68" font-size="14" fill="#2563eb">Near 0 → likely Fail</text>
+          <text x="475" y="80" font-size="14" fill="#047857">Near 1 → likely Pass</text>
+
+          <text x="55" y="305" text-anchor="end" font-size="12" fill="#667085">0</text>
+          <text x="55" y="175" text-anchor="end" font-size="12" fill="#667085">0.5</text>
+          <text x="55" y="50" text-anchor="end" font-size="12" fill="#667085">1</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card">
+      <h3>Logistic Regression keeps the linear score</h3>
+      <div class="eq">
+        \[
+        z=wx+b
+        \]
+      </div>
+      <p>Then it adds one extra step:</p>
+      <div class="eq">
+        \[
+        p=\sigma(z)=\frac{1}{1+e^{-z}}
+        \]
+      </div>
+      <p>The sigmoid converts any value of \(z\) into a number between 0 and 1.</p>
+      <div class="formula">
+        Linear regression:<br>
+        x → wx+b → continuous output<br><br>
+        Logistic regression:<br>
+        x → wx+b → sigmoid → probability → class
+      </div>
+      <p class="mini"><strong>Main idea:</strong> the linear part is still there. Logistic regression adds sigmoid because classification needs a probability and a decision.</p>
+    </div>
+  </div>
+</section>
+
+<section><h2>Logistic Regression</h2><div class="two"><div class="card"><h3>Linear score + probability transformation</h3><p>Logistic regression starts exactly like a linear model by computing <strong>z = wᵀx + b</strong>.</p><p>The sigmoid then turns that unrestricted score into a valid probability between 0 and 1.</p></div><div class="eq">\[z=\mathbf{w}^T\mathbf{x}+b\]\[\sigma(z)=\frac{1}{1+e^{-z}}\]\[0 < \sigma(z) < 1\]</div></div></section>
+
+
+<section><h2>Interactive Sigmoid and Threshold</h2><div class="two55"><canvas id="sigmoidCanvas" class="plot" width="700" height="430"></canvas><div class="card"><h3>Change the score</h3><div class="control"><label><span>Score z</span><span id="zLabel">0.00</span></label><input id="zSlider" class="slider" type="range" min="-8" max="8" step="0.1" value="0" oninput="updateSigmoid()"></div><div class="control"><label><span>Threshold</span><span id="thresholdLabel">0.50</span></label><input id="thresholdSlider" class="slider" type="range" min="0.05" max="0.95" step="0.01" value="0.50" oninput="updateSigmoid()"></div><div class="darkbox" id="sigmoidOutput"></div></div></div></section>
+
+<section><h2>Logistic Regression Model</h2><div class="two"><div class="eq">\[p(y=1|\mathbf{x})=\sigma(\mathbf{w}^{T}\mathbf{x}+b)\]\[\hat{y}=\begin{cases}1,&p\ge\tau\\0,&p<\tau\end{cases}\]</div><div class="card"><h3>Meaning</h3><p>The logit becomes a probability. The threshold converts probability into a final class.</p></div></div></section>
+
+<section><h2>Binary Cross-Entropy Loss</h2><div class="two"><div class="eq">\[\mathcal{L}^{(i)}=-[y^{(i)}\log(p^{(i)})+(1-y^{(i)})\log(1-p^{(i)})]\]\[J=\frac{1}{n}\sum_{i=1}^{n}\mathcal{L}^{(i)}\]</div><div class="card"><h3>Why this loss?</h3><p>It strongly penalizes confident wrong predictions.</p></div></div></section>
+
+<section><h2>Gradient Descent for Logistic Regression</h2><div class="two"><div class="eq">\[\mathbf{w}:=\mathbf{w}-\alpha\frac{\partial J}{\partial \mathbf{w}}\]\[b:=b-\alpha\frac{\partial J}{\partial b}\]\[\frac{\partial J}{\partial \mathbf{w}}=\frac{1}{n}\mathbf{X}^T(\mathbf{p}-\mathbf{y})\]</div><div class="card"><h3>Idea</h3><p>Predict probabilities, calculate loss, update parameters, and repeat.</p></div></div></section>
+
+<section><h2>Interactive Decision Boundary</h2><div class="two55"><canvas id="boundaryCanvas" class="plot" width="700" height="430"></canvas><div class="card"><h3>Move the boundary</h3><div class="control"><label><span>w₁</span><span id="bw1Label">1.00</span></label><input id="bw1" class="slider" type="range" min="-4" max="4" step="0.1" value="1" oninput="updateBoundary()"></div><div class="control"><label><span>w₂</span><span id="bw2Label">-1.00</span></label><input id="bw2" class="slider" type="range" min="-4" max="4" step="0.1" value="-1" oninput="updateBoundary()"></div><div class="control"><label><span>b</span><span id="bbLabel">0.00</span></label><input id="bb" class="slider" type="range" min="-6" max="6" step="0.1" value="0" oninput="updateBoundary()"></div><button class="btn" onclick="setBoundaryGood()">Use good boundary</button><button class="btn secondary" onclick="resetBoundary()">Reset</button><div class="darkbox" id="boundaryOutput"></div></div></div></section>
+
+<section><h2>Softmax Regression</h2><div class="two"><div class="eq">\[p(y=k|\mathbf{x})=\frac{e^{z_k}}{\sum_{j=1}^{K}e^{z_j}}\]\[z_k=\mathbf{w}_k^T\mathbf{x}+b_k\]\[\sum_{k=1}^{K}p(y=k|\mathbf{x})=1\]</div><div class="card"><h3>Meaning</h3><p>Softmax converts multiple class scores into a probability distribution.</p></div></div></section>
+
+<section><h2>Interactive Softmax Probabilities</h2><div class="two55"><canvas id="softmaxCanvas" class="plot" width="700" height="430"></canvas><div class="card"><h3>Change class scores</h3><div class="control"><label><span>Score A</span><span id="saLabel">2.0</span></label><input id="scoreA" class="slider" type="range" min="-4" max="6" step="0.1" value="2" oninput="updateSoftmax()"></div><div class="control"><label><span>Score B</span><span id="sbLabel">1.0</span></label><input id="scoreB" class="slider" type="range" min="-4" max="6" step="0.1" value="1" oninput="updateSoftmax()"></div><div class="control"><label><span>Score C</span><span id="scLabel">0.0</span></label><input id="scoreC" class="slider" type="range" min="-4" max="6" step="0.1" value="0" oninput="updateSoftmax()"></div><div class="darkbox" id="softmaxOutput"></div></div></div></section>
+
+<section><h2>Multi-Class Cross-Entropy</h2><div class="two"><div class="eq">\[\mathbf{y}^{(i)}=[0,0,\ldots,1,\ldots,0]\]\[\mathcal{L}^{(i)}=-\sum_{k=1}^{K}y_k^{(i)}\log(p_k^{(i)})\]</div><div class="card"><h3>One-hot label</h3><p>For classes A, B, C, true class B becomes [0, 1, 0].</p></div></div></section>
+
+<section><h2>One-vs-Rest vs Softmax</h2><div class="two"><div class="card"><h3>One-vs-Rest</h3><p>Train one binary classifier per class.</p><p class="mini">Simple, but probabilities may not sum to 1.</p></div><div class="card"><h3>Softmax</h3><p>One model compares all classes together.</p><p class="mini">Common for mutually exclusive classes.</p></div></div></section>
+
+<section><h2>Regularization</h2><div class="two"><div class="eq">\[J_{reg}=J+\lambda||\mathbf{w}||_2^2\]\[J_{lasso}=J+\lambda||\mathbf{w}||_1\]</div><div class="card"><h3>Purpose</h3><p>Regularization discourages overly large weights and helps reduce overfitting.</p></div></div></section>
+
+<section><h2>Feature Scaling and Class Imbalance</h2><div class="two"><div class="card"><h3>Feature scaling</h3><p>Gradient-based training works better when features have comparable scales.</p><div class="formula">x' = (x - μ) / σ</div></div><div class="card"><h3>Class imbalance</h3><p>Accuracy can be misleading when one class dominates.</p><p class="mini">Use precision, recall, F1, ROC-AUC, class weights or resampling.</p></div></div></section>
+
+<section><h2>Confusion Matrix</h2><div class="two"><div class="confusion"><div class="cell good">TP<br><span class="mini">Actual +, Predicted +</span></div><div class="cell bad">FN<br><span class="mini">Actual +, Predicted −</span></div><div class="cell bad">FP<br><span class="mini">Actual −, Predicted +</span></div><div class="cell good">TN<br><span class="mini">Actual −, Predicted −</span></div></div><div class="card"><h3>Why it matters</h3><p>Accuracy alone hides mistake types. False negatives and false positives have different real-world costs.</p></div></div></section>
+
+<section><h2>Interactive Evaluation Metrics</h2><div class="two55"><div class="card"><h3>Set values</h3><div class="control"><label><span>TP</span><span id="tpLabel">40</span></label><input id="tp" class="slider" type="range" min="0" max="100" value="40" oninput="updateMetrics()"></div><div class="control"><label><span>FP</span><span id="fpLabel">10</span></label><input id="fp" class="slider" type="range" min="0" max="100" value="10" oninput="updateMetrics()"></div><div class="control"><label><span>FN</span><span id="fnLabel">8</span></label><input id="fn" class="slider" type="range" min="0" max="100" value="8" oninput="updateMetrics()"></div><div class="control"><label><span>TN</span><span id="tnLabel">42</span></label><input id="tn" class="slider" type="range" min="0" max="100" value="42" oninput="updateMetrics()"></div></div><div class="card"><h3>Metrics</h3><div class="darkbox" id="metricsOutput"></div><div class="eq">\[Precision=\frac{TP}{TP+FP},\quad Recall=\frac{TP}{TP+FN}\]\[F1=\frac{2PR}{P+R}\]</div></div></div></section>
+
+<section><h2>Accuracy, Precision, Recall and F1</h2><div class="four"><div class="card"><h3>Accuracy</h3><p class="formula">(TP+TN)/Total</p></div><div class="card"><h3>Precision</h3><p class="formula">TP/(TP+FP)</p></div><div class="card"><h3>Recall</h3><p class="formula">TP/(TP+FN)</p></div><div class="card"><h3>F1</h3><p class="formula">2PR/(P+R)</p></div></div></section>
+
+<section><h2>ROC Curve and AUC</h2><div class="two"><canvas id="rocCanvas" class="plot" width="700" height="430"></canvas><div class="card"><h3>Threshold-independent view</h3><p>ROC curve compares true positive rate and false positive rate across many thresholds.</p><div class="formula">TPR = TP/(TP+FN)<br>FPR = FP/(FP+TN)</div></div></div></section>
+
+<section><h2>Colab: Logistic Regression Example</h2><pre><code data-trim data-noescape class="language-python">
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+X = np.array([[1.5,48], [2.0,55], [2.8,60], [3.5,64],
+              [4.0,70], [5.5,82], [6.0,85], [7.0,90]])
+y = np.array([0, 0, 0, 1, 1, 1, 1, 1])
+
+model = LogisticRegression()
+model.fit(X, y)
+
+y_pred = model.predict(X)
+print(confusion_matrix(y, y_pred))
+print("Accuracy:", accuracy_score(y, y_pred))
+print("Precision:", precision_score(y, y_pred))
+print("Recall:", recall_score(y, y_pred))
+print("F1:", f1_score(y, y_pred))
+print(model.predict_proba([[3, 66]]))
+</code></pre></section>
+
+<section><h2>Common Mistakes</h2><div class="four"><div class="card"><h3>Only accuracy</h3><p>Misleading in imbalanced datasets.</p></div><div class="card"><h3>Wrong threshold</h3><p>0.5 may not match real risk.</p></div><div class="card"><h3>No scaling</h3><p>Optimization can become unstable.</p></div><div class="card"><h3>Data leakage</h3><p>Test data used during training.</p></div></div></section>
+
+<section><h2>Class Activity</h2><div class="two"><div class="card"><h3>Scenario</h3><p>A model predicts whether a student is at risk of failing. False negatives mean missing students who need support.</p></div><div class="card"><h3>Discussion</h3><p>Which metric matters most: accuracy, precision, recall or F1?</p><p>Should the threshold be lower than 0.5?</p></div></div></section>
+
+<section><h2>Takeaways</h2><div class="card"><p>Classification predicts categories.</p><p>Logistic regression uses sigmoid for binary classification.</p><p>Softmax regression handles mutually exclusive multi-class classification.</p><p>Cross-entropy penalizes confident wrong predictions.</p><p>Evaluation should include confusion matrix, precision, recall, F1 and threshold analysis.</p></div></section>
+
+<section data-background-color="#111827"><h1 style="color:white">Questions?</h1><p style="color:#d1d5db">Next: Decision Trees and Ensemble Learning</p></section>
+
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+Reveal.initialize({hash:true,slideNumber:true,transition:'slide',plugins:[RevealHighlight]});
+function sigmoid(z){return 1/(1+Math.exp(-z))} function safeDiv(a,b){return b===0?0:a/b}
+function drawAxes(ctx,W,H,pad,xLabel,yLabel){ctx.clearRect(0,0,W,H);ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;for(let i=0;i<=5;i++){let x=pad.left+i*(W-pad.left-pad.right)/5;let y=pad.top+i*(H-pad.top-pad.bottom)/5;ctx.beginPath();ctx.moveTo(x,pad.top);ctx.lineTo(x,H-pad.bottom);ctx.stroke();ctx.beginPath();ctx.moveTo(pad.left,y);ctx.lineTo(W-pad.right,y);ctx.stroke()}ctx.strokeStyle='#111827';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(pad.left,pad.top);ctx.lineTo(pad.left,H-pad.bottom);ctx.lineTo(W-pad.right,H-pad.bottom);ctx.stroke();ctx.fillStyle='#111827';ctx.font='14px sans-serif';ctx.fillText(xLabel,W/2-35,H-10);ctx.save();ctx.translate(16,H/2+35);ctx.rotate(-Math.PI/2);ctx.fillText(yLabel,0,0);ctx.restore()}
+function updateSigmoid(){const canvas=document.getElementById('sigmoidCanvas');if(!canvas)return;const z=Number(document.getElementById('zSlider').value),t=Number(document.getElementById('thresholdSlider').value);document.getElementById('zLabel').innerText=z.toFixed(2);document.getElementById('thresholdLabel').innerText=t.toFixed(2);const p=sigmoid(z),pred=p>=t?1:0;document.getElementById('sigmoidOutput').innerText=`z = ${z.toFixed(2)} | p = ${p.toFixed(3)} | threshold = ${t.toFixed(2)} | class = ${pred}`;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad={left:55,right:18,top:20,bottom:42};drawAxes(ctx,W,H,pad,'Score z','Probability');const xpix=x=>pad.left+((x+8)/16)*(W-pad.left-pad.right),ypix=y=>H-pad.bottom-y*(H-pad.top-pad.bottom);ctx.strokeStyle='#A51C30';ctx.lineWidth=3;ctx.beginPath();for(let i=0;i<=200;i++){const x=-8+i*16/200,y=sigmoid(x);if(i===0)ctx.moveTo(xpix(x),ypix(y));else ctx.lineTo(xpix(x),ypix(y))}ctx.stroke();ctx.strokeStyle='#9ca3af';ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(pad.left,ypix(t));ctx.lineTo(W-pad.right,ypix(t));ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#2563eb';ctx.beginPath();ctx.arc(xpix(z),ypix(p),6,0,2*Math.PI);ctx.fill()}
+const bx=[[1.2,2.0,0],[1.8,2.4,0],[2.1,1.4,0],[2.8,2.8,0],[3.2,1.9,0],[5.0,4.8,1],[5.5,5.9,1],[6.2,4.6,1],[6.8,6.0,1],[4.7,6.3,1]];
+function updateBoundary(){const canvas=document.getElementById('boundaryCanvas');if(!canvas)return;const w1=Number(document.getElementById('bw1').value),w2=Number(document.getElementById('bw2').value),b=Number(document.getElementById('bb').value);document.getElementById('bw1Label').innerText=w1.toFixed(2);document.getElementById('bw2Label').innerText=w2.toFixed(2);document.getElementById('bbLabel').innerText=b.toFixed(2);document.getElementById('boundaryOutput').innerText=`z = ${w1.toFixed(2)}x₁ + ${w2.toFixed(2)}x₂ + ${b.toFixed(2)}`;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad={left:55,right:18,top:20,bottom:42};drawAxes(ctx,W,H,pad,'Feature 1','Feature 2');const xpix=x=>pad.left+(x/8)*(W-pad.left-pad.right),ypix=y=>H-pad.bottom-(y/8)*(H-pad.top-pad.bottom);if(Math.abs(w2)>0.001){ctx.strokeStyle='#A51C30';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(xpix(0),ypix(-(w1*0+b)/w2));ctx.lineTo(xpix(8),ypix(-(w1*8+b)/w2));ctx.stroke()}bx.forEach(pt=>{ctx.fillStyle=pt[2]?'#16a34a':'#2563eb';ctx.beginPath();if(pt[2]){ctx.moveTo(xpix(pt[0]),ypix(pt[1])-7);ctx.lineTo(xpix(pt[0])+7,ypix(pt[1])+7);ctx.lineTo(xpix(pt[0])-7,ypix(pt[1])+7);ctx.closePath();ctx.fill()}else{ctx.arc(xpix(pt[0]),ypix(pt[1]),6,0,2*Math.PI);ctx.fill()}})}
+function setBoundaryGood(){document.getElementById('bw1').value=1;document.getElementById('bw2').value=1;document.getElementById('bb').value=-7.2;updateBoundary()} function resetBoundary(){document.getElementById('bw1').value=1;document.getElementById('bw2').value=-1;document.getElementById('bb').value=0;updateBoundary()}
+function updateSoftmax(){const canvas=document.getElementById('softmaxCanvas');if(!canvas)return;const s=[Number(scoreA.value),Number(scoreB.value),Number(scoreC.value)];saLabel.innerText=s[0].toFixed(1);sbLabel.innerText=s[1].toFixed(1);scLabel.innerText=s[2].toFixed(1);const m=Math.max(...s),e=s.map(v=>Math.exp(v-m)),sum=e.reduce((a,b)=>a+b,0),p=e.map(v=>v/sum),labels=['A','B','C'],best=p.indexOf(Math.max(...p));softmaxOutput.innerText=`A: ${p[0].toFixed(3)} | B: ${p[1].toFixed(3)} | C: ${p[2].toFixed(3)} | predicted = ${labels[best]}`;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad={left:55,right:18,top:20,bottom:42};drawAxes(ctx,W,H,pad,'Class','Probability');const barW=110,gap=70,baseX=160;p.forEach((v,i)=>{const x=baseX+i*(barW+gap),h=v*(H-pad.top-pad.bottom);ctx.fillStyle=i===best?'#A51C30':'#2563eb';ctx.fillRect(x,H-pad.bottom-h,barW,h);ctx.fillStyle='#111827';ctx.font='14px sans-serif';ctx.fillText(labels[i],x+barW/2-5,H-pad.bottom+22);ctx.fillText(v.toFixed(2),x+barW/2-15,H-pad.bottom-h-10)})}
+function updateMetrics(){const tp=Number(document.getElementById('tp').value),fp=Number(document.getElementById('fp').value),fn=Number(document.getElementById('fn').value),tn=Number(document.getElementById('tn').value);tpLabel.innerText=tp;fpLabel.innerText=fp;fnLabel.innerText=fn;tnLabel.innerText=tn;const acc=safeDiv(tp+tn,tp+fp+fn+tn),prec=safeDiv(tp,tp+fp),rec=safeDiv(tp,tp+fn),f1=safeDiv(2*prec*rec,prec+rec),spec=safeDiv(tn,tn+fp);metricsOutput.innerText=`Accuracy = ${acc.toFixed(3)}\nPrecision = ${prec.toFixed(3)}\nRecall = ${rec.toFixed(3)}\nF1-score = ${f1.toFixed(3)}\nSpecificity = ${spec.toFixed(3)}`}
+function drawROC(){const canvas=document.getElementById('rocCanvas');if(!canvas)return;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad={left:55,right:18,top:20,bottom:42};drawAxes(ctx,W,H,pad,'False Positive Rate','True Positive Rate');const xpix=x=>pad.left+x*(W-pad.left-pad.right),ypix=y=>H-pad.bottom-y*(H-pad.top-pad.bottom);ctx.strokeStyle='#9ca3af';ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(xpix(0),ypix(0));ctx.lineTo(xpix(1),ypix(1));ctx.stroke();ctx.setLineDash([]);const pts=[[0,0],[0.05,.34],[.12,.58],[.25,.75],[.40,.86],[.65,.94],[1,1]];ctx.strokeStyle='#A51C30';ctx.lineWidth=3;ctx.beginPath();pts.forEach((p,i)=>{if(i===0)ctx.moveTo(xpix(p[0]),ypix(p[1]));else ctx.lineTo(xpix(p[0]),ypix(p[1]))});ctx.stroke();ctx.fillStyle='#2563eb';pts.forEach(p=>{ctx.beginPath();ctx.arc(xpix(p[0]),ypix(p[1]),4.5,0,2*Math.PI);ctx.fill()});ctx.fillStyle='#111827';ctx.font='15px sans-serif';ctx.fillText('Example AUC ≈ 0.84',xpix(.52),ypix(.25))}
+updateSigmoid();updateBoundary();updateSoftmax();updateMetrics();drawROC();
+</script></body></html>
