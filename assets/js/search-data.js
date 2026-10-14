@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "post-linear-regression",
+        },{id: "post-logistic-regression",
+      
+        title: "Logistic Regression",
+      
+      description: "Introduction to Logistic Regression; Binary Classification, Sigmoid Function, Decision Boundary, Cost Function, Gradient Descent, and Model Evaluation",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/assets/html/CSE403_Logistic_Regression.html";
+        
+      },
+    },{id: "post-linear-regression",
       
         title: "Linear Regression",
       
